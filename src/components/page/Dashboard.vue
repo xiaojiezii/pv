@@ -29,7 +29,7 @@
                         <td width="14%">{{item.noticeType | Type}}</td>
                         <td width="14%" class="sta" >{{item.status | sta}}</td>
                         <td width="14%">{{item.createBy}}</td>
-                        <td width="14%">{{item.createTime | formDate}}</td>
+                        <td width="14%">{{item.createTime | filterTime}}</td>
                         <td width="20%" align="right">
                            <el-button  v-show="item.status=='0'"
                            size="mini" @click="handlemodify(i)">{{$t('btn.dateils')}}</el-button>    
@@ -74,25 +74,6 @@ export default {
       sta(val){
           return val==0 ? "正常" : "关闭"
       },
-      formDate: function (value) {
-            if(value!==null){
-                let date = new Date(value);
-                let y = date.getFullYear();
-                let MM = date.getMonth() + 1;
-                MM = MM < 10 ? ('0' + MM) : MM;
-                let d = date.getDate();
-                d = d < 10 ? ('0' + d) : d;
-                let h = date.getHours();
-                h = h < 10 ? ('0' + h) : h;
-                let m = date.getMinutes();
-                m = m < 10 ? ('0' + m) : m;
-                let s = date.getSeconds();
-                s = s < 10 ? ('0' + s) : s;
-                return y + '-' + MM + '-' + d + ' ' + h + ':' + m + ':' + s;
-            }else{
-            return "暂无记录"
-            }
-      }
     },
     methods: {
         news(){

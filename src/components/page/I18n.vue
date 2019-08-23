@@ -38,7 +38,7 @@
                 :label="$t('oper.operationtime')"
                >
                 <template slot-scope="scope">
-                     <p>{{scope.row.createTime | formDate}}</p>
+                     <p>{{scope.row.createTime | filterTime}}</p>
                 </template>
             </el-table-column>
             <el-table-column
@@ -111,26 +111,6 @@ export default {
 	  sta(val){
 	      return val==0 ? "关闭" : "开启"
       },
-        formDate: function (value) {
-            if(value!==null){
-                let date = new Date(value);
-                let y = date.getFullYear();
-                let MM = date.getMonth() + 1;
-                MM = MM < 10 ? ('0' + MM) : MM;
-                let d = date.getDate();
-                d = d < 10 ? ('0' + d) : d;
-                let h = date.getHours();
-                h = h < 10 ? ('0' + h) : h;
-                let m = date.getMinutes();
-                m = m < 10 ? ('0' + m) : m;
-                let s = date.getSeconds();
-                s = s < 10 ? ('0' + s) : s;
-                return y + '-' + MM + '-' + d + ' ' + h + ':' + m + ':' + s;
-            }else{
-               return "暂无记录"
-            }
-        
-      }
 	},
 
     methods: {

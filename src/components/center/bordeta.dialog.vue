@@ -29,7 +29,7 @@
             <div>
                 <p>
                   <span style="font-weight:700;font-size:20px;">{{ruleForm.noticeTitle}}</span>
-                  <span style="float:right;">{{$t('notice.cretime')}}：{{ruleForm.createTime | date}}</span>
+                  <span style="float:right;">{{$t('notice.cretime')}}：{{ruleForm.createTime | filterTime }}</span>
                 </p>
                 <p style="width:98%;height:200px;padding:20px;text-indent:40px;">{{ruleForm.noticeContent}}</p>
                 <p style="width:100%;text-align:right;">{{ruleForm.remark}}</p>
@@ -54,25 +54,6 @@
         }
     },
     filters:{
-       date: function (value) {
-            if(value!==null){
-                let date = new Date(value);
-                let y = date.getFullYear();
-                let MM = date.getMonth() + 1;
-                MM = MM < 10 ? ('0' + MM) : MM;
-                let d = date.getDate();
-                d = d < 10 ? ('0' + d) : d;
-                let h = date.getHours();
-                h = h < 10 ? ('0' + h) : h;
-                let m = date.getMinutes();
-                m = m < 10 ? ('0' + m) : m;
-                let s = date.getSeconds();
-                s = s < 10 ? ('0' + s) : s;
-                return y + '-' + MM + '-' + d + ' ' + h + ':' + m + ':' + s;
-            }else{
-            return "暂无记录"
-            }
-      },
        Type(val){
           return val==1 ? "通知" : "公告"
       }

@@ -32,7 +32,7 @@
                         </span>
                     </td>
                     <td width="35%" align="left" colspan="4">
-                        报告时间：{{prt.time | times}}
+                        报告时间：{{prt.time | filterTime }}
                     </td>
                 </tr>
                 <tr>
@@ -208,7 +208,7 @@
                              <input type="checkbox">死亡，  时间：
                         </span>
                         <span v-else>
-                             <input type="checkbox" checked=true>死亡，  时间：{{prt.dieDate | die}} 
+                             <input type="checkbox" checked=true>死亡，  时间：{{prt.dieDate | filterTime }} 
                         </span>  <br> <br>
                         <span v-if="prt.saeType!=='2'">
                             <input type="checkbox">导致入院
@@ -243,9 +243,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td align="left">SAE发生时间：
+                    <td align="left">SAE发生时间：{{prt.dates | filterTime }}
                     <td align="left" valign="top" colspan="5">
-                            研究者获知SAE时间：{{prt.dates | tis}}
+                            研究者获知SAE时间：{{prt.dates | filterTime }}
                     </td>
                 </tr>
                 <tr>
@@ -511,7 +511,7 @@
                 :label="$t('case.time')"
                 >
               <template slot-scope="scope">
-                     <p>{{scope.row.time | formDate}}</p>
+                     <p>{{scope.row.time | filterTime }}</p>
                 </template>
             </el-table-column>
             <el-table-column
@@ -538,6 +538,7 @@
                 <el-button
                     size="mini"
                     type="danger"
+                    v-show="scope.row.status!==3"
                     @click="handleDelete(scope.row)">{{$t('btn.delete')}}</el-button>
                 </template>
             </el-table-column>
@@ -599,66 +600,6 @@ export default {
               return "数据锁定"
           }
       },
-      formDate: function (value) {
-        let date = new Date(value);
-        let y = date.getFullYear();
-        let MM = date.getMonth() + 1;
-        MM = MM < 10 ? ('0' + MM) : MM;
-        let d = date.getDate();
-        d = d < 10 ? ('0' + d) : d;
-        let h = date.getHours();
-        h = h < 10 ? ('0' + h) : h;
-        let m = date.getMinutes();
-        m = m < 10 ? ('0' + m) : m;
-        let s = date.getSeconds();
-        s = s < 10 ? ('0' + s) : s;
-        return y + '-' + MM + '-' + d + ' ' + h + ':' + m + ':' + s;
-      },
-      times: function (value) {
-        let date = new Date(value);
-        let y = date.getFullYear();
-        let MM = date.getMonth() + 1;
-        MM = MM < 10 ? ('0' + MM) : MM;
-        let d = date.getDate();
-        d = d < 10 ? ('0' + d) : d;
-        let h = date.getHours();
-        h = h < 10 ? ('0' + h) : h;
-        let m = date.getMinutes();
-        m = m < 10 ? ('0' + m) : m;
-        let s = date.getSeconds();
-        s = s < 10 ? ('0' + s) : s;
-        return y + '-' + MM + '-' + d + ' ' + h + ':' + m + ':' + s;
-      },
-      die: function (value) {
-        let date = new Date(value);
-        let y = date.getFullYear();
-        let MM = date.getMonth() + 1;
-        MM = MM < 10 ? ('0' + MM) : MM;
-        let d = date.getDate();
-        d = d < 10 ? ('0' + d) : d;
-        let h = date.getHours();
-        h = h < 10 ? ('0' + h) : h;
-        let m = date.getMinutes();
-        m = m < 10 ? ('0' + m) : m;
-        let s = date.getSeconds();
-        s = s < 10 ? ('0' + s) : s;
-        return y + '-' + MM + '-' + d + ' ' + h + ':' + m + ':' + s;
-      },
-      tis: function (value) {
-        let date = new Date(value);
-        let y = date.getFullYear();
-        let MM = date.getMonth() + 1;
-        MM = MM < 10 ? ('0' + MM) : MM;
-        let d = date.getDate();
-        d = d < 10 ? ('0' + d) : d;
-        let h = date.getHours();
-        h = h < 10 ? ('0' + h) : h;
-        let m = date.getMinutes();
-        m = m < 10 ? ('0' + m) : m;
-        let s = date.getSeconds();
-        s = s < 10 ? ('0' + s) : s;
-        return y + '-' + MM + '-' + d + ' ' + h + ':' + m + ':' + s;
-      }
     },
     components:{
         caseDialog,

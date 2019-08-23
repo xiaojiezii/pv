@@ -16,6 +16,7 @@ import LangENUS from './components/common/lang/en-us';
 import LangZHCN from './components/common/lang/zh-cn';
 import Blob from './excel/Blob'
 import Export2Excel from './excel/Export2Excel.js'
+import * as moment from './assets/filters'
 
 // Vue.use(Vuex);
 Vue.prototype.qs = qs;
@@ -36,6 +37,12 @@ const i18n = new VueI18n({
       'en-us': LangENUS,
       'zh-cn': LangZHCN
     }
+  })
+  
+
+
+  Object.keys(moment).forEach(key => {
+    Vue.filter(key, moment[key])
   })
   
 

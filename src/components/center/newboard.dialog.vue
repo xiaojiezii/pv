@@ -6,13 +6,6 @@
                   <el-input v-model="ruleForm.noticeTitle" class="ipts" :placeholder="$t('btn.enter')"></el-input>
                   <i class="el-icon-s-order lii" title="编写中"></i>
               </el-form-item>               
-              <el-form-item :label="$t('notice.notype')+':'" prop="noticeType">
-                  <el-select v-model="ruleForm.noticeType" class="ipts" :placeholder="$t('btn.selects')">
-                    <el-option :label="$t('notice.fi')" value="1"></el-option>                      
-                    <el-option :label="$t('notice.not')" value="2"></el-option>                                        
-                  </el-select>
-                  <i class="el-icon-s-order lii" title="编写中"></i>
-              </el-form-item>
               <el-form-item :label="$t('notice.notcon')+':'" prop="noticeContent">
                   <el-input type="textarea" :rows="2" class="ipts" :placeholder="$t('btn.enter')" v-model="ruleForm.noticeContent"></el-input>
                   <i class="el-icon-s-order lii" title="编写中"></i>
@@ -36,7 +29,6 @@
       return{
             ruleForm:{
               noticeTitle:'',
-              noticeType:'',
               noticeContent:'',
               // status:'',
               remark:'',	
@@ -66,7 +58,6 @@
               var url=this.global.url+"/notice/add?";
                 var postData=this.qs.stringify({
                       noticeTitle:this.ruleForm.noticeTitle,
-                      noticeType:this.ruleForm.noticeType,
                       noticeContent:this.ruleForm.noticeContent,
                       // status:this.ruleForm.status,
                       remark:this.ruleForm.remark,	

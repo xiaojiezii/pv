@@ -1,5 +1,17 @@
 <template>
     <div class="wrapper">
+        <div class="cem" v-if="cems">
+             <div style="display:inline;">
+                   <i class="el-icon-chat-dot-round"></i>
+                   <span >{{tit.noticeType | Type}}：</span>
+                    &nbsp;&nbsp;&nbsp;
+                   <span style="font-size:14px">{{tit.noticeContent}}</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span>时间：</span>
+                    <span style="font-size:14px">{{tit.createTime | filterTime}}</span>
+             </div>
+             <span class="close" @click="cem">x</span>
+        </div>
         <!-- 头部导航栏 -->
         <v-head :navlist="navlist"></v-head>
         <!-- 中英文切换按钮 -->
@@ -39,6 +51,8 @@
         data(){
             return {
                 cement:false,
+                tit:{},
+                cems:'true',
                 navlist:"",  //左侧导航栏
                 tagsList: [],
                 collapse: false,
@@ -62,7 +76,15 @@
                 }
             }
         },
+          filters:{
+       Type(val){
+          return val==1 ? "通知" : "公告"
+      }
+    },
         methods:{
+            cem(){
+                this.cems=false
+            },
     // 中英文切换按钮
               changeLanguage () {
                   const loading = this.$loading({
@@ -99,6 +121,18 @@
                     }
                 }
             })
+
+            var u=this.global.url+"/notice/noticeList"
+            this.$axios.get(u).then((res)=>{
+                console.log(res)
+                if(res.data.status==200){
+                    if(res.data.data.length==0){
+                        this.cems=false
+                    }else{
+                       this.tit=res.data.data[0]
+                    }     
+                }
+            })
           }
         },
         components:{
@@ -133,6 +167,22 @@
     }
 </script>
 <style>
+.cem{
+    width: 100%;
+    height:25px;
+   position: absolute;
+   z-index: 1000;
+   background: #ffeeb6;
+   text-align: center;
+   
+}
+.close{
+    float:right;padding-right:20px;
+    cursor: pointer;
+}
+.close:hover{
+    opacity: .5;
+}
  .en_zh{
      /* z-index: 1000; */
      font-size: 15px;

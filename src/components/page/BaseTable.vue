@@ -22,7 +22,7 @@
                 :label="$t('project.date')"
                 >
                  <template slot-scope="scope">
-                     <p>{{scope.row.time | formDate}}</p>
+                     <p>{{scope.row.time | filterTime}}</p>
                 </template>
             </el-table-column>
             <el-table-column
@@ -96,29 +96,12 @@ export default {
            pages:'',//数据总页数
         }
     },
-    filters:{
-         formDate: function (value) {
-             if(value==null){
-                 return ''
-             }else{
- let date = new Date(value);
-        let y = date.getFullYear();
-        let MM = date.getMonth() + 1;
-        MM = MM < 10 ? ('0' + MM) : MM;
-        let d = date.getDate();
-        d = d < 10 ? ('0' + d) : d;
-
-        return y + '-' + MM + '-' + d + ' ' ;
-             }
-       
-      }
-    },
     components:{
         demoDialog,
         markDialog
     },
       methods: {
-          news(){
+          news(){   
               this.newdemos=true;
               console.log(this.newdemos)
           },

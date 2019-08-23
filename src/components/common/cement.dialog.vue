@@ -7,7 +7,7 @@
                    <span style="font-size:25px">{{item.noticeType | Type}}</span>
                    <div style="margin-top:20px;">
                        <span style="float:left;font-size:20px;">{{item.noticeTitle}}</span>
-                       <span style="float:right;">{{item.createTime | date}}</span>
+                       <span style="float:right;">{{item.createTime | filterTime}}</span>
                    </div>
                    <div class="cont">
                        {{item.noticeContent}}
@@ -36,33 +36,7 @@ export default {
         'cement',
         'list'
     ],
-    // watch:{
-    //    list(val){
-    //        if(val.length==0){
-    //            this.cement=false
-    //        }
-    //    }
-    // },
     filters:{
-         date: function (value) {
-            if(value!==null){
-                let date = new Date(value);
-                let y = date.getFullYear();
-                let MM = date.getMonth() + 1;
-                MM = MM < 10 ? ('0' + MM) : MM;
-                let d = date.getDate();
-                d = d < 10 ? ('0' + d) : d;
-                let h = date.getHours();
-                h = h < 10 ? ('0' + h) : h;
-                let m = date.getMinutes();
-                m = m < 10 ? ('0' + m) : m;
-                let s = date.getSeconds();
-                s = s < 10 ? ('0' + s) : s;
-                return y + '-' + MM + '-' + d + ' ' + h + ':' + m + ':' + s;
-            }else{
-                return "暂无记录"
-            }
-      },
       Type(val){
           return val==1 ? "通知" : "公告"
       }

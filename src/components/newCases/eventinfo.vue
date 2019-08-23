@@ -394,7 +394,7 @@ export default {
                     isOther:this.ruleForm.isOther,
                     reporterTerm:this.ruleForm.reporterTerm, 
              })
-             this.$axios.post(url+postData).then((res)=>{
+             this.$this.$axios.post(url+postData).then((res)=>{
                  if(res.data.status==200){
                         this.$message({
                             type: 'success',
@@ -424,7 +424,7 @@ export default {
       },
       option(){
            var url=this.global.url+"/caseIncident/selectCaseIncident?caseId="+this.caseId;
-          this.$axios.get(url).then((res)=>{
+          this.$this.$axios.get(url).then((res)=>{
               console.log(res)
               if(res.data.status==200){
                 this.options=res.data.data   
@@ -489,7 +489,7 @@ export default {
                 isOther:this.ruleForm.isOther,
                 reporterTerm:this.ruleForm.reporterTerm, 
 	        })
-	        this.$axios.post(url+postData).then((res)=>{
+	        this.$this.$axios.post(url+postData).then((res)=>{
 	          console.log(res)
 	          if(res.data.status==200){
                 //   this.$router.go(0)
@@ -516,7 +516,7 @@ export default {
 	      hand(){
 	        console.log(this.caseIncidentId)
 	        var url=this.global.url+"/caseIncident/selectCaseIncidentById?caseIncidentId="+this.caseIncidentId;
-	        this.$axios.get(url).then((res)=>{
+	        this.$this.$axios.get(url).then((res)=>{
 	          console.log(res)
 	          if(res.data.status==200){
                 this.ruleForm=res.data.data
@@ -546,14 +546,42 @@ export default {
 					 this.ruleForm.verify="";
 				}else{
 					this.ruleForm.verify=JSON.stringify(res.data.data.verify)
-				}
-				this.ruleForm.isDie=JSON.stringify(res.data.data.isDie)
-				this.ruleForm.isHospital=JSON.stringify(res.data.data.isHospital)
-				this.ruleForm.isLife=JSON.stringify(res.data.data.isLife)
+        }
+        if(res.data.data.isDie==null){
+          this.ruleForm.isDie="";
+        }else{
+        this.ruleForm.isDie=JSON.stringify(res.data.data.isDie)
+        }
+        if(res.data.data.isHospital==null){
+          this.ruleForm.isHospital="";
+        }else{
+        this.ruleForm.isHospital=JSON.stringify(res.data.data.isHospital)
+        }
+        if(res.data.data.isLife==null){
+          this.ruleForm.isLife="";
+        }else{
+        this.ruleForm.isLife=JSON.stringify(res.data.data.isLife)
+        }
+        if(res.data.data.language==null){
+          this.ruleForm.language="";
+        }else{
         this.ruleForm.language=JSON.stringify(res.data.data.language)
-				this.ruleForm.isDisability=JSON.stringify(res.data.data.isDisability)
-				this.ruleForm.isCongenital=JSON.stringify(res.data.data.isCongenital)
-				this.ruleForm.isOther=JSON.stringify(res.data.data.isOther)
+        }
+        if(res.data.data.isDisability==null){
+          this.ruleForm.isDisability="";
+        }else{
+        this.ruleForm.isDisability=JSON.stringify(res.data.data.isDisability)
+        }
+        if(res.data.data.isCongenital==null){
+          this.ruleForm.isCongenital="";
+        }else{
+        this.ruleForm.isCongenital=JSON.stringify(res.data.data.isCongenital)
+        }
+        if(res.data.data.isOther==null){
+          this.ruleForm.isOther="";
+        }else{
+        this.ruleForm.isOther=JSON.stringify(res.data.data.isOther)
+        }
         
 	          }
 	        })
@@ -571,7 +599,7 @@ export default {
 		  		                           message: this.$t('event.evsuccess1'),
 		  		                       })   
 		  		  var url=this.global.url+"/caseIncident/delete?caseIncidentId="+this.id
-		  		  this.$axios.delete(url).then((res)=>{
+		  		  this.$this.$axios.delete(url).then((res)=>{
 		  		      if(res.data.status==200){
 		  		                       this.get()
                                         }
@@ -590,7 +618,7 @@ export default {
          }
           this.save=false;
           var url=this.global.url+"/caseIncident/selectCaseIncident?caseId="+this.caseId;
-          this.$axios.get(url).then((res)=>{
+          this.$this.$axios.get(url).then((res)=>{
               console.log(res)
               if(res.data.status==200){
                   if(res.data.data.length==0){
@@ -716,7 +744,7 @@ export default {
                             isOther:this.ruleForm.isOther,
                             reporterTerm:this.ruleForm.reporterTerm, 
                   })
-                  this.$axios.post(url+postData).then((res)=>{
+                  this.$this.$axios.post(url+postData).then((res)=>{
                       console.log(res)
                     if(res.data.status==200){
                          this.$message({

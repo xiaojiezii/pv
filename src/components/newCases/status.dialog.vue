@@ -19,7 +19,7 @@
                 <li class="lis lis1" v-show="as">
                     <div>
                         <span class="spans">{{$t("case.ack")}}</span>
-                        <span>{{option.ackTime | formDate}}</span>
+                        <span>{{option.ackTime | filterTime}}</span>
                     </div>
                     <div >
                         <span class="spans">{{$t("case.ackf")}}</span>
@@ -32,7 +32,7 @@
                 <li class="lis lis1"  v-show="as">
                     <div>
                         <span class="spans">{{$t("case.times")}}</span>
-                        <span>{{list.time | dates}}</span>
+                        <span>{{list.time | filterTime}}</span>
                     </div>
                     <div>
                         <span class="spans">{{$t("case.batch")}}</span>
@@ -120,46 +120,6 @@
       "status",
       "caseId"
     ],
-    filters:{
-       formDate: function (value) {
-           if(value){
-                let date = new Date(value);
-                let y = date.getFullYear();
-                let MM = date.getMonth() + 1;
-                MM = MM < 10 ? ('0' + MM) : MM;
-                let d = date.getDate();
-                d = d < 10 ? ('0' + d) : d;
-                let h = date.getHours();
-                h = h < 10 ? ('0' + h) : h;
-                let m = date.getMinutes();
-                m = m < 10 ? ('0' + m) : m;
-                let s = date.getSeconds();
-                s = s < 10 ? ('0' + s) : s;
-                return y + '-' + MM + '-' + d + ' ' + h + ':' + m + ':' + s;
-           }else{
-               return ""
-           }
-      }, 
-            dates: function (value) {
-           if(value){
-                let date = new Date(value);
-                let y = date.getFullYear();
-                let MM = date.getMonth() + 1;
-                MM = MM < 10 ? ('0' + MM) : MM;
-                let d = date.getDate();
-                d = d < 10 ? ('0' + d) : d;
-                let h = date.getHours();
-                h = h < 10 ? ('0' + h) : h;
-                let m = date.getMinutes();
-                m = m < 10 ? ('0' + m) : m;
-                let s = date.getSeconds();
-                s = s < 10 ? ('0' + s) : s;
-                return y + '-' + MM + '-' + d + ' ' + h + ':' + m + ':' + s;
-           }else{
-               return ""
-           }
-      }, 
-    },
     watch:{
        caseId(val){
            if(val!==undefined){
