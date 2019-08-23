@@ -316,7 +316,7 @@ export default {
               if(times=="1970-1-1"){times=""}
             }
             console.log(this.ruleForm.dieDate)
-               if(this.ruleForm.dieDate==""){
+           if(this.ruleForm.dieDate==""){
               var time=""
             }else{
                  var date = new Date(this.ruleForm.dieDate);  

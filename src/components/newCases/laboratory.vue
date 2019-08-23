@@ -26,21 +26,22 @@
            <el-form v-show="mains" :model="ruleForm" :rules="rules" ref="ruleForm" label-width="450px" style="margin-top:20px;" class="demo-ruleForm">
                            
               <!-- 创建 -->
-                <el-form-item :label="$t('labo.ladate')" prop="date" v-if="save">
-                    <el-date-picker class="ipts" v-model="ruleForm.date" 
-                       value-format=" yyyy-MM-dd" format="yyyy-MM-dd"
-                       :placeholder="$t('btn.entime')"></el-date-picker>
-                    <el-tooltip :content="$t('tishi.R1')" placement="right-start" effect="light">
+               <el-form-item :label="$t('labo.ladate')" prop="date"  v-if="save">
+                         <el-date-picker class="ipts"
+                         value-format=" yyyy-MM-dd" format="yyyy-MM-dd" v-model="ruleForm.date" type="datetime" :placeholder="$t('btn.entime')"> </el-date-picker>
+                   <el-tooltip :content="$t('tishi.R1')" placement="right-start" effect="light">
                        <i class="el-icon-s-order lii"></i>
                      </el-tooltip>
-                </el-form-item>     
+                </el-form-item>  
                 <!--修改  -->
-                <el-form-item :label="$t('labo.ladate')" prop="date" v-else v-show="ss">
-                    <el-date-picker class="ipts" v-model="ruleForm.date" :placeholder="$t('btn.entime')"></el-date-picker>
-                    <el-tooltip :content="$t('tishi.R1')" placement="right-start" effect="light">
+             
+                    <el-form-item :label="$t('labo.ladate')" prop="date" v-else v-show="ss">
+                         <el-date-picker class="ipts"
+                          v-model="ruleForm.date" type="datetime" :placeholder="$t('btn.entime')"> </el-date-picker>
+                   <el-tooltip :content="$t('tishi.R1')" placement="right-start" effect="light">
                        <i class="el-icon-s-order lii"></i>
                      </el-tooltip>
-                </el-form-item>     
+                </el-form-item>  
 				<!-- 新建 -->
 				<el-form-item :label="$t('labo.ladate')" prop="date" v-show="!ss">
 				    <el-date-picker class="ipts"  value-format=" yyyy-MM-dd" format="yyyy-MM-dd"
@@ -223,10 +224,21 @@ export default {
                 type: 'warning'
             }).then(() => {
         //   点击确认后向服务器传参
+
+         if(this.ruleForm.date==""){
+              var time=""
+            }else{
+                 var date = new Date(this.ruleForm.date);  
+                   var dateNumFun = (num) => num < 10 ? `0${num}` : num   
+                  var time=date.getFullYear() + '-' + (dateNumFun(date.getMonth() + 1))+ '-' + dateNumFun(date.getDate()) + ' ' + dateNumFun(date.getHours())+ ':' + dateNumFun(date.getMinutes()) + ':' + dateNumFun(date.getSeconds()) ; 
+                    if(time=="1970-1-1"){
+                          time=""
+                    }
+            }
            var url=this.global.url+"/caseLab/addCaseLab?";
            var postData=this.qs.stringify({
                 caseId:this.caseId,
-                date:this.ruleForm.date,
+                date:time,
                 name:this.ruleForm.name,
                 nameMed:this.ruleForm.nameMed,
                 nameMedcode:this.ruleForm.nameMedcode,
@@ -298,11 +310,21 @@ export default {
 	                cancelButtonText: '取消',
 	                type: 'warning'
 	            }).then(() => {
-	        //   点击确认后向服务器传参
+          //   点击确认后向服务器传参
+           if(this.ruleForm.date==""){
+              var time=""
+            }else{
+                 var date = new Date(this.ruleForm.date);  
+                   var dateNumFun = (num) => num < 10 ? `0${num}` : num   
+                  var time=date.getFullYear() + '-' + (dateNumFun(date.getMonth() + 1))+ '-' + dateNumFun(date.getDate()) + ' ' + dateNumFun(date.getHours())+ ':' + dateNumFun(date.getMinutes()) + ':' + dateNumFun(date.getSeconds()) ; 
+                    if(time=="1970-1-1"){
+                          time=""
+                    }
+            }
 	        var url=this.global.url+"/caseLab/addCaseLab?"
 	        var postData=this.qs.stringify({
 	             caseId:this.caseId,
-	             date:this.ruleForm.date,
+	             date:time,
 	             name:this.ruleForm.name,
 	             nameMed:this.ruleForm.nameMed,
 	             nameMedcode:this.ruleForm.nameMedcode,
@@ -435,19 +457,23 @@ export default {
             }).then(() => {
                
         //   点击确认后向服务器传参
-             if(this.ruleForm.date==""){
-               var time2=""
-             }else{
-                 var date2 = new Date(this.ruleForm.date);  
-                  var time2=date2.getFullYear() + '-' + (date2.getMonth() + 1) + '-' + date2.getDate() ; 
-                  if(time2=="1970-1-1"){time2=""}
-             }
+        console.log(this.ruleForm.date)
+            if(this.ruleForm.date==""){
+              var time=""
+            }else{
+                 var date = new Date(this.ruleForm.date);
+                 var dateNumFun = (num) => num < 10 ? `0${num}` : num   
+                  var time=date.getFullYear() + '-' + (dateNumFun(date.getMonth() + 1))+ '-' + dateNumFun(date.getDate()) + ' ' + dateNumFun(date.getHours())+ ':' + dateNumFun(date.getMinutes()) + ':' + dateNumFun(date.getSeconds()) ; 
+                    if(time=="1970-1-1"){
+                          time=""
+                    }
+            }
                  
                   var url=this.global.url+"/caseLab/update?"
                   console.log(this.id)
                   var  postData=this.qs.stringify({
                         id:this.id,
-                        date:time2,
+                        date:time,
                         name:this.ruleForm.name,
                         nameMed:this.ruleForm.nameMed,
                         nameMedcode:this.ruleForm.nameMedcode,

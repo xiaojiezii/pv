@@ -394,7 +394,7 @@ export default {
                     isOther:this.ruleForm.isOther,
                     reporterTerm:this.ruleForm.reporterTerm, 
              })
-             this.$this.$axios.post(url+postData).then((res)=>{
+             this.$axios.post(url+postData).then((res)=>{
                  if(res.data.status==200){
                         this.$message({
                             type: 'success',
@@ -424,7 +424,7 @@ export default {
       },
       option(){
            var url=this.global.url+"/caseIncident/selectCaseIncident?caseId="+this.caseId;
-          this.$this.$axios.get(url).then((res)=>{
+          this.$axios.get(url).then((res)=>{
               console.log(res)
               if(res.data.status==200){
                 this.options=res.data.data   
@@ -489,7 +489,7 @@ export default {
                 isOther:this.ruleForm.isOther,
                 reporterTerm:this.ruleForm.reporterTerm, 
 	        })
-	        this.$this.$axios.post(url+postData).then((res)=>{
+	        this.$axios.post(url+postData).then((res)=>{
 	          console.log(res)
 	          if(res.data.status==200){
                 //   this.$router.go(0)
@@ -516,7 +516,7 @@ export default {
 	      hand(){
 	        console.log(this.caseIncidentId)
 	        var url=this.global.url+"/caseIncident/selectCaseIncidentById?caseIncidentId="+this.caseIncidentId;
-	        this.$this.$axios.get(url).then((res)=>{
+	        this.$axios.get(url).then((res)=>{
 	          console.log(res)
 	          if(res.data.status==200){
                 this.ruleForm=res.data.data
@@ -599,7 +599,7 @@ export default {
 		  		                           message: this.$t('event.evsuccess1'),
 		  		                       })   
 		  		  var url=this.global.url+"/caseIncident/delete?caseIncidentId="+this.id
-		  		  this.$this.$axios.delete(url).then((res)=>{
+		  		  this.$axios.delete(url).then((res)=>{
 		  		      if(res.data.status==200){
 		  		                       this.get()
                                         }
@@ -618,7 +618,7 @@ export default {
          }
           this.save=false;
           var url=this.global.url+"/caseIncident/selectCaseIncident?caseId="+this.caseId;
-          this.$this.$axios.get(url).then((res)=>{
+          this.$axios.get(url).then((res)=>{
               console.log(res)
               if(res.data.status==200){
                   if(res.data.data.length==0){
@@ -744,7 +744,7 @@ export default {
                             isOther:this.ruleForm.isOther,
                             reporterTerm:this.ruleForm.reporterTerm, 
                   })
-                  this.$this.$axios.post(url+postData).then((res)=>{
+                  this.$axios.post(url+postData).then((res)=>{
                       console.log(res)
                     if(res.data.status==200){
                          this.$message({

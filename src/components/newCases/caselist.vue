@@ -1,5 +1,6 @@
 <template>
  <div>
+ <!-- 打印病例html -->
      <div style="display:none;" v-for="(prt,i) of printer" :key="i">
         <div class="pranit">
          <div style="text-align:center;width:1075px;height:1566.95px;">
@@ -435,6 +436,8 @@
    </div>
 
 
+<!-- 病例列表 -->
+
       <div class="crumbs" style="margin-bottom:10px;">
         <el-breadcrumb separator="/">
             <el-breadcrumb-item style="font-size:20px;"><i class="el-icon-lx-cascades"></i> {{$t('case.cali')}}</el-breadcrumb-item>
@@ -445,8 +448,8 @@
                <el-button type="primary" @click="newcase" :title="$t('case.newCase')" style="width:100px" >+{{$t('case.newCase')}}</el-button>
                <el-button type="success" @click="sendcase" :title="$t('case.send')" style="width:70px;">
                    <i class="el-icon-position"></i>  {{$t('case.send')}}</el-button>
-                    <el-button type="warning"  @click="print" title="打印"> 
-                             <i class="el-icon-printer"></i> 打印
+                    <el-button type="warning"  @click="print" :title="$t('case.prain')"> 
+                             <i class="el-icon-printer"></i> {{$t('case.prain')}}
                    </el-button>
                <el-button type="info" @click="casedia" style="width:50px;margin-right:10px;" :title="$t('case.stat')" icon="el-icon-s-data"></el-button>
                 <el-popover 
@@ -455,7 +458,7 @@
                     trigger="manual"
                     :content="err.join(', ')"
                     v-model="visible">
-                    <el-button slot="reference" @click="visible = !visible">失败列表</el-button>
+                    <el-button slot="reference" @click="visible = !visible" :title="$t('case.fail')">{{$t('case.fail')}}</el-button>
                 </el-popover>
                 <div class="seach">
                     <el-input v-model="creatro" :placeholder="$t('case.creator')" style="width:85px;margin:0 0 0 20px"></el-input>

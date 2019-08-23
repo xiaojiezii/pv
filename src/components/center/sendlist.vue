@@ -108,7 +108,7 @@ export default {
                 type: 'warning'
             }).then(() => {
                 var url=this.global.url+"/sender/delete?senderId="+id
-                this.$this.$axios.delete(url).then((res)=>{
+                this.$axios.delete(url).then((res)=>{
 		       console.log(res)
                  if(res.data.status==200){
                     this.$message({

@@ -111,6 +111,8 @@ module.exports = {
         cali:'病例列表',
         newCase:'新建病例',
         send:'发送',
+        prain:'打印',
+        fail:'失败列表',
         stat:'查看报表',
         cre:'创建者',
         patient:'患者名称',

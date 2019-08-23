@@ -111,6 +111,8 @@ module.exports = {
         cali:'Cases list',
         newCase:'New Case',
         send:'Send',
+        prain:'Print',
+        fail:'Failure list',
         stat:'Check the report',
         cre:'Creator',
         patient:'Patient name',
