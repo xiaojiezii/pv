@@ -141,7 +141,7 @@
                     </el-select>
                     <i class="el-icon-s-order lii" title="编写中"></i>
                 </el-form-item>
-                <el-form-item :label="$t('newList.diet')" prop="dieDate">
+                <el-form-item v-if="ruleForm.die==1" :label="$t('newList.diet')" prop="dieDate">
                          <el-date-picker class="ipts" v-model="ruleForm.dieDate" type="datetime" :placeholder="$t('newList.diep')"> </el-date-picker>
                     <i class="el-icon-s-order lii" title="编写中"></i>
                 </el-form-item>
@@ -171,7 +171,6 @@
     </div>
 </template>
 <script>
-import { setTimeout } from 'timers';
 export default {
     data() {
       return {

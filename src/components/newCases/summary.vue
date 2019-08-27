@@ -118,8 +118,7 @@ export default {
                   });
                   let newlist=true
                    bus.$emit("newList",newlist)
-                this.$router.push({path:"/caselist"})
-                 
+                   this.$router.push({path:"/caselist"})
               }else{
                 this.$message.error(this.$t('summary.suerro'));
               }
@@ -151,7 +150,6 @@ export default {
                 cancelButtonText: this.$t('summary.suno'),
                 type: 'warning'
             }).then(() => {
-        
         //   点击确认后向服务器传参
             var url=this.global.url+"/caseAnalyze/update?"
             var postData=this.qs.stringify({
@@ -177,7 +175,6 @@ export default {
                 type: 'info',
                 message: this.$t('summary.sudeaft')
                 }); 
-        
             })
           } else {
             console.log('error submit!!');
@@ -264,12 +261,12 @@ export default {
   width: 300px;
   margin:0 30px 0 100px;
 }
-
-  .lii{ text-align: center;
-      color:#838ab6;
-      line-height: 30px;
-      width:30px;border: 1px solid #ececff;
-      height:30px;}
+.lii{ text-align: center;
+    color:#838ab6;
+    line-height: 30px;
+    width:30px;border: 1px solid #ececff;
+    height:30px;
+}
 </style>
 
 

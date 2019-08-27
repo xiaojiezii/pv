@@ -1,6 +1,6 @@
 <template>
     <div id="demo">
-     <el-dialog :title="$t('user.newu')" :visible.sync="user" :before-close="closeDialog" style="text-align:center;border-radius:5px;">
+     <el-dialog :title="$t('user.newu')" :visible.sync="user" width="50%" :before-close="closeDialog" style="text-align:center;border-radius:5px;">
              <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="200px" style="margin-top:20px" class="demo-ruleForm">
                 <el-form-item :label="$t('user.uname')" prop="names">
                     <el-input v-model="ruleForm.names" class="ipts" :placeholder="$t('user.s1')"></el-input>

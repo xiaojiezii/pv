@@ -184,22 +184,25 @@ export default {
     },
 	created(){
 		console.log(1)
-		 this.userId=sessionStorage.getItem("userId")
+		this.userId=sessionStorage.getItem("userId")
 		console.log(this.userId)
-		   }           
-
+	 }           
 }
 </script>
 <style scoped>
  /* *{margin: 0;padding: 0;} */
 .ipts{
-    width:250px;margin:0 30px 0 100px;
+    width:250px;
+    margin:0 30px 0 100px;
 }
-  .lii{ text-align: center;
-  color:#838ab6;
+  .lii{ 
+      text-align: center;
+      color:#838ab6;
       line-height: 30px;
-      width:30px;border: 1px solid #ececff;
-      height:30px;}
+      width:30px;
+      border: 1px solid #ececff;
+      height:30px;
+   }
 </style>
 
 

@@ -1,6 +1,6 @@
 <template>
     <div id="demo">
-     <el-dialog :title="$t('user.usin')" :visible.sync="userdit" :before-close="closeDialog" style="text-align:center;border-radius:5px;">
+     <el-dialog :title="$t('user.usin')" :visible.sync="userdit"  width="50%" :before-close="closeDialog" style="text-align:center;border-radius:5px;">
            <div style="width:100%;text-align:right;">
                <el-button type="primary" @click="pwd" round>{{$t('user.cpwd')}}</el-button>
            </div>
@@ -255,7 +255,5 @@
       line-height: 30px;
       width:30px;border: 1px solid #ececff;
       height:30px;}
- #demo>.el-dialog__wrapper>.el-dialog{
-   width:50%;
- }
+
 </style>

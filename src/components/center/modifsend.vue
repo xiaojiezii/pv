@@ -78,7 +78,6 @@
                 </el-form-item>
              <el-form-item style="margin:30px 0 0 50px;">
                 <el-button type="primary" @click="submitForm('ruleForm')">{{$t('btn.save')}}</el-button>
-                <el-button @click="resetForm('ruleForm')">{{$t('btn.reset')}}</el-button>
 				<el-button @click="back('ruleForm')">{{$t('btn.return')}}</el-button>
              </el-form-item>
           </el-form>
@@ -170,25 +169,6 @@ export default {
 	  back(){
 		  this.$router.go(-1)
 	  },
-      resetForm(formName) { 
-        this.$confirm(this.$t('send.sendempty'), this.$t('send.sendtishi'), {
-                confirmButtonText: this.$t('send.sendyes'),
-                cancelButtonText: this.$t('send.sendno'),
-                type: 'warning'
-            }).then(() => {
-                this.$message({
-                type: 'success',
-                message: this.$t('send.sendsccc'),
-                });
-                this.$refs[formName].resetFields();
-        //   点击确认后向服务器传参
-            }).catch(() => {
-                this.$message({
-                type: 'info',
-                message: this.$t('send.sendexit')
-                }); 
-            });  
-      }
     },
 	created(){
 		 var url=this.url
