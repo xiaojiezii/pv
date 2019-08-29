@@ -35,8 +35,8 @@
                     <i class="el-icon-document" v-else></i>
                 </div>
                 <div style="width:500px;text-align:left;margin-bottom:15px;" >
-                    <a href="#" style="color:#000000;" @click="handleEdit(i)" title="点击下载" class="file">
-                        <p style="margin-bottom:5px;font-size:15px;">{{item.fileName}}</p>
+                    <a href="#" style="color:#000000;" class="file">
+                        <p style="margin-bottom:5px;font-size:15px;" title="查看下载">{{item.fileName}}</p>
                         <p style="color:#999;">时间：{{item.time | formDate}}</p>
                     </a>
                     
@@ -112,34 +112,34 @@
               }
           })
         },
-        handleEdit(i){
-           var filePath=this.gridData[i].id
-           var row=this.gridData[i]
-           console.log(filePath)
-           var url=this.global.url+"/user/download?"
-           var postData=this.qs.stringify({
-                fileId:filePath
-           })
-           this.$axios.post(url+postData).then((res)=>{
-               console.log(res)
-               this.download(res.data,row)
-           })
-        },
-        download (data,row) {
-            console.log(data)
-        if (!data) {
-            return
-        }
-        let url = window.URL.createObjectURL(new Blob([data]))
-        let link = document.createElement('a')
-        link.style.display = 'none'
-        link.href = url
-        // 获取文件名
-        // download 属性定义了下载链接的地址而不是跳转路径
-        link.setAttribute('download', row.fileName)
-        document.body.appendChild(link)
-        link.click()
-    },
+    //     handleEdit(i){
+    //        var filePath=this.gridData[i].id
+    //        var row=this.gridData[i]
+    //        console.log(filePath)
+    //        var url=this.global.url+"/user/download?"
+    //        var postData=this.qs.stringify({
+    //             fileId:filePath
+    //        })
+    //        this.$axios.post(url+postData).then((res)=>{
+    //            console.log(res)
+    //            this.download(res.data,row)
+    //        })
+    //     },
+    //     download (data,row) {
+    //         console.log(data)
+    //     if (!data) {
+    //         return
+    //     }
+    //     let url = window.URL.createObjectURL(new Blob([data]))
+    //     let link = document.createElement('a')
+    //     link.style.display = 'none'
+    //     link.href = url
+    //     // 获取文件名
+    //     // download 属性定义了下载链接的地址而不是跳转路径
+    //     link.setAttribute('download', row.fileName)
+    //     document.body.appendChild(link)
+    //     link.click()
+    // },
     handle(i){
         var filePath=this.gridData[i].filePath
         console.log(filePath)

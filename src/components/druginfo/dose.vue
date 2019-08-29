@@ -100,12 +100,18 @@
                        <i class="el-icon-s-order lii"></i>
                      </el-tooltip>
                 </el-form-item>
-                <el-form-item :label="$t('dose.dodurationUnit')" prop="durationUnit">
-                    <el-input v-model="ruleForm.durationUnit" class="ipts" :placeholder="$t('dose.doentertimeunit')"></el-input>
-                    <el-tooltip :content="$t('tishi.L8')" placement="right-start" effect="light">
+                 <el-form-item :label="$t('dose.dodurationUnit')" prop="durationUnit">
+                   <el-select v-model="ruleForm.durationUnit" class="ipts" :placeholder="$t('dose.doentertimeunit')">
+                        <el-option :label="$t('newList.listage2')" value="1"></el-option>
+                        <el-option :label="$t('newList.listage4')" value="2"></el-option>
+                        <el-option :label="$t('newList.listage5')" value="3"></el-option>
+                        <el-option :label="$t('newList.listage6')" value="4"></el-option>
+                        <el-option :label="$t('newList.listage7')" value="5"></el-option>
+                   </el-select>
+                      <el-tooltip :content="$t('tishi.L8')" placement="right-start" effect="light">
                        <i class="el-icon-s-order lii"></i>
                      </el-tooltip>
-                </el-form-item>
+                   </el-form-item>
                 <el-form-item :label="$t('dose.dobatchNumber')" prop="batchNumber">
                     <el-input v-model="ruleForm.batchNumber"  class="ipts" :placeholder="$t('dose.doenterlot')"></el-input>
                     <el-tooltip :content="$t('tishi.L9')" placement="right-start" effect="light">

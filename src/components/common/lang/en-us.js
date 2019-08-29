@@ -462,6 +462,8 @@ module.exports = {
         listage3:'Week',
         listage4:'Day',
         listage5:'Hour',
+        listage6:'Minute',
+        listage7:'Second',
         listbabynum:'D.2.2.1a Gestation period when fetal reactions/events are observed (number)',
         listbaby:'D.2.2.1b Gestation period when fetal reactions/events are observed (unit)',
         listbaby1:'Day',

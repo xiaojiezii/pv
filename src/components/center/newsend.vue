@@ -111,7 +111,7 @@ export default {
            email:[ //{ required: true, message: '请输入邮箱地址', trigger: 'blur' },
                  { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur','change']}],
           countryCode:[{ max: 2, message: '长度过长，应不大于2', trigger: 'blur' }]         
-      },
+        },
       };
     },
     methods: {
@@ -149,10 +149,9 @@ export default {
                       type: 'success',
                       message: this.$t('send.sendame'),
                   });
-                  this.$router.push({path:'/sendlist'})
+                      this.$router.push({path:'/sendlist'})
                   }else{
-                      this.$message.error(this.$t('send.senderro'));
-                      
+                      this.$message.error(this.$t('send.senderro'));  
                   }
               })
             })

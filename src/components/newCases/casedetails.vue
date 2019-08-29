@@ -412,8 +412,16 @@ export default {
                 this.ruleForm.isReport=JSON.stringify(list.isReport)
                 this.ruleForm.oneSend=JSON.stringify(list.oneSend)
                 this.ruleForm.isSend=JSON.stringify(list.isSend)
-                 this.ruleForm.combined=JSON.stringify(list.combined)
-                 this.ruleForm.report=JSON.stringify(list.report)
+                 if(list.combined==null){
+                    this.ruleForm.combined=""
+                 }else{
+                    this.ruleForm.combined=JSON.stringify(list.combined)
+                 }
+                 if(list.report==null){
+                    this.ruleForm.report=""
+                 }else{
+                    this.ruleForm.report=JSON.stringify(list.report)
+                 }
                   // this.ruleForm.reporterSite=list.reporterSite
                 //   console.log(this.ruleForm.reporterSite)
                   this.ruleForm.source=JSON.stringify(list.source)

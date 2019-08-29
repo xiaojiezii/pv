@@ -328,7 +328,11 @@ export default {
 			        console.log(res)
 			        if(res.data.status==200){
                 this.ruleForm=res.data.data
-                this.ruleForm.isalive=JSON.stringify(res.data.data.isalive) 
+                 if(res.data.data.isalive==null){
+                this.ruleForm.isalive=""
+              }else{
+                 this.ruleForm.isalive=JSON.stringify(res.data.data.isalive)
+              }
                 this.id=res.data.data.id
 			        }
 			      })
@@ -368,6 +372,7 @@ export default {
        var url=this.global.url+"/parentDisease/selectParentDisease?parentId="+this.parId;
        this.$axios.get(url).then((res)=>{
          console.log(res)
+            console.log(res.data.data[0].isalive)
          if(res.data.status==200){
             if(res.data.data.length==0){
               this.mains=false,
@@ -377,7 +382,12 @@ export default {
               this.info=false
               this.mains=true
               this.ruleForm=res.data.data[0]
-              this.ruleForm.isalive=JSON.stringify(res.data.data[0].isalive)
+             
+              if(res.data.data[0].isalive==null){
+                this.ruleForm.isalive=""
+              }else{
+                 this.ruleForm.isalive=JSON.stringify(res.data.data[0].isalive)
+              }
               this.id=res.data.data[0].id
               this.parentDiseaseId=res.data.data[0].name
               this.options=res.data.data
@@ -387,7 +397,11 @@ export default {
               this.info=false
               this.mains=true
               this.ruleForm=res.data.data[0]
-              this.ruleForm.isalive=JSON.stringify(res.data.data[0].isalive)
+               if(res.data.data[0].isalive==null){
+                this.ruleForm.isalive=""
+              }else{
+                 this.ruleForm.isalive=JSON.stringify(res.data.data[0].isalive)
+              }
               this.id=res.data.data[0].id
               this.parentDiseaseId=res.data.data[0].name
               this.options=res.data.data

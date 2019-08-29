@@ -285,7 +285,12 @@ export default {
               this.info=false
               this.mains=true
               this.ruleForm=res.data.data[0]
-              this.ruleForm.isAutopsy=JSON.stringify(res.data.data[0].isAutopsy) 
+              
+              if(res.data.data[0].isAutopsy==null){
+                this.ruleForm.isAutopsy=""
+              }else{
+                this.ruleForm.isAutopsy=JSON.stringify(res.data.data[0].isAutopsy) 
+              }
               this.id=res.data.data[0].id
               this.subjectDieId=res.data.data[0].reportingEnglish
               // this.id=res.data.data[0].id
@@ -296,7 +301,11 @@ export default {
               this.info=false
               this.mains=true
               this.ruleForm=res.data.data[0]
-              this.ruleForm.isAutopsy=JSON.stringify(res.data.data[0].isAutopsy)
+               if(res.data.data[0].isAutopsy==null){
+                this.ruleForm.isAutopsy=""
+              }else{
+                this.ruleForm.isAutopsy=JSON.stringify(res.data.data[0].isAutopsy) 
+              }
               this.id=res.data.data[0].id
               this.subjectDieId=res.data.data[0].reportingEnglish
 // this.id=res.data.data[0].id

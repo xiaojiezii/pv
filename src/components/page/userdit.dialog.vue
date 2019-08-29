@@ -185,8 +185,8 @@
             })
             }).catch(() => {
                 this.$message({
-                type: 'info',
-                message: this.$t('user.userdeaft1')
+                  type: 'info',
+                  message: this.$t('user.userdeaft1')
                 }); 
             });  
           } else {
@@ -241,19 +241,20 @@
             this.ruleForm.role=JSON.stringify(res.data.role)
           }
         })
-       },
+      },
     }
   };
 </script>
 <style scoped>
  /* *{margin: 0;padding: 0;} */
-.ipts{
-    width:250px; margin: 0 30px 0 0px;
-}
-  .lii{ text-align: center;
-  color:#838ab6;
+  .ipts{
+      width:250px; margin: 0 30px 0 0px;
+  }
+  .lii{ 
+      text-align: center;
+      color:#838ab6;
       line-height: 30px;
       width:30px;border: 1px solid #ececff;
-      height:30px;}
-
+      height:30px;
+    }
 </style>

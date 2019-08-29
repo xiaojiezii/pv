@@ -51,7 +51,7 @@ axios.interceptors.request.use(
       //在所有请求头部添加token值
       const token = sessionStorage.getItem("token");
       if (token) {
-        config.headers.common['Authorization'] =token;
+        config.headers.common['Authorization'] = token;
       }
       return config
     },

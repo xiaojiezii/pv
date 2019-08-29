@@ -128,6 +128,8 @@
                        <el-option :label="$t('event.evallTimeUnit2')" value="2"></el-option>                       
                        <el-option :label="$t('event.evallTimeUnit3')" value="3"></el-option>
                        <el-option :label="$t('event.evallTimeUnit4')" value="4"></el-option>                       
+                       <el-option :label="$t('newList.listage6')" value="5"></el-option>
+                       <el-option :label="$t('newList.listage7')" value="6"></el-option>                      
                     </el-select>
                     <el-tooltip :content="$t('tishi.Q7')" placement="right-start" effect="light">
                        <i class="el-icon-s-order lii"></i>
@@ -629,39 +631,68 @@ export default {
                      this.info=false
                      this.mains=true
                       this.ruleForm=res.data.data[0] 
-                      this.ruleForm.reporterTerm=JSON.stringify(res.data.data[0].reporterTerm) 
-                      this.ruleForm.isDisability=JSON.stringify(res.data.data[0].isDisability) 
-                      this.ruleForm.isCongenital=JSON.stringify(res.data.data[0].isCongenital) 
-                      this.ruleForm.isOther=JSON.stringify(res.data.data[0].isOther) 
                       this.id=res.data.data[0].id
-                      this.caseIncidentId=res.data.data[0].name
-                       if(res.data.data[0].allTimeUnit==null){
-                        this.resetForm.allTimeUnit=""
+                    if(res.data.data[0].allTimeUnit==null){
+                      this.ruleForm.allTimeUnit="";
                     }else{
-                        this.ruleForm.allTimeUnit=JSON.stringify(res.data.data[0].allTimeUnit)    
-                    } 
-                    
-                      if(res.data.data[0].assess==null){
-                        this.resetForm.assess=""
+                      this.ruleForm.allTimeUnit=JSON.stringify(res.data.data[0].allTimeUnit)
+                    }
+                    if(res.data.data[0].reporterTerm==null){
+                      this.ruleForm.reporterTerm="";
                     }else{
-                        this.ruleForm.assess=JSON.stringify(res.data.data[0].assess)  
-                    } 
-                                
-                    this.ruleForm.isDie=JSON.stringify(res.data.data[0].isDie)
-                    this.ruleForm.isHospital=JSON.stringify(res.data.data[0].isHospital)
-                    this.ruleForm.isLife=JSON.stringify(res.data.data[0].isLife)
-                    this.ruleForm.language=JSON.stringify(res.data.data[0].language)
+                      this.ruleForm.reporterTerm=JSON.stringify(res.data.data[0].reporterTerm)
+                    }
+                    if(res.data.data[0].assess==null){
+                      this.ruleForm.assess="";
+                    }else{
+                      this.ruleForm.assess=JSON.stringify(res.data.data[0].assess)
+                    }
                     if(res.data.data[0].source==null){
-                        this.resetForm.source=""
+                      this.ruleForm.source="";
                     }else{
-                        this.ruleForm.source=JSON.stringify(res.data.data[0].source)
+                      this.ruleForm.source=JSON.stringify(res.data.data[0].source)
+                    }
+                    if(res.data.data[0].verify==null){
+                      this.ruleForm.verify="";
+                    }else{
+                      this.ruleForm.verify=JSON.stringify(res.data.data[0].verify)
+                    }
+                    if(res.data.data[0].isDie==null){
+                      this.ruleForm.isDie="";
+                    }else{
+                    this.ruleForm.isDie=JSON.stringify(res.data.data[0].isDie)
+                    }
+                    if(res.data.data[0].isHospital==null){
+                      this.ruleForm.isHospital="";
+                    }else{
+                    this.ruleForm.isHospital=JSON.stringify(res.data.data[0].isHospital)
+                    }
+                    if(res.data.data[0].isLife==null){
+                      this.ruleForm.isLife="";
+                    }else{
+                    this.ruleForm.isLife=JSON.stringify(res.data.data[0].isLife)
+                    }
+                    if(res.data.data[0].language==null){
+                      this.ruleForm.language="";
+                    }else{
+                    this.ruleForm.language=JSON.stringify(res.data.data[0].language)
+                    }
+                    if(res.data.data[0].isDisability==null){
+                      this.ruleForm.isDisability="";
+                    }else{
+                    this.ruleForm.isDisability=JSON.stringify(res.data.data[0].isDisability)
+                    }
+                    if(res.data.data[0].isCongenital==null){
+                      this.ruleForm.isCongenital="";
+                    }else{
+                    this.ruleForm.isCongenital=JSON.stringify(res.data.data[0].isCongenital)
+                    }
+                    if(res.data.data[0].isOther==null){
+                      this.ruleForm.isOther="";
+                    }else{
+                    this.ruleForm.isOther=JSON.stringify(res.data.data[0].isOther)
                     }
                     
-                    if(res.data.data[0].verify==null){
-                        this.resetForm.verify=""
-                    }else{
-                        this.ruleForm.verify=JSON.stringify(res.data.data[0].verify)
-                    }
                     
                   this.options=res.data.data
                   }else{
@@ -672,18 +703,66 @@ export default {
                       this.ruleForm=res.data.data[0] 
                      this.id=res.data.data[0].id
                      this.caseIncidentId=res.data.data[0].name
-                      this.ruleForm.reporterTerm=JSON.stringify(res.data.data[0].reporterTerm) 
-                      this.ruleForm.isDisability=JSON.stringify(res.data.data[0].isDisability) 
-                      this.ruleForm.isCongenital=JSON.stringify(res.data.data[0].isCongenital) 
-                      this.ruleForm.isOther=JSON.stringify(res.data.data[0].isOther) 
-                     this.ruleForm.allTimeUnit=JSON.stringify(res.data.data[0].allTimeUnit)    
-                    this.ruleForm.assess=JSON.stringify(res.data.data[0].assess)              
+                    if(res.data.data[0].allTimeUnit==null){
+                      this.ruleForm.allTimeUnit="";
+                    }else{
+                      this.ruleForm.allTimeUnit=JSON.stringify(res.data.data[0].allTimeUnit)
+                    }
+                    if(res.data.data[0].reporterTerm==null){
+                      this.ruleForm.reporterTerm="";
+                    }else{
+                      this.ruleForm.reporterTerm=JSON.stringify(res.data.data[0].reporterTerm)
+                    }
+                    if(res.data.data[0].assess==null){
+                      this.ruleForm.assess="";
+                    }else{
+                      this.ruleForm.assess=JSON.stringify(res.data.data[0].assess)
+                    }
+                    if(res.data.data[0].source==null){
+                      this.ruleForm.source="";
+                    }else{
+                      this.ruleForm.source=JSON.stringify(res.data.data[0].source)
+                    }
+                    if(res.data.data[0].verify==null){
+                      this.ruleForm.verify="";
+                    }else{
+                      this.ruleForm.verify=JSON.stringify(res.data.data[0].verify)
+                    }
+                    if(res.data.data[0].isDie==null){
+                      this.ruleForm.isDie="";
+                    }else{
                     this.ruleForm.isDie=JSON.stringify(res.data.data[0].isDie)
+                    }
+                    if(res.data.data[0].isHospital==null){
+                      this.ruleForm.isHospital="";
+                    }else{
                     this.ruleForm.isHospital=JSON.stringify(res.data.data[0].isHospital)
+                    }
+                    if(res.data.data[0].isLife==null){
+                      this.ruleForm.isLife="";
+                    }else{
                     this.ruleForm.isLife=JSON.stringify(res.data.data[0].isLife)
+                    }
+                    if(res.data.data[0].language==null){
+                      this.ruleForm.language="";
+                    }else{
                     this.ruleForm.language=JSON.stringify(res.data.data[0].language)
-                    this.ruleForm.source=JSON.stringify(res.data.data[0].source)
-                    this.ruleForm.verify=JSON.stringify(res.data.data[0].verify)
+                    }
+                    if(res.data.data[0].isDisability==null){
+                      this.ruleForm.isDisability="";
+                    }else{
+                    this.ruleForm.isDisability=JSON.stringify(res.data.data[0].isDisability)
+                    }
+                    if(res.data.data[0].isCongenital==null){
+                      this.ruleForm.isCongenital="";
+                    }else{
+                    this.ruleForm.isCongenital=JSON.stringify(res.data.data[0].isCongenital)
+                    }
+                    if(res.data.data[0].isOther==null){
+                      this.ruleForm.isOther="";
+                    }else{
+                    this.ruleForm.isOther=JSON.stringify(res.data.data[0].isOther)
+                    }
                   this.options=res.data.data
                   }
               }

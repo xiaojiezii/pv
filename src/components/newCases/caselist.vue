@@ -11,7 +11,7 @@
             </p>
             <table border="1" cellspacing="0" cellpadding="12" width="97%" style="font-size:20px;">
                 <tr>
-                    <td width="20%" align="left">报告类型</td>
+                    <td width="21%" align="left">报告类型</td>
                     <td align="left">  
                         <span v-if="prt.type!==1">
                             <input  type="checkbox">首次报告
@@ -192,7 +192,7 @@
                                  {{i+1}}.疾病：{{dis}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 治疗药物：             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 用法用量：
-                                <br><br>
+                                <br>
                             </span> 
                             
                         </p>
@@ -244,7 +244,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td align="left">SAE发生时间：{{prt.dates | filterTime }}
+                    <td align="left">SAE发生时间： <br>
+                        {{prt.dates | filterTime }}
                     <td align="left" valign="top" colspan="5">
                             研究者获知SAE时间：{{prt.dates | filterTime }}
                     </td>
@@ -310,7 +311,7 @@
                         </span>
                         <span v-else>
                            <input type="checkbox" checked=true>未见好转/未见缓解/仍在进行
-                        </span>
+                        </span> <br><br>
                         <span v-if="prt.results!=='4'">
                            <input type="checkbox">好转/缓解但伴有后遗症但有
                         </span>
@@ -334,10 +335,10 @@
             </table>
             <p>第 1 页/共 2 页</p>
         </div>
-        <div style="text-align:center;width:1075px;height:1566.95px;">
-            <table border="1" cellspacing="0" cellpadding="15" width="97%" style="font-size:20px;">
+        <div style="text-align:center;width:1075px;height:1566.95px;" >
+            <table border="1" cellspacing="0" cellpadding="15" width="97%" style="font-size:20px;table-layout:fixed;">
                 <tr>
-                    <td width="20%" align="left">SAE与试验药的关系</td>
+                    <td width="21%" align="left">SAE与试验药的关系</td>
                     <td align="left">
                           <span v-if="prt.assesss!==1">
                            <input type="checkbox">肯定有关 
@@ -413,10 +414,13 @@
                                 <input type="checkbox">不详
                     </td>
                 </tr>
-                <tr style="height:800px;">
-                    <td colspan="2"  align="left" valign="top">
-                        SAE发生及处理的详细情况：{{prt.narrate}}  
-                        <span style="float: right;margin-top:790px;">
+                <tr style="height:1000px;">
+                    <td colspan="2" align="left" valign="top" style="word-wrap:break-word;position:relative;"> 
+                         SAE发生及处理的详细情况：
+                            <p style="text-indent:35px;">
+                                {{prt.narrate}}
+                            </p>
+                        <span style="position:absolute;right:20px;bottom:10px;">
                                 受试者编号：
                                 <span style="text-decoration:underline">
                                      &nbsp;&nbsp;&nbsp;&nbsp;{{prt.ranNum4}} 
@@ -430,7 +434,7 @@
                 <span>报告人职务：{{prt.title}}</span>
                 <span style="padding-right: 100px;">报告人签名：</span>
             </p>
-            <p style="margin-top:300px;">第 2 页/共 2 页</p>
+            <p style="margin-top:200px;">第 2 页/共 2 页</p>
         </div>
      </div>
    </div>

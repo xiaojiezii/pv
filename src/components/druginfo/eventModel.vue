@@ -36,24 +36,36 @@
                        <i class="el-icon-s-order lii"></i>
                      </el-tooltip>
                 </el-form-item>
-                <el-form-item :label="$t('model.mostartUnit')" prop="startUnit">
-                    <el-input v-model="ruleForm.startUnit" class="ipts" :placeholder="$t('model.moentertime')"></el-input>
-                    <el-tooltip :content="$t('tishi.N3')" placement="right-start" effect="light">
+                 <el-form-item :label="$t('model.mostartUnit')" prop="startUnit">
+                   <el-select v-model="ruleForm.startUnit" class="ipts" :placeholder="$t('model.moentertime')">
+                        <el-option :label="$t('newList.listage2')" value="1"></el-option>
+                        <el-option :label="$t('newList.listage4')" value="2"></el-option>
+                        <el-option :label="$t('newList.listage5')" value="3"></el-option>
+                        <el-option :label="$t('newList.listage6')" value="4"></el-option>
+                        <el-option :label="$t('newList.listage7')" value="5"></el-option>
+                   </el-select>
+                     <el-tooltip :content="$t('tishi.N3')" placement="right-start" effect="light">
                        <i class="el-icon-s-order lii"></i>
                      </el-tooltip>
-                </el-form-item>
+                   </el-form-item>
                 <el-form-item :label="$t('model.molastNum')" prop="lastNum">
                     <el-input v-model="ruleForm.lastNum" class="ipts" type="number" :placeholder="$t('model.moentertimenum')"></el-input>
                     <el-tooltip :content="$t('tishi.N4')" placement="right-start" effect="light">
                        <i class="el-icon-s-order lii"></i>
                      </el-tooltip>
                 </el-form-item>
-                <el-form-item :label="$t('model.molastUnit')" prop="lastUnit">
-                    <el-input v-model="ruleForm.lastUnit" class="ipts" :placeholder="$t('model.moenterunit')"></el-input>
-                    <el-tooltip :content="$t('tishi.N5')" placement="right-start" effect="light">
+                 <el-form-item :label="$t('model.molastUnit')" prop="lastUnit">
+                   <el-select v-model="ruleForm.lastUnit" class="ipts" :placeholder="$t('model.moenterunit')">
+                        <el-option :label="$t('newList.listage2')" value="1"></el-option>
+                        <el-option :label="$t('newList.listage4')" value="2"></el-option>
+                        <el-option :label="$t('newList.listage5')" value="3"></el-option>
+                        <el-option :label="$t('newList.listage6')" value="4"></el-option>
+                        <el-option :label="$t('newList.listage7')" value="5"></el-option>
+                   </el-select>
+                     <el-tooltip :content="$t('tishi.N5')" placement="right-start" effect="light">
                        <i class="el-icon-s-order lii"></i>
                      </el-tooltip>
-                </el-form-item>
+                   </el-form-item>
                 <el-form-item :label="$t('model.moisRepeat')" prop="isRepeat">
                     <el-select v-model="ruleForm.isRepeat" :placeholder="$t('btn.selects')" class="ipts">
                        <el-option :label="$t('model.moisRepeat1')" value="1"></el-option>
