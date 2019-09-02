@@ -65,7 +65,7 @@ export default {
            total:0,
            pages:'',
            pagesize:10,
-         tableData:[]
+           tableData:[]
       };
     },
     methods: {

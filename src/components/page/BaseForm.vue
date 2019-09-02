@@ -18,13 +18,10 @@
                 prop="username"
 				>
             </el-table-column>
-            <el-table-column
-                :label="$t('user.sex')"
-                >
+            <el-table-column :label="$t('user.sex')">
                 <template slot-scope="scope">
                      <p>{{scope.row.sex | sex1}}</p>
                 </template>
-               
             </el-table-column>
             <el-table-column
                 :label="$t('user.sta')"
@@ -216,9 +213,8 @@ export default {
         this.commId=this.$route.query.commId
         console.log(this.commId)
         this.get()
-       var role=sessionStorage.getItem("role")
-       this.role=role
-       if(role==4 || 1){
+       this.role=this.$store.state.role
+       if(this.$store.state.role==4 || 1){
            this.save=true
        }else{
            this.save=false

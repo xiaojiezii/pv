@@ -75,7 +75,7 @@
                     </el-select>
                     <i class="el-icon-s-order lii" v-show="save" title="编写中"></i>
                     <el-button size="mini" v-show="upload"  @click="file" v-if="ruleForm.isFile=='1'">{{$t('btn.check')}}</el-button>
-                    <el-button size="mini" v-show="upload"  @click="newfile" v-if="ruleForm.isFile=='1'">{{$t('btn.add')}}</el-button>
+                    <el-button size="mini" v-show="upload && lock"  @click="newfile" v-if="ruleForm.isFile=='1'">{{$t('btn.add')}}</el-button>
                 </el-form-item>
                  <el-form-item :label="$t('case.casefast')" prop="isReport">
                     <el-select v-model="ruleForm.isReport" :placeholder="$t('btn.selects')" style="margin:0 30px 0 100px;width:250px; ">
@@ -216,7 +216,7 @@
                </el-form-item>
             </el-form>
        </div>
-    <file-dialog :filedia="fileDialog" @closeTagDialog="closefileDialog" :caseId="ruleForm.id"></file-dialog>
+    <file-dialog :filedia="fileDialog" @closeTagDialog="closefileDialog" :caseId="ruleForm.id" :lock="lock"></file-dialog>
     </div>
 </template>
 <script>

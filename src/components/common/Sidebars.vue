@@ -12,24 +12,20 @@
                     <el-submenu :index="item.index.toString()" :key="item.index">
                         <template slot="title">
                             <i :class="item.icon"></i>
-                            <span slot="title" v-show="en">{{ item.title }} </span>
-                            <span slot="title" v-show="!en">{{ item.us }}</span>
+                            <span slot="title">{{en==true ? item.title : item.us}} </span>
                         </template>
                         <template v-for="subItem in item.subs">
                             <el-submenu v-if="subItem.subs" :index="subItem.index.toString()" :key="subItem.index">
                                 <template slot="title">
                                     <i :class="subItem.icon"></i>
-                                    <span v-show="en">{{ subItem.title }}</span>
-                                    <span v-show="!en">{{ subItem.us }}</span>
+                                    <span>{{en==true ? subItem.title : subItem.us}}</span>
                                 </template>
                                 <el-menu-item v-for="(threeItem,i) in subItem.subs" :key="i" :index="threeItem.index.toString()">
-                                  <span v-show="en">{{ threeItem.title }}</span>
-                                  <span v-show="!en">{{ threeItem.us }}</span>
+                                  <span>{{en==true ? threeItem.title : threeItem.us}}</span>
                                 </el-menu-item>
                             </el-submenu>
                             <el-menu-item v-else :index="subItem.index.toString()" :key="subItem.index">
-                                <span v-show="en">{{ subItem.title }}</span>
-                                <span v-show="!en">{{ subItem.us }}</span>
+                                <span>{{en==true ? subItem.title : subItem.us}}</span>
                             </el-menu-item>
                         </template>
                     </el-submenu>
@@ -37,8 +33,7 @@
                 <template v-else>
                     <el-menu-item :index="item.index.toString()" :key="item.index">
                         <i :class="item.icon"></i>
-                        <span slot="title" v-show="en">{{ item.title }}</span>
-                        <span slot="title" v-show="!en">{{ item.us }}</span>
+                        <span slot="title">{{en==true ? item.title : item.us}}</span>
                     </el-menu-item>
                 </template>
             </template>

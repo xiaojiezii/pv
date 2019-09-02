@@ -37,12 +37,12 @@
                 <div style="width:500px;text-align:left;margin-bottom:15px;" >
                     <a href="#" style="color:#000000;" class="file">
                         <p style="margin-bottom:5px;font-size:15px;" title="查看下载">{{item.fileName}}</p>
-                        <p style="color:#999;">时间：{{item.time | formDate}}</p>
+                        <p style="color:#999;">时间：{{item.time | filterTime}}</p>
                     </a>
                     
                 </div>
                  <el-button style="height:30px;margin:15px 10px 0 0;" size="mini" @click="handle(i)">查看</el-button>   
-                 <el-button style="height:30px;margin:15px 10px 0 0;" type="danger" size="mini" @click="del(item.id)">删除</el-button>   
+                 <el-button style="height:30px;margin:15px 10px 0 0;" type="danger" v-show="lock"  size="mini" @click="del(item.id)">删除</el-button>   
             </li>
         </ul>
         <div style="font-size: 13px;float: left;margin: 27px;color: gray">
@@ -70,26 +70,10 @@
           pages:'',
       };
     },
-     filters:{
-      formDate: function (value) {
-        let date = new Date(value);
-        let y = date.getFullYear();
-        let MM = date.getMonth() + 1;
-        MM = MM < 10 ? ('0' + MM) : MM;
-        let d = date.getDate();
-        d = d < 10 ? ('0' + d) : d;
-        let h = date.getHours();
-        h = h < 10 ? ('0' + h) : h;
-        let m = date.getMinutes();
-        m = m < 10 ? ('0' + m) : m;
-        let s = date.getSeconds();
-        s = s < 10 ? ('0' + s) : s;
-        return y + '-' + MM + '-' + d + ' ' + h + ':' + m + ':' + s;
-      }
-    },
     props:[
         "filedia",
         "caseId",
+        "lock"
     ],
     watch:{
       filedia:function(val){
@@ -163,6 +147,7 @@
         })
     },
         gets(){
+        
           var url=this.global.url+"/user/selectAllFile?caseId="+this.caseId;
           this.$axios.get(url).then((res)=>{
               console.log(res)

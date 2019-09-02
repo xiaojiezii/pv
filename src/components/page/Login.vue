@@ -119,7 +119,7 @@ export default {
                         this.icon=""
                         sessionStorage.setItem("user",res.data.data.name)
                         sessionStorage.setItem("token",res.data.data.token)
-                        sessionStorage.setItem("role",res.data.data.role)
+                        this.$store.state.role=res.data.data.role
                         sessionStorage.setItem("usid",res.data.data.id)
                         console.log(res.data)
                         this.$router.push("/table")

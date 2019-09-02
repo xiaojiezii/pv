@@ -10,15 +10,14 @@ import './assets/css/icon.css';
 import './components/common/directives';
 // import "babel-polyfill"; 
 import global from "./components/page/global"  //全局ip地址
-import qs  from "qs";     //方法数据转换成url格式
-//import Vuex from 'vuex'   vuex保存全局共享数据
+import qs  from "qs";     //方法数据转换成url格式 
 import LangENUS from './components/common/lang/en-us';
 import LangZHCN from './components/common/lang/zh-cn';
 import Blob from './excel/Blob'
 import Export2Excel from './excel/Export2Excel.js'
 import * as moment from './assets/filters'
+import store from './vuex/store'
 
-// Vue.use(Vuex);
 Vue.prototype.qs = qs;
 Vue.config.productionTip = false
 Vue.use(VueI18n);
@@ -87,28 +86,9 @@ router.beforeEach((to, from, next) => {
     }
 })
 
-// Vuex调用
-// var store=new Vuex.Store({
-//     //存储全局共享的数据
-//     state:{
-//     }, 
-//     //修改和操作共享数据方法
-//     mutations:{
-
-//     },
-//     //获取全局共享数据方法 
-//     getters:{
-
-//       }
-//   });
-
-
-
-
-
-
 new Vue({
     router,
     i18n,
+    store,
     render: h => h(App)
 }).$mount('#app')

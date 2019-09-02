@@ -7,7 +7,7 @@
         <div class="logo">
             <img style="width:200px;height:30px;padding-top:10px;" src="../../assets/img/logo.png" alt="">
         </div>
-        <div class="nav" v-show="en">
+        <div class="nav">
              <el-menu style="margin:0 auto;"
                 class="el-menu-demo"
                 mode="horizontal"
@@ -15,18 +15,7 @@
                 @select="handleSelect"
                 text-color="#c0c4cc"
                 active-text-color="#3a8ee6">
-                <el-menu-item  v-for="(item,i) of nav" :key="i" :index="item.menuId.toString()">{{item.menuName}}</el-menu-item>
-            </el-menu>
-        </div>
-        <div class="nav" v-show="!en">
-             <el-menu style="margin:0 auto;"
-                class="el-menu-demo"
-                mode="horizontal"
-                background-color="#242f42"
-                @select="handleSelect"
-                text-color="#c0c4cc"
-                active-text-color="#3a8ee6">
-                <el-menu-item  v-for="(item,i) of nav" :key="i" :index="item.menuId.toString()">{{item.menuUs}}</el-menu-item>
+                <el-menu-item  v-for="(item,i) of nav" :key="i" :index="item.menuId.toString()">{{en==true ? item.menuName : item.menuUs}}</el-menu-item>
             </el-menu>
         </div>
         <div class="header-right">
@@ -47,15 +36,8 @@
                     <span v-else-if="role=='3'" class="roles">{{$t('header.assessor')}}</span>
                     <span v-else class="roles">{{$t('header.manager')}}</span>
                     <el-dropdown-menu slot="dropdown">
-                        <!-- <router-link to="/personage">
-                             <el-dropdown-item >个人信息</el-dropdown-item>
-                        </router-link> -->
                         <el-dropdown-item command="pars">{{$t('header.info')}}</el-dropdown-item>
-                           
-
-                             <el-dropdown-item command="pass">{{$t('header.pass')}}</el-dropdown-item>
-                           
-                        
+                        <el-dropdown-item command="pass">{{$t('header.pass')}}</el-dropdown-item>
                         <el-dropdown-item divided  command="loginout">{{$t('header.quit')}}</el-dropdown-item>
                     </el-dropdown-menu>
                 </el-dropdown>
@@ -74,7 +56,7 @@
             return {
                 //  activeIndex2: '1',
                 nav:[],
-                role:sessionStorage.getItem("role"),
+                role:this.$store.state.role,
                 parsDialog:false,
                 passDialog:false,
                 collapse: false,
@@ -171,8 +153,7 @@
                 
              },
              get(){
-                    var roleId=sessionStorage.getItem("role")
-                    var url=this.global.url+"/role/listByRole?roleId="+roleId;
+                    var url=this.global.url+"/role/listByRole?roleId="+this.role;
                     this.$axios.get(url).then((res)=>{
                         console.log(res)
                         if(res.data.status==200){

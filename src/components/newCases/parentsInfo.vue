@@ -156,7 +156,7 @@ export default {
 
 // -------------------修改-------------
       get(){
-         if(sessionStorage.getItem("lock")==3){
+         if(this.$store.state.lock=="3"){
            this.lock=false
          }
         this.save=false

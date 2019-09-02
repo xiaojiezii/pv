@@ -145,8 +145,7 @@ export default {
          }
     },
     created(){
-       var role=sessionStorage.getItem("role")
-       this.role= role==1 ? true :false
+       this.role= this.$store.state.role==1 ? true :false
        this.get()
     }
 }

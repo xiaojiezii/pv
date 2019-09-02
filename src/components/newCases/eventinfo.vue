@@ -255,11 +255,8 @@
                        <el-option :label="$t('event.evassess9')" value="9"></el-option>                                            
                        <el-option :label="$t('event.evassess10')" value="10"></el-option>                                                                                      
                     </el-select>
-                      <el-button v-show="lock" v-if="slock==2" type="primary" class="el-icon-magic-stick" @click="querys" title="提出质疑" round>{{$t('event.evzhiyi')}}</el-button>
+                      <el-button v-show="lock" v-if="slock=='2'" type="primary" class="el-icon-magic-stick" @click="querys" title="提出质疑" round>{{$t('event.evzhiyi')}}</el-button>
                 </el-form-item>
-
-
-
 <!-- 创建 -->
                <el-form-item style="margin:30px 0 0 50px;" v-if="save">
                   <el-button type="primary" @click="mitForm('ruleForm')">{{$t('btn.save')}}</el-button>
@@ -614,7 +611,7 @@ export default {
 		  		            });  
 		  },
       get(){
-          this.slock=sessionStorage.getItem("lock")
+          this.slock=this.$store.state.lock
           if(this.slock==3){
            this.lock=false
          }

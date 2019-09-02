@@ -7,17 +7,14 @@
                     <el-submenu :index="item.menuId.toString()" :key="item.menuId">
                         <template slot="title">
                             <i :class="item.icon"></i>
-                                <span slot="title" v-if="en">{{ item.menuName }}</span>
-                                <span slot="title" v-else>{{ item.menuUs }}</span>
+                                <span slot="title">{{en==true ? item.menuName : item.menuUs}}</span>
                         </template>
                         <template v-for="subItem in item.children">
                             <el-submenu v-if="subItem.children.length > 0" :index="subItem.menuId.toString()" :key="subItem.menuId">
-                                <template slot="title" v-if="en">{{ subItem.menuName }}</template>
-                                <template slot="title" v-else>{{ subItem.menuUs }}</template>
+                                <template slot="title">{{en==true ? subItem.menuName :subItem.menuUs}}</template>
                             </el-submenu>
                             <el-menu-item v-else :index="subItem.menuId.toString()" :key="subItem.menuId" :route="{'name':subItem.menuId}">
-                                 <span v-if="en">{{ subItem.menuName }}</span>
-                                 <span v-else>{{ subItem.menuUs }}</span>
+                                 <span>{{en==true ? subItem.menuName : subItem.menuUs}}</span>
                             </el-menu-item>
                         </template>
                     </el-submenu>
@@ -25,16 +22,12 @@
                 <template v-else>
                     <el-menu-item :index="item.menuId.toString()" :key="item.menuId" :route="{'name':item.menuId}">
                         <i :class="item.icon"></i>
-                        <span slot="title" v-if="en">{{ item.menuName }}</span>
-                        <span slot="title" v-else>{{ item.menuUs }}</span>
+                        <span slot="title">{{en==true ? item.menuName : item.menuUs}}</span>
                     </el-menu-item>
                 </template>
             </template>
         </el-menu>
-
-
-    </div>
-    
+    </div>   
 </template>
 
 <script>
@@ -68,8 +61,7 @@
         },
         methods:{
             menu(){
-             var roleId=sessionStorage.getItem("role")
-            var url=this.global.url+"/role/listByRole?roleId="+roleId;
+            var url=this.global.url+"/role/listByRole?roleId="+this.$store.state.role;
             this.$axios.get(url).then((res)=>{
                 console.log(res)
                 if(res.data.status==200){

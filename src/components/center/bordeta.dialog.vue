@@ -43,7 +43,6 @@
   export default {
     data() {
       return{
-          save:false,
             ruleForm:{
               noticeTitle:'',
               noticeType:'',
@@ -116,12 +115,6 @@
           this.$parent.closedetaDialog();
        },
        get(){
-           var role=sessionStorage.getItem("role")
-           if(role==4){
-               this.save=false
-           }else{
-               this.save=true
-           }
         var url=this.global.url+"/notice/select?id="+this.nId
         this.$axios.get(url).then((res)=>{
             console.log(res)

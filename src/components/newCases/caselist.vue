@@ -872,7 +872,7 @@ export default {
          handlemodify(row){
             var caseId=row.id
             sessionStorage.setItem("caseId",caseId)
-            sessionStorage.setItem("lock",row.status)
+            this.$store.state.lock=row.status
             var nav=1
             bus.$emit("nav",nav)
             sessionStorage.setItem("nav",nav)
@@ -884,7 +884,6 @@ export default {
     //    删除sessionStorage中的值
        sessionStorage.removeItem("caseId")
        sessionStorage.removeItem("subjectId") 
-       sessionStorage.removeItem("lock") 
        sessionStorage.removeItem("parentId")
        sessionStorage.removeItem("medicineId")
        sessionStorage.removeItem("medicineIncidentId")

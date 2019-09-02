@@ -153,10 +153,8 @@ export default {
     },
     created(){
        this.get();
-
-        var role=sessionStorage.getItem("role")
-        this.role=role
-        if(role==4){
+        this.role=this.$store.state.role
+        if(this.$store.state.role==4){
             this.save=true
         }
     }

@@ -2,11 +2,8 @@
     <div class="tags" v-if="showTags">
         <ul>
             <li class="tags-li" v-for="(item,index) in tagsList" :class="{'active': isActive(item.path)}" :key="index">
-                <router-link :to="item.path" class="tags-li-title" :title="item.title" v-show="en">
-                    {{item.title}}
-                </router-link>
-                 <router-link :to="item.path" class="tags-li-title" :title="item.us"  v-show="!en">
-                    {{item.us}}
+                <router-link :to="item.path" class="tags-li-title" :title="item.title">
+                    {{en==true ? item.title : item.us}}
                 </router-link>
                 <span class="tags-li-icon" @click="closeTags(index)"><i class="el-icon-close"></i></span>
             </li>
@@ -106,7 +103,6 @@
         },
         created(){
             this.setTags(this.$route);
-             console.log(this.$route)
             // 监听关闭当前页面的标签页
             bus.$on('close_current_tags', () => {
                 for (let i = 0, len = this.tagsList.length; i < len; i++) {

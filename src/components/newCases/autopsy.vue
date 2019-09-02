@@ -256,7 +256,7 @@ export default {
           },
   // 详情页加载数据
       get(){
-        if(sessionStorage.getItem("lock")==3){
+        if(this.$store.state.lock=="3"){
            this.lock=false
          }
         this.save=false;

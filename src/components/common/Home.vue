@@ -141,9 +141,8 @@
         created(){
             this.get2()
             var user=sessionStorage.getItem("user")
-            var role=sessionStorage.getItem("role")
             this.cement= user!==undefined ? true :false
-             this.cement= role==1 ? false : true
+             this.cement= this.$store.state.role==1 ? false : true
             bus.$on('collapse', msg => {
                 this.collapse = msg; 
             })
