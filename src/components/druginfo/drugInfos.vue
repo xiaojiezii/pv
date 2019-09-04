@@ -33,7 +33,7 @@
                  <el-form-item :label="$t('druginfo.drfeature')" prop="feature">
                    <el-select v-model="ruleForm.feature" :placeholder="$t('btn.selects')" class="ipts">
                         <el-option :label="$t('druginfo.drfeature1')" value="1"></el-option>
-                        <el-option :label="$t('druginfo.drfeature2')" value="2"></el-option>
+                        <el-option v-show="firId==id ? false : true" :label="$t('druginfo.drfeature2')" value="2"></el-option>
                         <el-option :label="$t('druginfo.drfeature3')" value="3"></el-option>
                         <el-option :label="$t('druginfo.drfeature4')" value="4"></el-option>
                    </el-select>
@@ -210,6 +210,7 @@ export default {
         lock:true,
           caseId:'',   //病例Id
           id:"",     //患者
+          firId:'',
           save:true,
 					ss:true,
           sc:true,
@@ -330,6 +331,7 @@ export default {
               this.ss=false
               this.info=false
               this.mains=true
+              this.firId=""
 			        this.resetForm('ruleForm')
 			        console.log(this.caseId)
 			    },
@@ -402,8 +404,11 @@ export default {
 			    },
 					// 删除事件
 					handleDelete(){
-							  this.save=false;
-                      this.$confirm(this.$t('druginfo.drdelete'), this.$t('druginfo.drtishi'), {
+                this.save=false;
+                if(this.firId===this.id){
+                  this.$message.error("此药物信息不可删除！")
+                }else{
+                    this.$confirm(this.$t('druginfo.drdelete'), this.$t('druginfo.drtishi'), {
                         confirmButtonText: this.$t('druginfo.drdeyes'),
                                   cancelButtonText: this.$t('druginfo.drno'),
                                   type: 'warning'
@@ -424,6 +429,8 @@ export default {
                                       message: this.$t('druginfo.drdeaft1')
                                       }); 
 							            });  
+                }
+                     
 					},
       get(){
         sessionStorage.removeItem("medicineIncidentId")
@@ -444,6 +451,7 @@ export default {
                   this.mains=true
                this.ruleForm=res.data.data[0]
             this.id=res.data.data[0].id
+            this.firId=res.data.data[0].id
             this.medicinesId=res.data.data[0].name
 						this.options=res.data.data
             var medicineId=res.data.data[0].id
@@ -453,6 +461,7 @@ export default {
                this.info=false
                this.mains=true
               this.ruleForm=res.data.data[0]
+               this.firId=res.data.data[0].id
               this.id=res.data.data[0].id
               this.options=res.data.data
               this.medicinesId=res.data.data[0].name
