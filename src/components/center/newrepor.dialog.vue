@@ -53,8 +53,8 @@
                 </el-form-item>
                 <el-form-item :label="$t('repo.rerecountry')" prop="state">
                 <el-select v-model="ruleForm.state" :placeholder="$t('btn.selects')" class="ipts">
-                    <el-option label="CN" value="1"></el-option>
-                    <el-option label="EU" value="2"></el-option>                                          
+                    <el-option :label="$t('case.country1')" value="中国"></el-option>
+                    <el-option :label="$t('case.country2')" value="美国"></el-option>                                          
                 </el-select>
                 <i class="el-icon-s-order lii" title="编写中"></i>
             </el-form-item>

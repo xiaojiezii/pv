@@ -88,8 +88,8 @@
                 </el-form-item>
                  <el-form-item :label="$t('case.casefirst')" prop="oneSend">
                     <el-select v-model="ruleForm.oneSend" :placeholder="$t('btn.selects')" style="margin:0 30px 0 100px;width:250px; ">
-                       <el-option :label="$t('case.caseisyes')" value="1"></el-option>
-                       <el-option :label="$t('case.caseisno')" value="2"></el-option>                                          
+                       <el-option :label="$t('case.qiye')" value="1"></el-option>
+                       <el-option :label="$t('case.casetype3')" value="2"></el-option>                                          
                     </el-select>
                     <el-tooltip :content="$t('tishi.A7')" placement="right-start" effect="light">
                        <i class="el-icon-s-order lii"></i>
@@ -147,8 +147,8 @@
                     </el-select>
                     <i class="el-icon-s-order lii" title="编写中"></i>
                 </el-form-item>
-       <el-form-item :label="$t('case.casereporter')" prop="reporterId">
-                    <el-select v-model="ruleForm.reporterId" :placeholder="$t('btn.selects')" style="margin:0 30px 0 100px;width:250px; ">
+            <el-form-item :label="$t('case.casereporter')" prop="reporterId">
+                    <el-select v-model="ruleForm.reporterId" :placeholder="$t('btn.selects')" @focus="lists" style="margin:0 30px 0 100px;width:250px; ">
                       <el-option
                         v-for="(item,i) of list" :key="i"
                         :label="item.name" :value="item.id"></el-option>                                       
@@ -157,8 +157,8 @@
                 </el-form-item>
                <el-form-item :label="$t('case.casecountry')" prop="state">
                     <el-select v-model="ruleForm.state" :placeholder="$t('btn.selects')" style="margin:0 30px 0 100px;width:250px; ">
-                       <el-option label="CN" value="1"></el-option>                                         
-                       <el-option label="US" value="2"></el-option>                                         
+                       <el-option :label="$t('case.country1')" value="中国"></el-option>                                         
+                       <el-option :label="$t('case.country2')" value="美国"></el-option>                                         
                     </el-select>
                     <el-tooltip :content="$t('tishi.A12')" placement="right-start" effect="light">
                        <i class="el-icon-s-order lii"></i>
@@ -365,7 +365,16 @@ export default {
              }           
           })  
       },
-
+//   获取报告者
+      lists(){
+           var url=this.global.url+"/siteReporter/selectSiteReporter?siteId="+this.ruleForm.reporterSite
+          this.$axios.get(url).then((res)=>{
+             console.log(res)
+             if(res.data.status==200){
+                this.list=res.data.data
+             }           
+          })  
+      },
 
 
 
@@ -552,12 +561,12 @@ export default {
 
 
   .lii{
-     text-align: center;
-  color:#838ab6;
+      text-align: center;
+      color:#838ab6;
       line-height: 30px;
       width:30px;border: 1px solid #ececff;
-      height:30px;}
-
+      height:30px;
+   }
 </style>
 
 

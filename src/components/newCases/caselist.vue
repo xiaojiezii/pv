@@ -335,11 +335,11 @@
             </table>
             <p>第 1 页/共 2 页</p>
         </div>
-        <div style="text-align:center;width:1075px;height:1566.95px;" >
+        <div style="text-align:center;width:1075px;height:1566.95px;">
             <table border="1" cellspacing="0" cellpadding="15" width="97%" style="font-size:20px;table-layout:fixed;">
                 <tr>
                     <td width="21%" align="left">SAE与试验药的关系</td>
-                    <td align="left">
+                    <td align="left"> 
                           <span v-if="prt.assesss!==1">
                            <input type="checkbox">肯定有关 
                         </span>
@@ -760,7 +760,7 @@ export default {
              console.log(this.send)
              var send=this.send
              for(var item of send){
- var url=this.global.url+"/caseToXML/sendXML?"
+                 var url=this.global.url+"/caseToXML/sendXML?"
                  var po=this.qs.stringify({
                      userId:sessionStorage.getItem("usid"),
                      caseIds:item.id  
@@ -774,9 +774,11 @@ export default {
                             var file=it.name
                             var pro=it.company
                             var username=it.username
-                             this.$axios.post("https://pv.yikeen.cn:4080/rssbus/api.rsc/sendFile",{PortId:pro,
-                            File:file},
-                                  {headers: { "x-rssbus-authtoken": "7i2L1j9v5Q6e8f5M6s9l"}}).then((res)=>{
+                             this.$axios.post(
+                                    "https://pv.yikeen.cn:4080/rssbus/api.rsc/sendFile",
+                                    {PortId:pro,File:file},
+                                    {headers: { "x-rssbus-authtoken": "6e4M5k6x7H9v4u8H7t4m"}}
+                                  ).then((res)=>{
                                       console.log(res)
                                       if(res.data.value.length>0){
                                            this.$message({
@@ -788,17 +790,16 @@ export default {
                                     if(error.response.status!==200){
                                         this.$message.error(`${username} 发送失败!`)
                                         this.err.push(username)
-                                    }
-                                   
-                                })      
-                        }
-                                        
+                                    }  
+                             })      
+                        }                
                     }
                 })
              }
         },
  //   打印病例
         print(){
+            console.log(this.send)
            if(this.send.length>1){
                this.$message.error("只能打印单个患者病例，请勿多选！")
            }else if(this.send.length==0){
@@ -810,8 +811,7 @@ export default {
                     spinner: 'el-icon-loading',
                     background: 'rgba(0, 0, 0, 0.5)'
                 });
-               var cId=this.send[0].id
-               var url=this.global.url+"/sae/getSAE?caseId="+cId
+               var url=this.global.url+"/sae/getSAE?caseId="+this.send[0].id
                this.$axios.get(url).then((res)=>{
                    console.log(res)
                    if(res.data.status==200){
@@ -881,7 +881,7 @@ export default {
     },
     created(){
        this.get();
-    //    删除sessionStorage中的值
+    //  删除sessionStorage中的值
        sessionStorage.removeItem("caseId")
        sessionStorage.removeItem("subjectId") 
        sessionStorage.removeItem("parentId")
@@ -898,10 +898,8 @@ export default {
     margin-left: 6px;
 }
 .seach{
-    display: inline;
-    float: right;
+    float:right;
 }
-
 </style>
 
 

@@ -37,13 +37,13 @@ const i18n = new VueI18n({
       'zh-cn': LangZHCN
     }
   })
-  
+
 
 
   Object.keys(moment).forEach(key => {
     Vue.filter(key, moment[key])
   })
-  
+
 
 axios.interceptors.request.use(
     config => {

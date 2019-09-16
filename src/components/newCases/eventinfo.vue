@@ -123,13 +123,10 @@
                      </el-tooltip>
                 </el-form-item>
                 <el-form-item :label="$t('event.evallTimeUnit')" prop="allTimeUnit">
-                    <el-select v-model="ruleForm.allTimeUnit" :placeholder="$t('btn.selects')" class="ipts">
-                       <el-option :label="$t('event.evallTimeUnit1')" value="1"></el-option>
-                       <el-option :label="$t('event.evallTimeUnit2')" value="2"></el-option>                       
-                       <el-option :label="$t('event.evallTimeUnit3')" value="3"></el-option>
-                       <el-option :label="$t('event.evallTimeUnit4')" value="4"></el-option>                       
-                       <el-option :label="$t('newList.listage6')" value="5"></el-option>
-                       <el-option :label="$t('newList.listage7')" value="6"></el-option>                      
+                    <el-select v-model="ruleForm.allTimeUnit" :placeholder="$t('btn.selects')" class="ipts">                      
+                       <el-option :label="$t('event.evallTimeUnit3')" value="d"></el-option>
+                       <el-option :label="$t('event.evallTimeUnit4')" value="h"></el-option>                       
+                       <el-option :label="$t('newList.listage6')" value="min"></el-option>                    
                     </el-select>
                     <el-tooltip :content="$t('tishi.Q7')" placement="right-start" effect="light">
                        <i class="el-icon-s-order lii"></i>
@@ -524,7 +521,7 @@ export default {
 				if(res.data.data.allTimeUnit==null){
 					 this.ruleForm.allTimeUnit="";
 				}else{
-					this.ruleForm.allTimeUnit=JSON.stringify(res.data.data.allTimeUnit)
+					this.ruleForm.allTimeUnit=res.data.data.allTimeUnit
         }
         if(res.data.data.reporterTerm==null){
           this.ruleForm.reporterTerm="";
@@ -616,6 +613,7 @@ export default {
            this.lock=false
          }
           this.save=false;
+          console.log(this.caseId)
           var url=this.global.url+"/caseIncident/selectCaseIncident?caseId="+this.caseId;
           this.$axios.get(url).then((res)=>{
               console.log(res)
@@ -632,7 +630,7 @@ export default {
                     if(res.data.data[0].allTimeUnit==null){
                       this.ruleForm.allTimeUnit="";
                     }else{
-                      this.ruleForm.allTimeUnit=JSON.stringify(res.data.data[0].allTimeUnit)
+                      this.ruleForm.allTimeUnit=res.data.data[0].allTimeUnit
                     }
                     if(res.data.data[0].reporterTerm==null){
                       this.ruleForm.reporterTerm="";
@@ -703,7 +701,7 @@ export default {
                     if(res.data.data[0].allTimeUnit==null){
                       this.ruleForm.allTimeUnit="";
                     }else{
-                      this.ruleForm.allTimeUnit=JSON.stringify(res.data.data[0].allTimeUnit)
+                      this.ruleForm.allTimeUnit=res.data.data[0].allTimeUnit
                     }
                     if(res.data.data[0].reporterTerm==null){
                       this.ruleForm.reporterTerm="";

@@ -116,7 +116,6 @@ export default {
         },
         search(){
             this.pjcDialog=true
-  
         },
         closeTagDialog(){
             this.pjcDialog=false
@@ -133,8 +132,7 @@ export default {
                       confirmButtonText: this.$t('dead.deyes'),
                       cancelButtonText: this.$t('dead.deno'),
                       type: 'warning'
-                  }).then(() => {
-                     
+                  }).then(() => {        
               //   点击确认后向服务器传参
               var url=this.global.url+"/subjectDie/addSubjectDie?";
               var postDate=this.qs.stringify({
@@ -179,7 +177,6 @@ export default {
           }
         })
         },
-
 // ---------------------------------------修改-------------------
     
 	  // 新建死亡原因
@@ -238,7 +235,6 @@ export default {
 	          if(res.data.status==200){
               this.id=res.data.data.id
               this.ruleForm=res.data.data
-              
               if(res.data.data.isAutopsy==null){this.resetForm.isAutopsy=""}else{this.ruleForm.isAutopsy=JSON.stringify(res.data.data.isAutopsy)}     
 	          }
 	        })
@@ -285,7 +281,6 @@ export default {
               this.info=false
               this.mains=true
               this.ruleForm=res.data.data[0]
-              
               if(res.data.data[0].isAutopsy==null){
                 this.ruleForm.isAutopsy=""
               }else{
@@ -373,7 +368,6 @@ export default {
             this.subjectId=subId
             console.log(this.subjectId)
           }
-
         this.get()
       }else{
          var sub=sessionStorage.getItem("subjectId")

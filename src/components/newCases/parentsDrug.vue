@@ -204,7 +204,7 @@ export default {
             });
           },
           Form(formName) {
-            this.$router.push({path:"/deadinfo"})
+            this.$store.state.die=="1" ? this.$router.push({path:"/deadinfo"}) : this.$router.push({path:"/druginfo"})
           },
 
   // 搜索框中数据
@@ -447,7 +447,6 @@ export default {
             },2000)
            }else{
               this.parId=sessionStorage.getItem("parentId")
-            console.log(this.parentId)
             this.option();
            }
        }

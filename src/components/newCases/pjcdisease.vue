@@ -195,8 +195,6 @@ export default {
             this.ruleForm.meddraNumber=msg.id
             this.ruleForm.disease=msg.name
         },
-    
-
 //    新建患者病史
     mitForm(formName) {
         this.$refs[formName].validate((valid) => {
@@ -205,8 +203,7 @@ export default {
                 confirmButtonText: this.$t('dise.diyes'),
                 cancelButtonText: this.$t('dise.dino'),
                 type: 'warning'
-            }).then(() => {
-                
+            }).then(() => {    
         //   点击确认后向服务器传参
         var url=this.global.url+"/subjectDisease/addSubjectDisease?"
         var postData=this.qs.stringify({
@@ -254,7 +251,6 @@ export default {
          }
       })
     },
-
 // 删除事件
 	  handleDelete(){
 		  this.save=false;
@@ -274,14 +270,12 @@ export default {
                         }
                     })
 		                  }).catch(() => {
-		                           this.$message({
-		                           type: 'info',
-		                           message: this.$t('dise.dideaft1')
-		                           }); 
+                            this.$message({
+                            type: 'info',
+                            message: this.$t('dise.dideaft1')
+		                     }); 
 		            });  
 	  },
-
-
 // ------------------------------------------修改新建缓则病史
       get(){
          if(this.$store.state.lock=="3"){
@@ -298,7 +292,7 @@ export default {
                this.info=true
             }else if(res.data.data.length==1){
                  this.sc=false;
-                 this.mains=true
+                 this.mains=true;
                  this.info=false;
                  this.ruleForm=res.data.data[0]
                  this.id=res.data.data[0].id
@@ -306,15 +300,15 @@ export default {
                  this.diseaseId=res.data.data[0].disease
                  this.options=res.data.data
             }else{
-              this.mains=true
-              this.info=false;
-              this.ss=true
-              this.ruleForm=res.data.data[0]
-              this.id=res.data.data[0].id
-              this.sc=true;
-              this.subjectId=res.data.data[0].subjectId
-               this.diseaseId=res.data.data[0].disease
-              this.options=res.data.data
+                this.mains=true;
+                this.info=false;
+                this.ss=true;
+                this.ruleForm=res.data.data[0]
+                this.id=res.data.data[0].id
+                this.sc=true;
+                this.subjectId=res.data.data[0].subjectId
+                this.diseaseId=res.data.data[0].disease
+                this.options=res.data.data
 						}          
           }else{
             this.$message.error(this.$t('dise.dierro'));
@@ -336,15 +330,13 @@ export default {
                 confirmButtonText: this.$t('dise.diyes'),
                 cancelButtonText: this.$t('dise.dino'),
                 type: 'warning'
-            }).then(() => {
-                
+            }).then(() => {        
         //   点击确认后向服务器传参
-
         var url=this.global.url+"/subjectDisease/addSubjectDisease?";
         var postData=this.qs.stringify({
             subjectId:this.subjectId,
             disease:this.ruleForm.disease,
-            meddraVersion:   this.ruleForm.meddraVersion,
+            meddraVersion:this.ruleForm.meddraVersion,
             meddraNumber:this.ruleForm.meddraNumber,
             start:this.ruleForm.start,
             iscontinuous:this.ruleForm.iscontinuous,
@@ -394,19 +386,17 @@ export default {
                     confirmButtonText: this.$t('dise.diyes'),
                     cancelButtonText: this.$t('dise.dino'),
                     type: 'warning'
-                }).then(() => {
-                    
+                }).then(() => {     
             //   点击确认后向服务器传参
             if(this.ruleForm.start==""){
               var time=""
             }else{
                  var date = new Date(this.ruleForm.start);  
-                  var time=date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() ; 
+                  var time=date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate(); 
                     if(time=="1970-1-1"){
                           time=""
                         }
             }
-            
             if(this.ruleForm.end==""){
               var time1=""
             }else{
@@ -415,8 +405,7 @@ export default {
                   if(time1=="1970-1-1"){
                           time1=""
                         }
-            }
-                  
+            }      
                   var url=this.global.url+"/subjectDisease/update?"
                   var  postData=this.qs.stringify({
                         id:this.id,

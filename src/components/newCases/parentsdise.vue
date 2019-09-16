@@ -370,6 +370,7 @@ export default {
          }
        this.save=false
        var url=this.global.url+"/parentDisease/selectParentDisease?parentId="+this.parId;
+       console.log(this.parId)
        this.$axios.get(url).then((res)=>{
          console.log(res)
             console.log(res.data.data[0].isalive)

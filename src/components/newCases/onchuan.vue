@@ -51,7 +51,7 @@ export default {
                   });
                   // this.$router.push({path:'/newList'})
               }else{
-                this.$message.console.error("上传失败，数据传输错误，请重试！");   
+                this.$message.error("上传失败，数据传输错误，请重试！");   
               }
           })
       }

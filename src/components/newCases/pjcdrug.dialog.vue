@@ -1,6 +1,6 @@
 <template>
     <div>
-      <el-dialog title="选择症状" :visible.sync="event" :before-close="closeDialog">
+      <el-dialog title="选择症状" :visible.sync="events" :before-close="closeDialog">
         <el-table
           :data="gridData"
           style="width: 100%">
@@ -59,8 +59,8 @@
       };
     },
     props:[
-        "event",
-        "name",
+        "events",
+        "names",
     ],
     // props:{
     //     event:{
@@ -71,7 +71,7 @@
     //     grid:{type:Array}
     // },
     watch:{
-      event:function(val){
+      events:function(val){
           if(val){
               this.gets()
           }
@@ -79,7 +79,7 @@
     },
     methods:{
         closeDialog(){
-            this.$parent.closeTagDialog()
+            this.$parent.closeTagdrugDialog()
         },
         handleCurrentChange: function(currentPage){
 		        this.currentPage = currentPage;
@@ -101,14 +101,13 @@
         },
        handleEdit(row){
             var row={id:row.lltId,name:row.lltName}
-            this.$emit("hand",row)
             this.$emit("hands",row)
             this.closeDialog();
         },
         gets(){
            var url=this.global.url+"/meddra/selectMeddra?";
             var postData=this.qs.stringify({
-            name:this.name,
+            name:this.names,
             page:this.currentPage
         })
         this.$axios.get(url+postData).then((res)=>{

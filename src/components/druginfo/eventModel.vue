@@ -38,10 +38,11 @@
                 </el-form-item>
                  <el-form-item :label="$t('model.mostartUnit')" prop="startUnit">
                    <el-select v-model="ruleForm.startUnit" class="ipts" :placeholder="$t('model.moentertime')">
-                        <el-option :label="$t('newList.listage2')" value="M"></el-option>
+                        <el-option :label="$t('newList.listage2')" value="mo"></el-option>
+                        <el-option :label="$t('newList.listage3')" value="wk"></el-option>
                         <el-option :label="$t('newList.listage4')" value="d"></el-option>
-                        <el-option :label="$t('newList.listage5')" value="H"></el-option>
-                        <el-option :label="$t('newList.listage6')" value="m"></el-option>
+                        <el-option :label="$t('newList.listage5')" value="h"></el-option>
+                        <el-option :label="$t('newList.listage6')" value="min"></el-option>
                         <el-option :label="$t('newList.listage7')" value="s"></el-option>
                    </el-select>
                      <el-tooltip :content="$t('tishi.N3')" placement="right-start" effect="light">
@@ -56,10 +57,11 @@
                 </el-form-item>
                  <el-form-item :label="$t('model.molastUnit')" prop="lastUnit">
                    <el-select v-model="ruleForm.lastUnit" class="ipts" :placeholder="$t('model.moenterunit')">
-                        <el-option :label="$t('newList.listage2')" value="M"></el-option>
+                         <el-option :label="$t('newList.listage2')" value="mo"></el-option>
+                        <el-option :label="$t('newList.listage3')" value="wk"></el-option>
                         <el-option :label="$t('newList.listage4')" value="d"></el-option>
-                        <el-option :label="$t('newList.listage5')" value="H"></el-option>
-                        <el-option :label="$t('newList.listage6')" value="m"></el-option>
+                        <el-option :label="$t('newList.listage5')" value="h"></el-option>
+                        <el-option :label="$t('newList.listage6')" value="min"></el-option>
                         <el-option :label="$t('newList.listage7')" value="s"></el-option>
                    </el-select>
                      <el-tooltip :content="$t('tishi.N5')" placement="right-start" effect="light">

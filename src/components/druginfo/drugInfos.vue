@@ -73,8 +73,8 @@
                
                  <el-form-item :label="$t('druginfo.drconfirm')" prop="confirm">
                    <el-select v-model="ruleForm.confirm" :placeholder="$t('btn.selects')" class="ipts">
-                        <el-option :label="$t('druginfo.drconfirm1')" value="1"></el-option>
-                        <el-option :label="$t('druginfo.drconfirm2')" value="2"></el-option>
+                        <el-option :label="$t('case.country1')" value="中国"></el-option>
+                        <el-option :label="$t('case.country2')" value="美国"></el-option>
                    </el-select>
                          <el-tooltip :content="$t('tishi.J7')" placement="right-start" effect="light">
                        <i class="el-icon-s-order lii"></i>
@@ -97,8 +97,8 @@
                   </el-form-item>
                   <el-form-item :label="$t('druginfo.drlistedCountry')" prop="listedCountry">
                    <el-select v-model="ruleForm.listedCountry" :placeholder="$t('btn.selects')" class="ipts">
-                        <el-option :label="$t('druginfo.drlistedCountry1')" value="1"></el-option>
-                        <el-option :label="$t('druginfo.drlistedCountry2')" value="2"></el-option>
+                        <el-option :label="$t('case.country1')" value="中国"></el-option>
+                        <el-option :label="$t('case.country2')" value="美国"></el-option>
                    </el-select>
                          <el-tooltip :content="$t('tishi.J10')" placement="right-start" effect="light">
                        <i class="el-icon-s-order lii"></i>
@@ -134,10 +134,13 @@
                   </el-form-item>
                   <el-form-item :label="$t('druginfo.drpregnancyUnit')" prop="pregnancyUnit">
                    <el-select v-model="ruleForm.pregnancyUnit" :placeholder="$t('btn.selects')" class="ipts">
-                        <el-option :label="$t('druginfo.drpregnancyUnit1')" value="1"></el-option>
-                        <el-option :label="$t('druginfo.drpregnancyUnit2')" value="2"></el-option>
-                        <el-option :label="$t('druginfo.drpregnancyUnit3')" value="3"></el-option>
-                        <el-option :label="$t('druginfo.drpregnancyUnit4')" value="4"></el-option>
+                         <el-option :label="$t('newList.listage1')" value="a"></el-option>
+                        <el-option :label="$t('newList.listage2')" value="mo"></el-option>
+                        <el-option :label="$t('newList.listage3')" value="wk"></el-option>
+                        <el-option :label="$t('newList.listage4')" value="d"></el-option>
+                        <el-option :label="$t('newList.listage5')" value="h"></el-option>
+                        <el-option :label="$t('newList.listage6')" value="min"></el-option>
+                        <el-option :label="$t('newList.listage7')" value="s"></el-option>
                    </el-select>
                          <el-tooltip :content="$t('tishi.J15')" placement="right-start" effect="light">
                        <i class="el-icon-s-order lii"></i>

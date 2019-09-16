@@ -123,17 +123,18 @@
                      </el-tooltip>
                 </el-form-item>
                 <el-form-item :label="$t('drug.drugreactionName')" prop="reactionName">
-                    <el-input class="ipts" v-model="ruleForm.reactionName" :placeholder="$t('btn.enter')"></el-input>
-                    <i class="el-icon-s-order lii" title="编写中"></i>
+                    <el-input class="ipts" v-model="ruleForm.reactionName"
+                    @keyup.enter.native="queryAdminRole1" :placeholder="$t('btn.enter')"></el-input>
+                    <el-button type="primary" @click="search1" icon="el-icon-search" circle title="点击搜索"></el-button>
                 </el-form-item>
                 <el-form-item :label="$t('drug.drugreactionMeddraversion')" prop="reactionMeddraversion">
-                    <el-input class="ipts" v-model="ruleForm.reactionMeddraversion" :placeholder="$t('btn.enter')"></el-input>
+                    <el-input class="ipts" v-model="ruleForm.reactionMeddraversion" :disabled="true" :placeholder="$t('btn.enter')"></el-input>
                     <el-tooltip :content="$t('tishi.D10')" placement="right-start" effect="light">
                        <i class="el-icon-s-order lii"></i>
                      </el-tooltip>
                 </el-form-item>
                 <el-form-item :label="$t('drug.drugreactionMeddranumber')" prop="reactionMeddranumber">
-                    <el-input class="ipts" v-model="ruleForm.reactionMeddranumber" :placeholder="$t('btn.enter')"></el-input>
+                    <el-input class="ipts" v-model="ruleForm.reactionMeddranumber" :disabled="true" placeholder="请输入症状名称选择"></el-input>
                     <el-tooltip :content="$t('tishi.D11')" placement="right-start" effect="light">
                        <i class="el-icon-s-order lii"></i>
                      </el-tooltip>
@@ -161,13 +162,17 @@
                     暂无数据请创建
               </div>
        </div>
-
+     <!-- 针对适应症名称 弹出框 -->
         <pjc-dialog :event="pjcDialog" @closeTagDialog="closeTagDialog" @hand="fn($event)" :name="ruleForm.indicationName">
        </pjc-dialog>
+     <!-- 针对反映名称 弹出框 -->
+        <pjcdrug-dialog :events="pjcdrugDialog" @closeTagDialog="closeTagdrugDialog"  @hands="fns($event)" :names="ruleForm.reactionName">
+       </pjcdrug-dialog>
     </div>
 </template>
 <script>
 import pjcDialog from "./pjc.dialog.vue"
+import pjcdrugDialog from "./pjcdrug.dialog.vue"
 export default {
     data() {
       return {
@@ -191,7 +196,7 @@ export default {
          indicationMeddraversion:'18.1',
          indicationMeddranumber:'',
           reactionName:'',
-          reactionMeddraversion: '',
+          reactionMeddraversion: '18.1',
           reactionMeddranumber: '',
         },
         // rules: {
@@ -199,11 +204,13 @@ export default {
         // }
     options: [],
     pjcDialog:false,
+    pjcdrugDialog:false,
 		 subjectMedicineId:""
       };
     },
     components:{
-        pjcDialog
+        pjcDialog,
+        pjcdrugDialog
     },
     methods: {
     // 搜索
@@ -216,12 +223,25 @@ export default {
             this.pjcDialog=true
   
         },
+        queryAdminRole1(){
+            this.pjcdrugDialog=true
+        },
+        search1(){
+            this.pjcdrugDialog=true
+        },
         closeTagDialog(){
             this.pjcDialog=false
+        },
+        closeTagdrugDialog(){
+            this.pjcdrugDialog=false
         },
         fn(msg){
             this.ruleForm.indicationMeddranumber=msg.id
             this.ruleForm.indicationName=msg.name
+        },
+        fns(msg){
+            this.ruleForm.reactionName=msg.name
+            this.ruleForm.reactionMeddranumber=msg.id
         },
     
 

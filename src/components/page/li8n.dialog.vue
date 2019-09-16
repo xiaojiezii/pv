@@ -1,9 +1,8 @@
 <template>
     <div>
-     <el-dialog :title="$t('oper.operdetails')"  customClass="customWidth" :visible.sync="li8n" :before-close="closeDialog">
+     <el-dialog :title="$t('oper.operdetails')" width="60%" customClass="customWidth" :visible.sync="li8n" :before-close="closeDialog">
             <el-table
 	           :data="tableData">
-				
 	           <el-table-column
 	               :label="$t('oper.opermethods')"
 	               prop="method">
@@ -57,9 +56,4 @@
   };
 </script>
 <style>
- /* *{margin: 0;padding: 0;} */
-.customWidth{
-    width:60%;
-}
-
 </style>

@@ -43,11 +43,18 @@
                      </el-tooltip>
                 </el-form-item>
                 <el-form-item :label="$t('dose.dotimeInterval')" prop="timeInterval">
-                    <el-input v-model="ruleForm.timeInterval" class="ipts" :placeholder="$t('btn.enter')"></el-input>
-                    <el-tooltip :content="$t('tishi.L4')" placement="right-start" effect="light">
+                   <el-select v-model="ruleForm.timeInterval" class="ipts" :placeholder="$t('btn.enter')">
+                        <el-option :label="$t('newList.listage1')" value="a"></el-option>
+                        <el-option :label="$t('newList.listage2')" value="mo"></el-option>
+                        <el-option :label="$t('newList.listage3')" value="wk"></el-option>
+                        <el-option :label="$t('newList.listage4')" value="d"></el-option>
+                        <el-option :label="$t('newList.listage5')" value="h"></el-option>
+                        <el-option :label="$t('newList.listage6')" value="min"></el-option>
+                   </el-select>
+                      <el-tooltip :content="$t('tishi.L4')" placement="right-start" effect="light">
                        <i class="el-icon-s-order lii"></i>
                      </el-tooltip>
-                </el-form-item>
+                   </el-form-item>
                 <el-form-item :label="$t('dose.dostartTime')" prop="startTime" v-if="save">
                     <el-date-picker class="ipts" v-model="ruleForm.startTime"  
                     value-format=" yyyy-MM-dd" format="yyyy-MM-dd"
@@ -102,11 +109,12 @@
                 </el-form-item>
                  <el-form-item :label="$t('dose.dodurationUnit')" prop="durationUnit">
                    <el-select v-model="ruleForm.durationUnit" class="ipts" :placeholder="$t('dose.doentertimeunit')">
-                        <el-option :label="$t('newList.listage2')" value="M"></el-option>
+                       <el-option :label="$t('newList.listage1')" value="a"></el-option>
+                        <el-option :label="$t('newList.listage2')" value="mo"></el-option>
+                        <el-option :label="$t('newList.listage3')" value="wk"></el-option>
                         <el-option :label="$t('newList.listage4')" value="d"></el-option>
-                        <el-option :label="$t('newList.listage5')" value="H"></el-option>
-                        <el-option :label="$t('newList.listage6')" value="m"></el-option>
-                        <el-option :label="$t('newList.listage7')" value="s"></el-option>
+                        <el-option :label="$t('newList.listage5')" value="h"></el-option>
+                        <el-option :label="$t('newList.listage6')" value="min"></el-option>
                    </el-select>
                       <el-tooltip :content="$t('tishi.L8')" placement="right-start" effect="light">
                        <i class="el-icon-s-order lii"></i>

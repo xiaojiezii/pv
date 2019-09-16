@@ -24,7 +24,7 @@
                                   <span>{{en==true ? threeItem.title : threeItem.us}}</span>
                                 </el-menu-item>
                             </el-submenu>
-                            <el-menu-item v-else :index="subItem.index.toString()" :key="subItem.index">
+                            <el-menu-item v-else :index="subItem.index.toString()" :key="subItem.index" v-show="subItem.no !== $store.state.die">
                                 <span>{{en==true ? subItem.title : subItem.us}}</span>
                             </el-menu-item>
                         </template>
@@ -38,8 +38,7 @@
                 </template>
             </template>
         </el-menu>
-    </div>
-    
+    </div>  
 </template>
 
 <script>
@@ -50,6 +49,7 @@
                 collapse: false,
                 newList:true,
                 en:true,
+                die:this.$store.state.die,
                 items2:[
                      {
                         icon: 'el-icon-lx-calendar',
@@ -111,11 +111,13 @@
                                     index:'deadinfo',
                                     title:'死亡病例信息',
                                     us:'Die Info',
+                                    no:"2", 
                                 },
                                 {
                                     index:'autopsy',
                                     title:'尸检死因',
-                                    us:'Autopsy'
+                                    us:'Autopsy',
+                                    no:"2",
                                 },
                              ]
                             },
@@ -207,6 +209,10 @@
             },
         },
         created(){
+            console.log(this.die)
+        //    if(die==2){
+        //         this.items2[1].subs.splice(2,2)
+        //     }
             // 通过 Event Bus 进行组件间通信，来折叠侧边栏,
             bus.$on('collapse', msg => {
                 this.collapse = msg;

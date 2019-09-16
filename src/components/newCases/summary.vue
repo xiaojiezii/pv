@@ -7,11 +7,11 @@
        </div>
        <div class="container">
            <div style="font-size:20px;padding:10px; color:#777ab2;width:1200px;height:30px;border-bottom:1px solid #ececff;text-align:center;"><span> {{$t('summary.susummary')}}</span></div>
-           <el-form v-show="mains" :model="ruleForm" :rules="rules" ref="ruleForm" label-width="420px" style="margin-top:20px;" class="demo-ruleForm">
+           <el-form v-show="mains" :model="ruleForm" :rules="rules" ref="ruleForm" label-width="350px" style="margin-top:20px;" class="demo-ruleForm">
              
                <el-form-item :label="$t('summary.sunarrate')" prop="narrate">
                     <el-input
-                        :rows="4"
+                        :rows="8"
                         type="textarea"
                         :placeholder="$t('btn.enter')"
                         v-model="ruleForm.narrate" class="ipts">
@@ -22,7 +22,7 @@
                 </el-form-item>
                <el-form-item :label="$t('summary.sureporter')" prop="reporter">
                     <el-input
-                        :rows="4"
+                        :rows="8"
                         type="textarea"
                         :placeholder="$t('btn.enter')"
                         v-model="ruleForm.reporter" class="ipts">
@@ -33,7 +33,7 @@
                 </el-form-item>
                <el-form-item :label="$t('summary.susender')" prop="sender">
                     <el-input
-                        :rows="4"
+                        :rows="8"
                         type="textarea"
                         :placeholder="$t('btn.enter')"
                         v-model="ruleForm.sender" class="ipts">
@@ -43,17 +43,17 @@
                      </el-tooltip>
                 </el-form-item>          
 <!-- 新建 -->
-                <el-form-item style="margin:30px 0 0 50px;" v-if="save">
+                <el-form-item style="margin:30px 0 0 100px;" v-if="save">
                    <el-button type="primary" @click="mitForm('ruleForm')">{{$t('btn.save')}}</el-button>
                    <el-button @click="Form('ruleForm')">{{$t('btn.empty')}}</el-button>
                 </el-form-item>
 <!-- 修改 -->
-                <el-form-item style="margin:30px 0 0 50px;" v-else v-show="!ss && lock">
+                <el-form-item style="margin:30px 0 0 100px;" v-else v-show="!ss && lock">
                    <el-button type="primary" @click="submitForm('ruleForm')">{{$t('btn.save')}}</el-button>
                    <!-- <el-button @click="resetForm('ruleForm')">修改</el-button> -->
                 </el-form-item>
 <!-- 单独新建 -->
-                <el-form-item style="margin:30px 0 0 70px;" v-show="ss && lock">
+                <el-form-item style="margin:30px 0 0 80px;" v-show="ss && lock">
                    <el-button type="primary" @click="submit('ruleForm')">{{$t('btn.save')}}</el-button>
                 </el-form-item>
                 </el-form>
@@ -258,8 +258,8 @@ export default {
 <style scoped>
  /* *{margin: 0;padding: 0;} */
 .ipts{
-  width: 300px;
-  margin:0 30px 0 100px;
+  width: 500px;
+  margin:0 30px 0 50px;
 }
 .lii{ text-align: center;
     color:#838ab6;

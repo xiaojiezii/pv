@@ -66,11 +66,11 @@
  
                 <el-form-item :label="$t('newList.listage')" prop="newUnit">
                     <el-select v-model="ruleForm.newUnit" :placeholder="$t('btn.selects')" class="ipts">
-                       <el-option :label="$t('newList.listage1')" value="1"></el-option>
-                       <el-option :label="$t('newList.listage2')" value="2"></el-option>                       
-                       <el-option :label="$t('newList.listage3')" value="3"></el-option>
-                       <el-option :label="$t('newList.listage4')" value="4"></el-option>                       
-                       <el-option :label="$t('newList.listage5')" value="5"></el-option>                      
+                       <el-option :label="$t('newList.listage1')" value="a"></el-option>
+                       <el-option :label="$t('newList.listage2')" value="mo"></el-option>                       
+                       <el-option :label="$t('newList.listage3')" value="wk"></el-option>
+                       <el-option :label="$t('newList.listage4')" value="d"></el-option>                       
+                       <el-option :label="$t('newList.listage5')" value="h"></el-option>                      
                     </el-select>
                     <el-tooltip :content="$t('tishi.B6')" placement="right-start" effect="light">
                        <i class="el-icon-s-order lii"></i>
@@ -84,10 +84,12 @@
                 </el-form-item>
                <el-form-item :label="$t('newList.listbaby')" prop="twoUnit">
                     <el-select v-model="ruleForm.twoUnit" :placeholder="$t('btn.selects')" class="ipts">
-                       <el-option :label="$t('newList.listbaby1')" value="1"></el-option>
-                       <el-option :label="$t('newList.listbaby2')" value="2"></el-option>                       
-                       <el-option :label="$t('newList.listbaby3')" value="3"></el-option>
-                       <el-option :label="$t('newList.listbaby4')" value="4"></el-option>                                            
+                         <el-option :label="$t('newList.listage2')" value="mo"></el-option>
+                        <el-option :label="$t('newList.listage3')" value="wk"></el-option>
+                        <el-option :label="$t('newList.listage4')" value="d"></el-option>
+                        <el-option :label="$t('newList.listage5')" value="h"></el-option>
+                        <el-option :label="$t('newList.listage6')" value="min"></el-option>
+                        <el-option :label="$t('newList.listage7')" value="s"></el-option>                                      
                     </el-select>
                     <el-tooltip :content="$t('tishi.B8')" placement="right-start" effect="light">
                        <i class="el-icon-s-order lii"></i>
@@ -122,7 +124,7 @@
                 <el-form-item :label="$t('newList.listsex')" prop="sex">
                     <el-select v-model="ruleForm.sex" :placeholder="$t('btn.selects')" class="ipts">
                        <el-option :label="$t('newList.listsex1')" value="1"></el-option>
-                       <el-option :label="$t('newList.listsex2')" value="0"></el-option>
+                       <el-option :label="$t('newList.listsex2')" value="2"></el-option>
                     </el-select>
                     <el-tooltip :content="$t('tishi.B12')" placement="right-start" effect="light">
                        <i class="el-icon-s-order lii"></i>
@@ -201,6 +203,8 @@ export default {
         },
         rules: {
           name: [{ required: true, message: '请输入姓名', trigger: 'blur' }],
+          die: [{ required: true, message: '请选择是否死亡', trigger: 'change' }],
+          dieDate: [{ required: true, message: '请选择死亡时间', trigger: 'change' }],
         }
       };
     },
@@ -232,6 +236,12 @@ export default {
                           time=""
                     }
             }
+                  if(this.ruleForm.die==2){
+                     var time=""
+                     this.$store.state.die="2"
+                }else{
+                  this.$store.state.die="1"
+                }
               var url=this.global.url+"/subject/addSubject?";
                   var postData=this.qs.stringify({
                           caseId:this.caseId,
@@ -316,14 +326,20 @@ export default {
             }
             console.log(this.ruleForm.dieDate)
            if(this.ruleForm.dieDate==""){
-              var time=""
+              var time1=""
             }else{
                  var date = new Date(this.ruleForm.dieDate);  
-                  var time=date.getFullYear() + '-' + (date.getMonth() + 1)+ '-' + date.getDate() + ' ' + date.getHours()+ ':' + date.getMinutes() + ':' + date.getSeconds() ; 
-                    if(time=="1970-1-1"){
-                          time=""
+                  var time1=date.getFullYear() + '-' + (date.getMonth() + 1)+ '-' + date.getDate() + ' ' + date.getHours()+ ':' + date.getMinutes() + ':' + date.getSeconds() ; 
+                    if(time1=="1970-1-1"){
+                          time1=""
                     }
             }
+                  if(this.ruleForm.die==2){
+                     var time1=""
+                     this.$store.state.die="2"
+                  }else{
+                    this.$store.state.die="1"
+                    }
               var url=this.global.url+"/subject/addSubject?";
                   var postData=this.qs.stringify({
                           caseId:this.caseId,
@@ -343,7 +359,7 @@ export default {
                           twoTime:this.ruleForm.twoTime,
                           twoUnit:this.ruleForm.twoUnit,
                           type:this.ruleForm.type,
-                          dieDate:time
+                          dieDate:time1
                   })
                     this.$axios.post(url+postData).then((res)=>{
                       console.log(res)
@@ -400,6 +416,7 @@ export default {
            if(res.data.data.birthday==""){
              this.ruleForm.birthday=""
            }
+            res.data.data.die=="2" ? this.$store.state.die="2" : this.$store.state.die="1"
            sessionStorage.setItem("subjectId",res.data.data.id)
         }else{
           this.info=true
@@ -425,8 +442,7 @@ export default {
               var times=date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() ; 
               if(times=="1970-1-1"){times=""}
             }
-            console.log(this.ruleForm.dieDate)
-               if(this.ruleForm.dieDate==""){
+            if(this.ruleForm.dieDate==""){
               var time=""
             }else{
                  var date = new Date(this.ruleForm.dieDate);  
@@ -435,6 +451,10 @@ export default {
                           time=""
                     }
             }
+            if(this.ruleForm.die==2){
+              var time=""
+              this.$store.state.die="2"
+            }else{this.$store.state.die="1"}
         var url=this.global.url+"/subject/update?";
         var postData=this.qs.stringify({
               id:sessionStorage.getItem("subjectId"),

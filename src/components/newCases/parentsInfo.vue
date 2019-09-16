@@ -43,7 +43,7 @@
                 <el-form-item :label="$t('ptsinfo.ptparensex')" prop="parensex">
                     <el-select v-model="ruleForm.parensex" class="ipts" placeholder="请选择性别">
                        <el-option :label="$t('ptsinfo.ptparensex1')" value="1"></el-option>
-                       <el-option :label="$t('ptsinfo.ptparensex2')" value="0"></el-option>
+                       <el-option :label="$t('ptsinfo.ptparensex2')" value="2"></el-option>
                     </el-select>
                     <el-tooltip :content="$t('tishi.E4')" placement="right-start" effect="light">
                        <i class="el-icon-s-order lii"></i>
