@@ -220,40 +220,6 @@
                        <i class="el-icon-s-order lii"></i>
                      </el-tooltip>
                 </el-form-item>
-                <el-form-item :label="$t('event.evsource')" prop="source">
-                    <el-select v-model="ruleForm.source" :placeholder="$t('btn.selects')" class="ipts">
-                       <el-option :label="$t('event.evsource1')" value="1"></el-option>
-                       <el-option :label="$t('event.evsource2')" value="2"></el-option>                                             
-                    </el-select>
-                    <el-tooltip :content="$t('tishi.Q12')" placement="right-start" effect="light">
-                       <i class="el-icon-s-order lii"></i>
-                     </el-tooltip>
-                </el-form-item>
-                <el-form-item :label="$t('event.evmethod')" prop="method">
-                    <el-select v-model="ruleForm.method" :placeholder="$t('btn.selects')" class="ipts">
-                       <el-option :label="$t('event.evmethod1')" value="1"></el-option>
-                       <el-option :label="$t('event.evmethod2')" value="2"></el-option>                                             
-                       <el-option :label="$t('event.evmethod3')" value="3"></el-option>                                             
-                    </el-select>
-                    <el-tooltip :content="$t('tishi.Q13')" placement="right-start" effect="light">
-                       <i class="el-icon-s-order lii"></i>
-                     </el-tooltip>
-                </el-form-item>
-                <el-form-item :label="$t('event.evassess')" prop="assess">
-                    <el-select v-model="ruleForm.assess" :placeholder="$t('btn.selects')" class="ipts">
-                       <el-option :label="$t('event.evassess1')" value="1"></el-option>
-                       <el-option :label="$t('event.evassess2')" value="2"></el-option>                                             
-                       <el-option :label="$t('event.evassess3')" value="3"></el-option>                                             
-                       <el-option :label="$t('event.evassess4')" value="4"></el-option>                                             
-                       <el-option :label="$t('event.evassess5')" value="5"></el-option>                                             
-                       <el-option :label="$t('event.evassess6')" value="6"></el-option>                                             
-                       <el-option :label="$t('event.evassess7')" value="7"></el-option>                                             
-                       <el-option :label="$t('event.evassess8')" value="8"></el-option>                                             
-                       <el-option :label="$t('event.evassess9')" value="9"></el-option>                                            
-                       <el-option :label="$t('event.evassess10')" value="10"></el-option>                                                                                      
-                    </el-select>
-                      <el-button v-show="lock" v-if="slock=='2'" type="primary" class="el-icon-magic-stick" @click="querys" title="提出质疑" round>{{$t('event.evzhiyi')}}</el-button>
-                </el-form-item>
 <!-- 创建 -->
                <el-form-item style="margin:30px 0 0 50px;" v-if="save">
                   <el-button type="primary" @click="mitForm('ruleForm')">{{$t('btn.save')}}</el-button>
@@ -277,19 +243,14 @@
        </div>
       <pjc-dialog :event="pjcDialog" @closeTagDialog="closeTagDialog" @hand="fn($event)" :name="ruleForm.name">
        </pjc-dialog>
-      <event-dialog :events="eventdilog" @closeTagDialog="closeeventDialog" :caseId="caseId">
-       </event-dialog>
     </div>
 </template>
 <script>
 import pjcDialog from "./pjc.dialog.vue"
-import eventDialog from "./event.dialog.vue"
 export default {
     data() {
       return {
-          slock:'',//数据核查
           lock:true,
-          eventdilog:false,
           mains:true,
           pjcDialog:false,
           info:false,
@@ -317,9 +278,6 @@ export default {
           isOther:'',
           result:'',
           verify:'',
-          source:'',
-          method:'',
-          assess:'',
         },
         rules: {
           name: [{ required: true, message: '请输入姓名', trigger: 'blur' }],
@@ -382,9 +340,6 @@ export default {
                     isHospital:this.ruleForm.isHospital,
                     result:this.ruleForm.result,
                     verify:this.ruleForm.verify,
-                    source:this.ruleForm.source,
-                    method:this.ruleForm.method,
-                    assess:this.ruleForm.assess,
                     isDisability:this.ruleForm.isDisability,
                     isCongenital:this.ruleForm.isCongenital,
                     isOther:this.ruleForm.isOther,
@@ -430,19 +385,6 @@ export default {
           })
       },
 
-
-
-//事件评估提出质疑按钮
-    querys(){
-        this.eventdilog=true
-    }, 
-// 关闭弹窗
-    closeeventDialog(){
-        this.eventdilog=false
-    },
-
-
-
 //---------------------------------------------------修改
 	  // 新建反应事件
 	  newcase(){
@@ -477,9 +419,6 @@ export default {
 	             isHospital:this.ruleForm.isHospital,
 	             result:this.ruleForm.result,
 	             verify:this.ruleForm.verify,
-	             source:this.ruleForm.source,
-	             method:this.ruleForm.method,
-                 assess:this.ruleForm.assess,
                  isDisability:this.ruleForm.isDisability,
                 isCongenital:this.ruleForm.isCongenital,
                 isOther:this.ruleForm.isOther,
@@ -528,16 +467,6 @@ export default {
         }else{
 					this.ruleForm.reporterTerm=JSON.stringify(res.data.data.reporterTerm)
         }
-				if(res.data.data.assess==null){
-					 this.ruleForm.assess="";
-				}else{
-					this.ruleForm.assess=JSON.stringify(res.data.data.assess)
-				}
-				if(res.data.data.source==null){
-					 this.ruleForm.source="";
-				}else{
-					this.ruleForm.source=JSON.stringify(res.data.data.source)
-				}
 				if(res.data.data.verify==null){
 					 this.ruleForm.verify="";
 				}else{
@@ -608,8 +537,7 @@ export default {
 		  		            });  
 		  },
       get(){
-          this.slock=this.$store.state.lock
-          if(this.slock==3){
+          if(this.$store.state.lock==3){
            this.lock=false
          }
           this.save=false;
@@ -636,16 +564,6 @@ export default {
                       this.ruleForm.reporterTerm="";
                     }else{
                       this.ruleForm.reporterTerm=JSON.stringify(res.data.data[0].reporterTerm)
-                    }
-                    if(res.data.data[0].assess==null){
-                      this.ruleForm.assess="";
-                    }else{
-                      this.ruleForm.assess=JSON.stringify(res.data.data[0].assess)
-                    }
-                    if(res.data.data[0].source==null){
-                      this.ruleForm.source="";
-                    }else{
-                      this.ruleForm.source=JSON.stringify(res.data.data[0].source)
                     }
                     if(res.data.data[0].verify==null){
                       this.ruleForm.verify="";
@@ -707,16 +625,6 @@ export default {
                       this.ruleForm.reporterTerm="";
                     }else{
                       this.ruleForm.reporterTerm=JSON.stringify(res.data.data[0].reporterTerm)
-                    }
-                    if(res.data.data[0].assess==null){
-                      this.ruleForm.assess="";
-                    }else{
-                      this.ruleForm.assess=JSON.stringify(res.data.data[0].assess)
-                    }
-                    if(res.data.data[0].source==null){
-                      this.ruleForm.source="";
-                    }else{
-                      this.ruleForm.source=JSON.stringify(res.data.data[0].source)
                     }
                     if(res.data.data[0].verify==null){
                       this.ruleForm.verify="";
@@ -810,9 +718,6 @@ export default {
                         isHospital:this.ruleForm.isHospital,
                         result:this.ruleForm.result,
                         verify:this.ruleForm.verify,
-                        source:this.ruleForm.source,
-                        method:this.ruleForm.method,
-                        assess:this.ruleForm.assess,
                          isDisability:this.ruleForm.isDisability,
                             isCongenital:this.ruleForm.isCongenital,
                             isOther:this.ruleForm.isOther,
@@ -869,8 +774,7 @@ export default {
         }
     },
     components:{
-        pjcDialog,
-        eventDialog
+        pjcDialog
     }
 }
 </script>

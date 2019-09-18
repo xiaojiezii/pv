@@ -47,6 +47,10 @@
                     <el-input v-model="ruleForm.num" class="ipts" :placeholder="$t('btn.enter')"></el-input>
                     <i class="el-icon-s-order lii" title="编写中"></i>
                 </el-form-item>
+                 <el-form-item :label="$t('project.registerNum')" prop="registerNum">
+                    <el-input v-model="ruleForm.registerNum" class="ipts" :placeholder="$t('btn.enter')"></el-input>
+                    <i class="el-icon-s-order lii" title="编写中"></i>
+                </el-form-item>
                  <el-form-item :label="$t('project.drus')" prop="medicine">
                     <el-input v-model="ruleForm.medicine" class="ipts" :placeholder="$t('btn.enter')"></el-input>
                     <i class="el-icon-s-order lii" title="编写中"></i>
@@ -98,6 +102,7 @@
             look:"",
             siteId:'',
             num:'',
+            registerNum:'',
             medicine:'',
             type:'',
             status:'',
@@ -156,6 +161,7 @@
                     url+="&siteId="+this.ruleForm.siteId;
                     url+="&companyId="+this.ruleForm.companyId;
                     url+="&num="+this.ruleForm.num;
+                    url+="&registerNum="+this.ruleForm.registerNum;
                     url+="&medicine="+this.ruleForm.medicine;
                     url+="&type="+this.ruleForm.type;
                     url+="&classify="+this.ruleForm.classify;
@@ -216,6 +222,7 @@
                     this.ruleForm.look=res.data.data.look
                     this.ruleForm.siteId=res.data.data.siteId
                     this.ruleForm.num=res.data.data.num
+                    this.ruleForm.registerNum=res.data.data.registerNum
                     this.ruleForm.medicine=res.data.data.medicine
                     this.ruleForm.type=JSON.stringify(res.data.data.type) 
                     this.ruleForm.classify=res.data.data.classify

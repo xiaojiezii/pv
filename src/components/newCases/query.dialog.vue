@@ -105,8 +105,7 @@
            if(val!==undefined){
                this.gets()
            }
-       },
-      
+       }, 
     },
     methods:{
         // 解答疑问
@@ -188,6 +187,9 @@
         },
         // 数据锁定
         locks(){
+            if(this.suo!==2){
+                this.$message.error("数据尚未审核，请先进行审核！")
+            }else{
             this.$confirm(this.$t('case.casuoding'), this.$t('case.catishi'), {
                 confirmButtonText: this.$t('case.cayes'),
                 cancelButtonText: this.$t('case.cano'),
@@ -210,6 +212,7 @@
                     message: this.$t('case.cadeaft1')
                 });          
             }); 
+            }
         },
        gets(){
         var url=this.global.url+"/question/selectAll?id="+this.caId

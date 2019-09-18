@@ -17,26 +17,21 @@
             style="width: 100%">
             <el-table-column
                 :label="$t('oper.operid')"
-                prop="id">
+                prop="id" width="180">
             </el-table-column>
             <el-table-column
                 :label="$t('oper.operation')"
-				prop="operation"
-                >
-               
+				prop="operation">
             </el-table-column>
-            <el-table-column
-                :label="$t('oper.operusername')"
-				prop="username"
-                >
+            <el-table-column 
+               :label="$t('oper.operusername')" 
+               prop="username">
             </el-table-column>
             <el-table-column
                 :label="$t('oper.opertime')"
                 prop="time">
             </el-table-column>
-            <el-table-column
-                :label="$t('oper.operationtime')"
-               >
+            <el-table-column :label="$t('oper.operationtime')">
                 <template slot-scope="scope">
                      <p>{{scope.row.createTime | filterTime}}</p>
                 </template>

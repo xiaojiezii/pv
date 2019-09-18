@@ -6,7 +6,6 @@
         </el-breadcrumb>
       </div>
       <div class="container">
-          
           <div style="margin:15px;">
               <el-button  type="primary" style="width:100px" @click="news">{{$t('project.njt')}}</el-button>                
           </div>
@@ -19,8 +18,7 @@
                 prop="name">
             </el-table-column>
             <el-table-column
-                :label="$t('project.date')"
-                >
+                :label="$t('project.date')">
                  <template slot-scope="scope">
                      <p>{{scope.row.time | filterTime}}</p>
                 </template>
@@ -47,7 +45,6 @@
                     @click="handleEdit(scope.row)">{{$t('btn.dateils')}}</el-button>
                 <el-button
                     size="mini"
-                    
                     @click="handlego(scope.row)">{{$t('project.look')}}</el-button>
                      <el-button
                     size="mini"
@@ -147,7 +144,6 @@ export default {
           var siteId=row.id
           sessionStorage.setItem("siteId",siteId)
            this.$router.push({path:'/caselist'})
-       
       },
     //   删除按钮
       handleDelete(row){

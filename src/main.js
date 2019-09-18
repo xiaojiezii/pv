@@ -29,7 +29,7 @@ axios.defaults.withCredentials=false;
 Vue.prototype.global = global;
 
 
-
+// 引入中英文脚本
 const i18n = new VueI18n({
     locale: 'zh-cn',
     messages: {
