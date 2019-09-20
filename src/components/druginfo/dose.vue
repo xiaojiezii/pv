@@ -157,7 +157,7 @@
                      </el-tooltip>
                 </el-form-item>
                 <el-form-item :label="$t('dose.domedicineWayNum')" prop="medicineWayNum">
-                    <el-input v-model="ruleForm.medicineWayNum" class="ipts" :placeholder="$t('dose.doenterinfo')"></el-input>
+                    <el-input v-model="ruleForm.medicineWayNum" class="ipts" :disabled="true" :placeholder="$t('dose.doenterinfo')"></el-input>
                     <el-tooltip :content="$t('tishi.L15')" placement="right-start" effect="light">
                        <i class="el-icon-s-order lii"></i>
                      </el-tooltip>
@@ -175,7 +175,7 @@
                      </el-tooltip>
                 </el-form-item>
                 <el-form-item :label="$t('dose.domainWayNum')" prop="mainWayNum">
-                    <el-input v-model="ruleForm.mainWayNum" class="ipts" :placeholder="$t('dose.doenterinfo')"></el-input>
+                    <el-input v-model="ruleForm.mainWayNum" class="ipts" :disabled="true" :placeholder="$t('dose.doenterinfo')"></el-input>
                     <el-tooltip :content="$t('tishi.L18')" placement="right-start" effect="light">
                        <i class="el-icon-s-order lii"></i>
                      </el-tooltip>
@@ -241,10 +241,10 @@ export default {
           dosageFormNum:'',
           dosageForm:'',
           medicineWay:'',
-          medicineWayNum:'',
+          medicineWayNum:2.1,
           medicineWayId:'',
           mainWay:'',
-          mainWayNum:'',
+          mainWayNum:2.1,
           mainWayId:'',
         },
         // rules: {

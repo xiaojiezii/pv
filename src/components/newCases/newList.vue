@@ -86,10 +86,7 @@
                     <el-select v-model="ruleForm.twoUnit" :placeholder="$t('btn.selects')" class="ipts">
                          <el-option :label="$t('newList.listage2')" value="mo"></el-option>
                         <el-option :label="$t('newList.listage3')" value="wk"></el-option>
-                        <el-option :label="$t('newList.listage4')" value="d"></el-option>
-                        <el-option :label="$t('newList.listage5')" value="h"></el-option>
-                        <el-option :label="$t('newList.listage6')" value="min"></el-option>
-                        <el-option :label="$t('newList.listage7')" value="s"></el-option>                                      
+                        <el-option :label="$t('newList.listage4')" value="d"></el-option>                                    
                     </el-select>
                     <el-tooltip :content="$t('tishi.B8')" placement="right-start" effect="light">
                        <i class="el-icon-s-order lii"></i>

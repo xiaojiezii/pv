@@ -915,7 +915,7 @@ module.exports = {
         evresult:'E.i.7 末次观察时的反应/事件的结果',
         evresult1:'未知',
         evresult2:'好转/缓解',
-        evresult3:'好转中/缓解中',
+        evresult3:'痊愈',
         evresult4:'未见好转/未见缓解/仍在进行',
         evresult5:'好转/缓解但伴有后遗症',
         evresult6:'致死',

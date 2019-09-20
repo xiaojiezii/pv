@@ -199,15 +199,15 @@
 
                 <el-form-item :label="$t('event.evresult')" prop="result">
                     <el-select v-model="ruleForm.result" :placeholder="$t('btn.selects')" class="ipts">
-                       <el-option :label="$t('event.evresult1')" value="1"></el-option>
+                       <el-option :label="$t('event.evresult3')" value="1"></el-option>
                        <el-option :label="$t('event.evresult2')" value="2"></el-option>                                             
-                       <el-option :label="$t('event.evresult3')" value="3"></el-option>
-                       <el-option :label="$t('event.evresult4')" value="4"></el-option>                                             
-                       <el-option :label="$t('event.evresult5')" value="5"></el-option>                                            
-                       <el-option :label="$t('event.evresult6')" value="0"></el-option>                                            
+                       <el-option :label="$t('event.evresult4')" value="3"></el-option>                                             
+                       <el-option :label="$t('event.evresult5')" value="4"></el-option>                                            
+                       <el-option :label="$t('event.evresult6')" value="5"></el-option>                                            
+                       <el-option :label="$t('event.evresult1')" value="0"></el-option>
                     </el-select>
                     <el-tooltip :content="$t('tishi.Q10')" placement="right-start" effect="light">
-                       <i class="el-icon-s-order lii"></i>
+                       <i class="el-icon-s-order lii"></i> 
                      </el-tooltip>
                 </el-form-item>
 
