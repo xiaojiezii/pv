@@ -147,6 +147,7 @@
                 this.collapse = msg; 
             })
             bus.$on("nav",msg => {
+                console.log(msg)
                 this.navleft = msg
             })
             // 左侧主导航栏与病例导航按切换

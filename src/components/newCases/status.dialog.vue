@@ -8,13 +8,28 @@
                     <span>
                         <el-radio-group v-model="option.status">
                             <el-radio :label="1">{{$t("case.wsend")}}</el-radio>
-                            <el-radio :label="3">{{$t("case.sym")}}&nbsp;&nbsp;&nbsp;&nbsp;</el-radio>  
-                            <el-radio :label="6">{{$t("case.yea")}}</el-radio><br>
                             <el-radio :label="2">{{$t("case.ysend")}}</el-radio>   
-                            <el-radio :label="4">{{$t("case.swm")}}</el-radio>
-                            <el-radio :label="5">{{$t("case.ysa")}}</el-radio>
+                            <el-radio :label="3">{{$t("case.ysa")}}</el-radio>
                         </el-radio-group>
                     </span>
+                </li>
+                <li class="lis" v-show="as">
+                   <div>
+                      <span class="spans">病例确认状态：</span>
+                      <span>{{list.caseType}}</span>
+                      <el-tooltip style="float:right;" :content="list.errorComment" placement="right-start" effect="light">
+                         <i style="font-size:20px" class="el-icon-s-management"></i>
+                     </el-tooltip>
+                   </div>
+                </li>
+                <li class="lis" v-show="as">
+                   <div>
+                      <span class="spans">信息确认状态：</span>
+                      <span>{{list.messageType}}</span>
+                       <el-tooltip style="float:right;" :content="list.errorMessage" placement="right-start" effect="light">
+                         <i style="font-size:20px" class="el-icon-s-management"></i>
+                     </el-tooltip>
+                   </div>
                 </li>
                 <li class="lis lis1" v-show="as">
                     <div>
@@ -32,7 +47,7 @@
                 <li class="lis lis1"  v-show="as">
                     <div>
                         <span class="spans">{{$t("case.times")}}</span>
-                        <span>{{list.time | filterTime}}</span>
+                        <span>{{list.icsrTime | filterTime}}</span>
                     </div>
                     <div>
                         <span class="spans">{{$t("case.batch")}}</span>
@@ -52,37 +67,13 @@
                 <li class="lis lis1" v-show="as">
                     <div>
                         <span class="spans">{{$t("case.acksend")}}</span>
-                        <span>{{list.ackSender}}</span>
+                        <span>{{list.ackSender | sender}}</span>
                     </div>
                     <div>
                         <span class="spans">{{$t("case.iscr")}}</span>
                         <span>{{list.ICSRMessageNumber}}</span>
                     </div>
                     
-                </li>
-                <li class="lis lis1" v-show="as">
-                    <div>
-                        <span class="spans" style="padding-bottom:15px;">{{$t("case.err")}}</span>
-                        <span>
-                            <el-input class="ipts"
-                                type="textarea"
-                                :rows="2"
-                                :placeholder="$t('btn.enter')"
-                                v-model="list.errorMessage">
-                            </el-input>
-                        </span>
-                    </div>
-                    <div>
-                        <span class="spans" style="padding-bottom:15px;">{{$t("case.errp")}}</span>
-                        <span>
-                            <el-input  class="ipts"
-                                type="textarea"
-                                :rows="2"
-                                :placeholder="$t('btn.enter')"
-                                v-model="list.errorComment">
-                            </el-input>
-                        </span>
-                    </div>
                 </li>
             </ul>
         </div>
@@ -113,6 +104,8 @@
             errorComment:'',
             errorMessage:'',
             ICSRMessageNumber:'',
+            caseType:'',
+            messageType:'',
         }
       }
     },
@@ -123,17 +116,22 @@
     watch:{
        caseId(val){
            if(val!==undefined){
-               this.get()
+            //    this.get()
+               this.get3()
            }
        },
        option(val){
            if(val.ackUrl!==undefined){
-               this.get21()
+            //    this.get21()
            }
        }
     },
-    methods:{
-       
+    filters:{
+        sender(val){
+            return val=="CDETEST" ? "测试账号" : "正式账号"
+        }
+    },
+    methods:{     
        closeDialog(){
            this.$parent.closestatusDialog();
        },
@@ -143,11 +141,7 @@
               console.log(res)
               if(res.data.status==200){
                   this.option=res.data.data
-                  if(this.option.status==6){
-                      this.as=true
-                  }else if(this.option.status==5){
-                      this.as=true
-                  }
+                  res.data.data.status==3 ? this.as=true : this.as=false
                   this.option.status=JSON.parse(res.data.data.status)
               }else{
                   this.$message.error("查询数据为空！")
@@ -163,6 +157,12 @@
                   console.log(this.list)
               }
           })
+       },
+       get3(){
+           var url=this.global.url+"/case/selectAck";
+           this.$axios.get(url).then(res=>{
+               console.log(res)
+           })
        },
     //    下载xml文件
        sxml(){
@@ -218,5 +218,11 @@
 }
 .el-icon-document{
     font-size:20px;
+}
+.el-tooltip__popper {
+    width: 300px;
+    font-size: 12.5px !important;
+    text-indent:25px;
+    line-height: 1.5!important;
 }
 </style>

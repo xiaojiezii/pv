@@ -147,18 +147,18 @@
                 item.time=y + '-' + MM + '-' + d + ' ' + h + ':' + m + ':' + s;
            }
            this.list=list
-      require.ensure([], () => {
-        const { export_json_to_excel } = require('../../excel/Export2Excel');
-        const tHeader = ["序号",'时间','状态','质疑疑问','意见建议','疑问原因','解答内容',];  // 设置Excel的表格第一行的标题
-        const filterVal = ['index','time',"status",'reason','suggestion', 'textBefore','textAfter'];  // index、nickName、name是tableData里对象的属性
-        const list = this.list;  //把data里的tableData存到list
-        const data = this.formatJson(filterVal, list);
-        export_json_to_excel(tHeader, data, '质疑疑问');  //导出Excel 文件名
-      })
-     },
-      formatJson(filterVal, jsonData) {
-      return jsonData.map(v => filterVal.map(j => v[j]))
-    },
+            require.ensure([], () => {
+                const { export_json_to_excel } = require('../../excel/Export2Excel');
+                const tHeader = ["序号",'时间','状态','质疑疑问','意见建议','疑问原因','解答内容',];  // 设置Excel的表格第一行的标题
+                const filterVal = ['index','time',"status",'reason','suggestion', 'textBefore','textAfter'];  // index、nickName、name是tableData里对象的属性
+                const list = this.list;  //把data里的tableData存到list
+                const data = this.formatJson(filterVal, list);
+                export_json_to_excel(tHeader, data, '质疑疑问');  //导出Excel 文件名
+            })
+            },
+        formatJson(filterVal, jsonData) {
+        return jsonData.map(v => filterVal.map(j => v[j]))
+        },
         sub(formName) {
             this.$refs[formName].validate((valid) => {
             if (valid) {
@@ -187,7 +187,7 @@
         },
         // 数据锁定
         locks(){
-            if(this.suo!==2){
+            if(this.suo!==2){   
                 this.$message.error("数据尚未审核，请先进行审核！")
             }else{
             this.$confirm(this.$t('case.casuoding'), this.$t('case.catishi'), {

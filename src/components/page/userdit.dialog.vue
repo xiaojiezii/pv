@@ -13,14 +13,6 @@
                     <el-input v-model="ruleForm.loginName" class="ipts"  :placeholder="$t('user.s4')"></el-input>
                     <i class="el-icon-s-order lii" title="编写中"></i>
                 </el-form-item>
-               <el-form-item :label="$t('user.comm')" prop="companyId">
-                    <el-select v-model="ruleForm.companyId"  @change="reports" :placeholder="$t('user.s5')" class="ipts">
-                       <el-option
-                        v-for="(item,i) in option" :key="i"
-                        :label="item.name" :value="item.id"></el-option>                      
-                    </el-select>
-                    <i class="el-icon-s-order lii" title="编写中"></i>
-                </el-form-item>
              
                <el-form-item :label="$t('user.role')" prop="role">
                     <el-select v-model="ruleForm.role" :placeholder="$t('user.s5')"  class="ipts">                      
@@ -109,7 +101,6 @@
          phone:'',
          remark:'',//备注
          sex:'',
-         companyId:'', //选择公司
          role:'',//角色
          loginName:'',
          createBy:'',//创建者
@@ -141,15 +132,9 @@
       pwd(){
         this.innerVisible=true;
       },
-    //  submitForm() {
-    //         this.closeDialog()
-    //   },
        closeDialog(){
            this.$parent.closeuserditDialog();
        },
-     reports(id){
-        this.ruleForm.companyId=id
-      },
       submit(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
@@ -166,7 +151,6 @@
                  phone:this.ruleForm.phone,
                  remark:this.ruleForm.remark,
                  sex:this.ruleForm.sex,
-                 companyId:this.ruleForm.companyId,
                  role:this.ruleForm.role,
                  loginName:this.ruleForm.loginName
             })

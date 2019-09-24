@@ -2,6 +2,10 @@
     <div id="demo">
      <el-dialog title="新增公司" :visible.sync="newcom" :before-close="closeDialog" style="text-align:center;border-radius:5px;">
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="250px" style="margin-top:20px;" class="demo-ruleForm">
+                <el-form-item label="公司编号：" prop="inp5">
+                    <el-input v-model="ruleForm.inp5" class="ipts" placeholder="请输入编号"></el-input>
+                    <i class="el-icon-s-order lii" title="编写中"></i>
+                </el-form-item>
                 <el-form-item label="公司名称：" prop="inp1">
                     <el-input v-model="ruleForm.inp1" class="ipts" placeholder="请输入名字"></el-input>
                     <i class="el-icon-s-order lii" title="编写中"></i>
@@ -23,7 +27,13 @@
                     <el-input v-model="ruleForm.inp3"  class="ipts" placeholder="请输入联系方式"></el-input>
                     <i class="el-icon-s-order lii" title="编写中"></i>
                 </el-form-item>
-
+                <el-form-item label="消息发送者标识符" prop="inp4">
+                    <el-select v-model="ruleForm.inp4" placeholder="请输入发送者标识符" class="ipts">
+                       <el-option label="测试账号" value="0"></el-option>                      
+                       <el-option label="正式账号" value="1"></el-option>                                        
+                    </el-select>
+                    <i class="el-icon-s-order lii" title="编写中"></i>
+                </el-form-item>
                <el-form-item style="margin:50px 0 0 -250px;">
                 <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
                 </el-form-item>
@@ -43,9 +53,11 @@
           inp3:'',
           hist1:'',
           as2:'',
-
+          inp4:'',
+          inp5:'',
         },
         rules: {
+          inp5: [{ required: true, message: '请输入公司编号', trigger: 'blur' }],
           inp1: [{ required: true, message: '请输入公司名称', trigger: 'blur' }],
           as2: [{ required: true, message: '请输入AS2名称', trigger: 'blur' }],
           inp2: [{ required: true, message: '请输入姓名', trigger: 'blur' }],
@@ -68,6 +80,7 @@
     // },
     methods:{
          submitForm(formName) {
+           
         this.$refs[formName].validate((valid) => {
           if (valid) {
              this.$confirm('是否创建新的公司?', '提示', {
@@ -83,6 +96,8 @@
                     url+="&userName="+this.ruleForm.inp2;
                     url+="&phone="+this.ruleForm.inp3;
                     url+="&as2="+this.ruleForm.as2;
+                    url+="&messageSenderIdentifier="+parseInt(this.ruleForm.inp4);
+                    url+="&id="+this.ruleForm.inp5;
                 this.$axios.post(url).then((res)=>{
                     if(res.data.status==200){
                      this.$message({

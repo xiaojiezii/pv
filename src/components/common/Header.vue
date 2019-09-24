@@ -56,7 +56,7 @@
             return {
                 //  activeIndex2: '1',
                 nav:[],
-                role:this.$store.state.role,
+                role:sessionStorage.getItem("role"),
                 parsDialog:false,
                 passDialog:false,
                 collapse: false,

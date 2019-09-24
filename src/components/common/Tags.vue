@@ -29,6 +29,7 @@
             return {
                 tagsList: [],
                 en:true,
+                tabs:this.$store.state.tabs
             }
         },
         props:[
@@ -123,6 +124,12 @@
             bus.$on("newList",msg => {
                 console.log(msg)
                  if(msg){
+                     this.closeAll()
+                }
+                })
+           bus.$on("nav",msg => {
+                console.log(msg)
+                 if(msg==1){
                      this.closeAll()
                 }
                 })

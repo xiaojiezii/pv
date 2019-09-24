@@ -48,7 +48,6 @@
                 <template slot-scope="scope">
                      <el-button
                     size="mini"
-                    v-show="role"
                     @click="handleUser(scope.row)">用户</el-button>      
                      <el-button
                     size="mini"
@@ -145,7 +144,6 @@ export default {
          }
     },
     created(){
-       this.role= this.$store.state.role==1 ? true :false
        this.get()
     }
 }

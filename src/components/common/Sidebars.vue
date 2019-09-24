@@ -200,7 +200,7 @@
         methods:{
             gohome(){
                 bus.$emit("newList",this.newList) 
-                 this.$router.push({path:'/table'})
+                 this.$router.push({path:'/caselist'})
             },
         },
         computed:{

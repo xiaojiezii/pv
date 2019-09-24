@@ -2,6 +2,10 @@
     <div id="demo">
      <el-dialog title="公司详情" :visible.sync="modcom" :before-close="closeDialog" style="text-align:center;border-radius:5px;">
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="250px" style="margin-top:20px;" class="demo-ruleForm">
+                <el-form-item label="公司编号：" prop="inp5">
+                    <el-input v-model="ruleForm.inp5" class="ipts" :disabled="true" placeholder="请输入编号"></el-input>
+                    <i class="el-icon-s-order lii" title="编写中"></i>
+                </el-form-item>
                 <el-form-item label="公司名称：" prop="inp1">
                     <el-input v-model="ruleForm.inp1" class="ipts" placeholder="请输入名字"></el-input>
                     <i class="el-icon-s-order lii" title="编写中"></i>
@@ -23,7 +27,13 @@
                     <el-input v-model="ruleForm.inp3" type="number" class="ipts" placeholder="请输入联系方式"></el-input>
                     <i class="el-icon-s-order lii" title="编写中"></i>
                 </el-form-item>
-
+                <el-form-item label="消息发送者标识符" prop="inp4">
+                    <el-select v-model="ruleForm.inp4" placeholder="请输入发送者标识符" class="ipts">
+                       <el-option label="测试账号" value="0"></el-option>                      
+                       <el-option label="正式账号" value="1"></el-option>                                        
+                    </el-select>
+                    <i class="el-icon-s-order lii" title="编写中"></i>
+                </el-form-item>
                <el-form-item style="margin:50px 0 0 -250px;">
                 <el-button type="primary" @click="submitForm('ruleForm')">保存</el-button>
                 </el-form-item>
@@ -43,6 +53,8 @@
           inp3:'',
           as2:'',
           hist1:'',
+          inp4:'',
+          inp5:'',
         },
         rules: {
           inp1: [{ required: true, message: '请输入中心名称', trigger: 'blur' }],
@@ -74,7 +86,7 @@
                 cancelButtonText: '取消',
                 type: 'warning'
             }).then(() => {
-               
+               console.log(this.ruleForm.inp4)
         //   点击确认后向服务器传参
             var url=this.global.url+"/sysCompany/update?";
                     url+="id="+this.ruleForm.id;
@@ -83,6 +95,7 @@
                     url+="&userName="+this.ruleForm.inp2;
                     url+="&phone="+this.ruleForm.inp3;
                     url+="&as2="+this.ruleForm.as2;
+                    url+="&messageSenderIdentifier="+parseInt(this.ruleForm.inp4);
                 this.$axios.post(url).then((res)=>{
                   console.log(res)                 
                     if(res.data.status==200){
@@ -122,6 +135,8 @@
                     this.ruleForm.inp2=res.data.data.userName
                     this.ruleForm.inp3=res.data.data.phone
                     this.ruleForm.as2=res.data.data.as2
+                    this.ruleForm.inp5=res.data.data.id
+                    this.ruleForm.inp4=JSON.stringify( res.data.data.messageSenderIdentifier)
                 }else{
                 this.$message.console.error("过取信息失败，数据传输错误！");    
                 }

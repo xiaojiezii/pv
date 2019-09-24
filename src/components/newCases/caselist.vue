@@ -563,7 +563,7 @@
       </div>
       <case-dialog :casedia="caseDialog" @closeTagDialog="closecaseDialog" :siteId="sid">              
     </case-dialog>
-      <status-dialog :status="statusdialog" @closeTagDialog="closestatusDialog" :caseId="cId">              
+      <status-dialog :status="statusdialog" @closeTagDialog="closestatusDialog" :caseId="cId2">              
     </status-dialog>
       <query-dialog :query="querydialog" @closeTagDialog="closequeryDialog" :caId="cId" :suo="suo">              
     </query-dialog>
@@ -582,6 +582,7 @@ export default {
             querydialog:false,
             statusdialog:false,
             cId:'',
+            cId2:'',
             caseDialog:false,
            url:this.global.url,
            sid:'',
@@ -617,7 +618,7 @@ export default {
         // 状态弹出框
         handlstatus(row){
           this.statusdialog=true
-          this.cId=row.id
+          this.cId2=row.id
         },
         // 关闭状态弹出框
         closestatusDialog(){
