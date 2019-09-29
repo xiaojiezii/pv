@@ -172,8 +172,33 @@
                        <el-option :label="$t('case.casesource4')" value="4"></el-option>                                         
                        <el-option :label="$t('case.casesource5')" value="5"></el-option>                                         
                        <el-option :label="$t('case.casesource6')" value="6"></el-option>                                         
+                       <el-option :label="$t('case.casesource7')" value="7"></el-option>                                         
+                       <el-option :label="$t('case.casesource8')" value="8"></el-option>                                         
                     </el-select>
                     <el-tooltip :content="$t('tishi.A13')" placement="right-start" effect="light">
+                       <i class="el-icon-s-order lii"></i>
+                     </el-tooltip>
+                </el-form-item>
+               <el-form-item :label="$t('case.classify')" prop="reportClassify">
+                    <el-select v-model="ruleForm.reportClassify" :placeholder="$t('btn.selects')" style="margin:0 30px 0 100px;width:250px; ">
+                       <el-option :label="$t('case.classify1')" value="11"></el-option>                                                                                                                          
+                       <el-option :label="$t('case.classify2')" value="12"></el-option>                                                                                                                          
+                       <el-option :label="$t('case.classify3')" value="21"></el-option>                                                                                                                          
+                       <el-option :label="$t('case.classify4')" value="22"></el-option>                                                                                                                          
+                    </el-select>
+                     <el-tooltip :content="$t('tishi.A14')" placement="right-start" effect="light">
+                       <i class="el-icon-s-order lii"></i>
+                     </el-tooltip>
+                </el-form-item>
+                <el-form-item :label="$t('case.holder')" v-if="ruleForm.reportClassify==11 || ruleForm.reportClassify==21">
+                    <el-input style="margin:0 30px 0 100px;width:250px; " v-model="ruleForm.holderIdentification"  placeholder="请输入持有人标识"></el-input>
+                    <el-tooltip :content="$t('tishi.H2')" placement="right-start" effect="light">
+                       <i class="el-icon-s-order lii"></i>
+                     </el-tooltip>
+                </el-form-item>
+                <el-form-item v-else :label="$t('case.holder')" prop="holderIdentification">
+                    <el-input style="margin:0 30px 0 100px;width:250px; " v-model="ruleForm.holderIdentification"  placeholder="请输入持有人标识"></el-input>
+                    <el-tooltip :content="$t('tishi.H2')" placement="right-start" effect="light">
                        <i class="el-icon-s-order lii"></i>
                      </el-tooltip>
                 </el-form-item>
@@ -252,6 +277,8 @@ export default {
             type:'',
             status:'',
             product:'',
+            reportClassify:'',
+            holderIdentification:'',
         },
         // 正则
         rules: {
@@ -265,6 +292,8 @@ export default {
           source: [{ required: true, message: '请选择', trigger: 'change' }],
           reporterSite: [{ required: true, message: '请选择', trigger: 'change' }],
           type: [{ required: true, message: '请选择', trigger: 'change' }],
+          reportClassify: [{ required: true, message: '请选择', trigger: 'change' }],
+          holderIdentification: [{ required: true, message: '请填写标识符', trigger: 'blur' }],
           status: [{ required: true, message: '请选择', trigger: 'change' }],
           product: [{ required: true, message: '请选择', trigger: 'change' }],
           hist14: [{ required: true, message: '请选择', trigger: 'change' }],
@@ -305,6 +334,8 @@ export default {
                     url+="&state="+this.ruleForm.state;
                     url+="&source="+this.ruleForm.source;
                     url+="&type="+this.ruleForm.type;
+                    url+="&reportClassify="+this.ruleForm.reportClassify;
+                    url+="&holderIdentification="+this.ruleForm.holderIdentification;
                     // url+="&status="+this.ruleForm.status;
                     url+="&status=1";
                     url+="&product="+this.ruleForm.product;
@@ -318,6 +349,7 @@ export default {
                     this.caseId=res.data.data
                     console.log(this.caseId)
                     sessionStorage.setItem("caseId",this.caseId)
+                    sessionStorage.setItem("classify",this.ruleForm.reportClassify)
                     if(this.ruleForm.isFile==1){
                       this.$router.push({path:'/onchuan'})
                     }else{
@@ -435,6 +467,8 @@ export default {
                 //   console.log(this.ruleForm.reporterSite)
                   this.ruleForm.source=JSON.stringify(list.source)
                   this.ruleForm.type=JSON.stringify(list.type)
+                  this.ruleForm.reportClassify=JSON.stringify(list.reportClassify)
+                  sessionStorage.setItem("classify",this.ruleForm.reportClassify)
                   this.ruleForm.status=JSON.stringify(list.status)
                   this.ruleForm.product=JSON.stringify(list.product)
                   var url=this.global.url+"/siteReporter/selectSiteReporterById?siteReporterId="+this.ruleForm.reporterId
@@ -477,17 +511,20 @@ export default {
                 url+="&state="+this.ruleForm.state;
                 url+="&source="+this.ruleForm.source;
                 url+="&type="+this.ruleForm.type;
+                url+="&reportClassify="+this.ruleForm.reportClassify;
+                url+="&holderIdentification="+this.ruleForm.holderIdentification;
                 url+="&status="+this.ruleForm.status;
                 url+="&product="+this.ruleForm.product;
             this.$axios.post(url).then((res)=>{
                 console.log(res)
                 if(res.data.status==200){
+                    sessionStorage.setItem("classify",this.ruleForm.reportClassify)
                     this.$message({
                     type: 'success',
                     message: this.$t('case.casuccess2'),
                   
                 });
-                this.$router.push({path:"/caselist"})
+                this.$router.push({path:"/newList"})
                 }
             })
             })

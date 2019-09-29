@@ -438,8 +438,9 @@ export default {
              }
               
               var url=this.global.url+"/parentDisease/update?"
+              console.log(this.id)
               var postData=this.qs.stringify({
-                   id:this.id,
+                    id:this.id,
                     name: this.ruleForm.name,
                     historyMeddraversion:this.ruleForm.historyMeddraversion,
                     historyMeddranumber:this.ruleForm.historyMeddranumber,

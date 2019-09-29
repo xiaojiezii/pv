@@ -99,13 +99,11 @@
     //     handleEdit(i){
     //        var filePath=this.gridData[i].id
     //        var row=this.gridData[i]
-    //        console.log(filePath)
     //        var url=this.global.url+"/user/download?"
     //        var postData=this.qs.stringify({
     //             fileId:filePath
     //        })
     //        this.$axios.post(url+postData).then((res)=>{
-    //            console.log(res)
     //            this.download(res.data,row)
     //        })
     //     },
@@ -116,12 +114,10 @@
     //     }
     //     let url = window.URL.createObjectURL(new Blob([data]))
     //     let link = document.createElement('a')
-    //     link.style.display = 'none'
     //     link.href = url
     //     // 获取文件名
     //     // download 属性定义了下载链接的地址而不是跳转路径
     //     link.setAttribute('download', row.fileName)
-    //     document.body.appendChild(link)
     //     link.click()
     // },
     handle(i){

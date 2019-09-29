@@ -155,7 +155,87 @@
                        <i class="el-icon-s-order lii"></i>
                      </el-tooltip>
                    </el-form-item>
-
+                  
+                  <el-form-item :label="$t('druginfo.isDisappear')" prop="isDisappear">
+                   <el-select v-model="ruleForm.isDisappear" :placeholder="$t('btn.selects')" class="ipts">
+                        <el-option :label="$t('druginfo.isDisappear1')" value="1"></el-option>
+                        <el-option :label="$t('druginfo.isDisappear2')" value="2"></el-option>
+                        <el-option :label="$t('druginfo.isDisappear3')" value="3"></el-option>
+                        <el-option :label="$t('druginfo.isDisappear4')" value="4"></el-option>
+                   </el-select>
+                         <el-tooltip :content="$t('tishi.J18')" placement="right-start" effect="light">
+                       <i class="el-icon-s-order lii"></i>
+                     </el-tooltip>
+                   </el-form-item>
+                   <el-form-item :label="$t('druginfo.commonName')" prop="commonName">
+                    <el-input
+                        type="textarea"
+                        :placeholder="$t('btn.enter')"
+                        v-model="ruleForm.commonName" class="ipts">
+                        </el-input>
+                    <el-tooltip :content="$t('tishi.J19')" placement="right-start" effect="light">
+                       <i class="el-icon-s-order lii"></i>
+                     </el-tooltip>
+                </el-form-item>
+                   <el-form-item :label="$t('druginfo.relatedEquipment')" prop="relatedEquipment">
+                    <el-input
+                        type="textarea"
+                        onkeyup="this.value=this.value.replace(/[^\u4e00-\u9fa5]/g,'')"
+                        :placeholder="$t('btn.enter')"
+                        v-model="ruleForm.relatedEquipment" class="ipts">
+                        </el-input>
+                    <el-tooltip :content="$t('tishi.J20')" placement="right-start" effect="light">
+                       <i class="el-icon-s-order lii"></i>
+                     </el-tooltip>
+                </el-form-item>
+                 <el-form-item :label="$t('druginfo.isProduct')" prop="isProduct">
+                   <el-select v-model="ruleForm.isProduct" :placeholder="$t('btn.selects')" class="ipts">
+                        <el-option :label="$t('druginfo.isDisappear1')" value="true"></el-option>
+                        <el-option :label="$t('druginfo.isDisappear2')" value="false"></el-option>
+                   </el-select>
+                       <el-tooltip :content="$t('tishi.J21')" placement="right-start" effect="light">
+                       <i class="el-icon-s-order lii"></i>
+                     </el-tooltip>
+                   </el-form-item>
+                  <el-form-item :label="$t('druginfo.isUnexpected')" v-if="ruleForm.isProduct=='true'" prop="isUnexpected">
+                   <el-select v-model="ruleForm.isUnexpected" :placeholder="$t('btn.selects')" class="ipts">
+                        <el-option :label="$t('case.caseisyes')" value="0"></el-option>
+                        <el-option :label="$t('case.caseisno')" value="1"></el-option>
+                   </el-select>
+                         <el-tooltip :content="$t('tishi.J18')" placement="right-start" effect="light">
+                       <i class="el-icon-s-order lii"></i>
+                     </el-tooltip>
+                   </el-form-item>
+                  <el-form-item :label="$t('druginfo.isUnexpected')" v-else>
+                   <el-select v-model="ruleForm.isUnexpected" :placeholder="$t('btn.selects')" class="ipts">
+                        <el-option :label="$t('case.caseisyes')" value="0"></el-option>
+                        <el-option :label="$t('case.caseisno')" value="1"></el-option>
+                   </el-select>
+                         <el-tooltip :content="$t('tishi.J18')" placement="right-start" effect="light">
+                       <i class="el-icon-s-order lii"></i>
+                     </el-tooltip>
+                   </el-form-item>
+                <el-form-item :label="$t('druginfo.approvalNumber')" v-if="clsify==22">
+                    <el-input
+                        type="textarea"
+                        :placeholder="$t('btn.enter')"
+                        v-model="ruleForm.approvalNumber" class="ipts">
+                        </el-input>
+                   <el-tooltip :content="$t('tishi.J22')" placement="right-start" effect="light">
+                       <i class="el-icon-s-order lii"></i>
+                     </el-tooltip>
+                </el-form-item>
+                <el-form-item :label="$t('druginfo.approvalNumber')" v-else prop="approvalNumber">
+                    <el-input
+                        type="textarea"
+                        :placeholder="$t('btn.enter')"
+                        v-model="ruleForm.approvalNumber" class="ipts">
+                        </el-input>
+                   <el-tooltip :content="$t('tishi.J22')" placement="right-start" effect="light">
+                       <i class="el-icon-s-order lii"></i>
+                     </el-tooltip>
+                </el-form-item>
+                
                 <el-form-item :label="$t('druginfo.drindicationName')" prop="indicationName">
                     <el-input
                         type="textarea"
@@ -206,6 +286,7 @@
 export default {
     data() {
       return {
+        clsify:'',
         lock:true,
           caseId:'',   //病例Id
           id:"",     //患者
@@ -233,6 +314,12 @@ export default {
           pregnancyCount:'',
           pregnancyUnit:'',
           measures:'',
+          isUnexpected:'',
+          isDisappear:'',
+          commonName:'',
+          relatedEquipment:'',
+          isProduct:'',
+          approvalNumber:'',
           indicationName:'',
           others:'',
         },
@@ -242,6 +329,21 @@ export default {
           ],
            name: [
             { required: true, message: '请输入名称', trigger: 'blur' }
+          ],
+           commonName: [
+            { required: true, message: '请输入名称', trigger: 'blur' }
+          ],
+           approvalNumber: [
+            { required: true, message: '请输入', trigger: 'blur' }
+          ],
+           isDisappear: [
+            { required: true, message: '请选择', trigger: 'blur' }
+          ],
+           isProduct: [
+            { required: true, message: '请选择', trigger: 'blur' }
+          ],
+           isUnexpected: [
+            { required: true, message: '请选择', trigger: 'blur' }
           ],
         },
 				options: [],
@@ -281,6 +383,12 @@ export default {
                           pregnancyCount:this.ruleForm.pregnancyCount,
                           pregnancyUnit:this.ruleForm.pregnancyUnit,
                           measures:this.ruleForm.measures,
+                          isUnexpected:this.ruleForm.isUnexpected,
+                          isDisappear:this.ruleForm.isDisappear,
+                          commonName:this.ruleForm.commonName,
+                          relatedEquipment:this.ruleForm.relatedEquipment,
+                          isProduct:this.ruleForm.isProduct,
+                          approvalNumber:this.ruleForm.approvalNumber,
                           indicationName:this.ruleForm.indicationName,
                           others:this.ruleForm.others,
                         })
@@ -362,7 +470,13 @@ export default {
 			          doseUnit:this.ruleForm.doseUnit,
 			          pregnancyCount:this.ruleForm.pregnancyCount,
 			          pregnancyUnit:this.ruleForm.pregnancyUnit,
-			          measures:this.ruleForm.measures,
+                measures:this.ruleForm.measures,
+                 isUnexpected:this.ruleForm.isUnexpected,
+                 isDisappear:this.ruleForm.isDisappear,
+                 commonName:this.ruleForm.commonName,
+                 relatedEquipment:this.ruleForm.relatedEquipment,
+                 isProduct:this.ruleForm.isProduct,
+                 approvalNumber:this.ruleForm.approvalNumber,
 			          indicationName:this.ruleForm.indicationName,
 			          others:this.ruleForm.others,
 			      })
@@ -452,7 +566,9 @@ export default {
             this.id=res.data.data[0].id
             this.firId=res.data.data[0].id
             this.medicinesId=res.data.data[0].name
-						this.options=res.data.data
+            this.options=res.data.data
+            this.ruleForm.isUnexpected=JSON.stringify(res.data.data[0].isUnexpected)
+            this.ruleForm.isDisappear=JSON.stringify(res.data.data[0].isDisappear)
             var medicineId=res.data.data[0].id
             sessionStorage.setItem("medicineId",medicineId)
              }else{
@@ -463,6 +579,7 @@ export default {
                this.firId=res.data.data[0].id
               this.id=res.data.data[0].id
               this.options=res.data.data
+               this.ruleForm.isUnexpected=JSON.stringify(res.data.data[0].isUnexpected)
               this.medicinesId=res.data.data[0].name
               var medicineId=res.data.data[0].id
               sessionStorage.setItem("medicineId",medicineId)
@@ -503,7 +620,13 @@ export default {
 			          doseUnit:this.ruleForm.doseUnit,
 			          pregnancyCount:this.ruleForm.pregnancyCount,
 			          pregnancyUnit:this.ruleForm.pregnancyUnit,
-			          measures:this.ruleForm.measures,
+                measures:this.ruleForm.measures,
+                 isUnexpected:this.ruleForm.isUnexpected,
+                 isDisappear:this.ruleForm.isDisappear,
+                  commonName:this.ruleForm.commonName,
+                  relatedEquipment:this.ruleForm.relatedEquipment,
+                   isProduct:this.ruleForm.isProduct,
+                   approvalNumber:this.ruleForm.approvalNumber,
 			          indicationName:this.ruleForm.indicationName,
 			          others:this.ruleForm.others,
 
@@ -535,6 +658,7 @@ export default {
       },
     },
     created(){
+      this.clsify=sessionStorage.getItem("classify")
       var nav=sessionStorage.getItem("nav")
       if(nav==1){
         this.caseId=sessionStorage.getItem("caseId")

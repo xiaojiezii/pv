@@ -69,14 +69,14 @@
                        <i class="el-icon-s-order lii"></i>
                      </el-tooltip>
                 </el-form-item>
-				<el-form-item :label="$t('dose.dostartTime')" prop="startTime" v-show="!ss">
-				    <el-date-picker class="ipts" 
-					value-format=" yyyy-MM-dd" format="yyyy-MM-dd"
-					v-model="ruleForm.startTime"    :placeholder="$t('btn.entime')"></el-date-picker>
-				    <el-tooltip :content="$t('tishi.L5')" placement="right-start" effect="light">
-                       <i class="el-icon-s-order lii"></i>
-                     </el-tooltip>
-				</el-form-item>
+                <el-form-item :label="$t('dose.dostartTime')" prop="startTime" v-show="!ss">
+                    <el-date-picker class="ipts" 
+                        value-format=" yyyy-MM-dd" format="yyyy-MM-dd"
+                        v-model="ruleForm.startTime"    :placeholder="$t('btn.entime')"></el-date-picker>
+                    <el-tooltip :content="$t('tishi.L5')" placement="right-start" effect="light">
+                              <i class="el-icon-s-order lii"></i>
+                    </el-tooltip>
+                </el-form-item>
                 <el-form-item :label="$t('dose.dolastTime')" prop="lastTime" v-if="save">
                     <el-date-picker class="ipts" v-model="ruleForm.lastTime" 
                     value-format=" yyyy-MM-dd" format="yyyy-MM-dd"
@@ -186,8 +186,29 @@
                        <i class="el-icon-s-order lii"></i>
                      </el-tooltip>
                 </el-form-item>
-
-
+                <!-- sssssssssss -->
+                 <el-form-item :label="$t('dose.expiryDate')" prop="expiryDate" v-if="save">
+                    <el-date-picker class="ipts" v-model="ruleForm.expiryDate"  
+                    value-format=" yyyy-MM-dd" format="yyyy-MM-dd"
+                      :placeholder="$t('btn.entime')"></el-date-picker>
+                    <el-tooltip :content="$t('tishi.L5')" placement="right-start" effect="light">
+                       <i class="el-icon-s-order lii"></i>
+                     </el-tooltip>
+                </el-form-item>
+                <el-form-item :label="$t('dose.expiryDate')" prop="expiryDate" v-else v-show="ss">
+                    <el-date-picker class="ipts" v-model="ruleForm.expiryDate"  
+                      :placeholder="$t('btn.entime')"></el-date-picker>
+                    <el-tooltip :content="$t('tishi.L5')" placement="right-start" effect="light">
+                       <i class="el-icon-s-order lii"></i>
+                     </el-tooltip>
+                </el-form-item>
+                <el-form-item :label="$t('dose.expiryDate')" prop="expiryDate" v-show="!ss">
+                    <el-date-picker class="ipts" 
+                        v-model="ruleForm.expiryDate"    :placeholder="$t('btn.entime')"></el-date-picker>
+                    <el-tooltip :content="$t('tishi.L5')" placement="right-start" effect="light">
+                              <i class="el-icon-s-order lii"></i>
+                    </el-tooltip>
+                </el-form-item>
 
 
 <!-- 创建新的 -->
@@ -233,6 +254,7 @@ export default {
           timeInterval:'',
           startTime:'',
           lastTime:'',
+          expiryDate:'',
           durationValue:'',
           durationUnit:'',
           batchNumber:'',
@@ -275,6 +297,7 @@ export default {
                     timeInterval:this.ruleForm.timeInterval,
                     startTime:this.ruleForm.startTime,
                     lastTime:this.ruleForm.lastTime,
+                    expiryDate:this.ruleForm.expiryDate,
                     durationValue:this.ruleForm.durationValue,
                     durationUnit:this.ruleForm.durationUnit,
                     batchNumber:this.ruleForm.batchNumber,
@@ -338,6 +361,7 @@ export default {
               this.ss=false
               this.info=false
               this.mains=true
+              this.ruleForm.expiryDate=''
 	          this.resetForm('ruleForm')
 	          console.log(this.medicineId)
 	      },
@@ -359,6 +383,7 @@ export default {
 	             timeInterval:this.ruleForm.timeInterval,
 	             startTime:this.ruleForm.startTime,
 	             lastTime:this.ruleForm.lastTime,
+	             expiryDate:this.ruleForm.expiryDate,
 	             durationValue:this.ruleForm.durationValue,
 	             durationUnit:this.ruleForm.durationUnit,
 	             batchNumber:this.ruleForm.batchNumber,
@@ -496,6 +521,13 @@ export default {
             var time1=date1.getFullYear() + '-' + (date1.getMonth() + 1) + '-' + date1.getDate() ; 
             if(time1=="1970-1-1"){time1=""}
         }
+        if(this.ruleForm.expiryDate==""){
+            var time3=""
+        }else{
+            var date3 = new Date(this.ruleForm.expiryDate);  
+            var time3=date3.getFullYear() + '-' + (date3.getMonth() + 1) + '-' + date3.getDate() ; 
+            if(time3=="1970-1-1"){time3=""}
+        }
             
          var url=this.global.url+"/medicinesDose/update?"
                   var  postData=this.qs.stringify({
@@ -506,6 +538,7 @@ export default {
 	             timeInterval:this.ruleForm.timeInterval,
 	             startTime:time,
 	             lastTime:time1,
+	             expiryDate:time3,
 	             durationValue:this.ruleForm.durationValue,
 	             durationUnit:this.ruleForm.durationUnit,
 	             batchNumber:this.ruleForm.batchNumber,

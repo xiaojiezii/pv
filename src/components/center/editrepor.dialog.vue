@@ -11,12 +11,12 @@
                 <el-input v-model="ruleForm.name" class="ipts" :placeholder="$t('btn.enter')"></el-input>
                 <i class="el-icon-s-order lii" title="编写中"></i>
             </el-form-item>
-            <el-form-item :label="$t('repo.rerefirstname')" prop="nameone">
-                <el-input v-model="ruleForm.nameone" class="ipts" :placeholder="$t('btn.enter')"></el-input>
+            <el-form-item :label="$t('repo.rerefirstname')" prop="nameOne">
+                <el-input v-model="ruleForm.nameOne" class="ipts" :placeholder="$t('btn.enter')"></el-input>
                 <i class="el-icon-s-order lii" title="编写中"></i>
             </el-form-item>
-            <el-form-item :label="$t('repo.rerelastname')" prop="nametow">
-                <el-input v-model="ruleForm.nametow" class="ipts" :placeholder="$t('btn.enter')"></el-input>
+            <el-form-item :label="$t('repo.rerelastname')" prop="nameTow">
+                <el-input v-model="ruleForm.nameTow" class="ipts" :placeholder="$t('btn.enter')"></el-input>
                 <i class="el-icon-s-order lii" title="编写中"></i>
             </el-form-item>
             <el-form-item :label="$t('repo.rereorg')" prop="siteId">
@@ -49,6 +49,10 @@
                 </el-form-item>
                 <el-form-item :label="$t('repo.rerephone')" prop="phone">
                     <el-input v-model="ruleForm.phone" class="ipts" type="number" :placeholder="$t('btn.enter')"></el-input>
+                    <i class="el-icon-s-order lii" title="编写中"></i>
+                </el-form-item>
+                 <el-form-item :label="$t('repo.rereemail')" prop="email">
+                    <el-input v-model="ruleForm.email" class="ipts" :placeholder="$t('btn.enter')"></el-input>
                     <i class="el-icon-s-order lii" title="编写中"></i>
                 </el-form-item>
                 <el-form-item :label="$t('repo.rerecountry')" prop="state">
@@ -104,6 +108,7 @@
           province:'',
           postcode:'',
           phone:'',
+          email:'',
           state:'',
           profession:'',
           source:'',
@@ -153,6 +158,7 @@
                 province:this.ruleForm.province,
                 postcode:this.ruleForm.postcode,
                 phone:this.ruleForm.phone,
+                email:this.ruleForm.email,
                 state:this.ruleForm.state,
                 profession:this.ruleForm.profession,
                 source:this.ruleForm.source,
@@ -204,14 +210,13 @@
                  if(res.data.data.source==null){
                      this.ruleForm.source=""
                  } else{
-this.ruleForm.source=JSON.stringify(res.data.data.source)
+                    this.ruleForm.source=JSON.stringify(res.data.data.source)
                  }
              }
          })
        },
        site(id){
             this.ruleForm.siteId=id
-            console.log(this.ruleForm.siteId)
         },
     }
   };

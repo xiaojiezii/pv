@@ -51,6 +51,10 @@
                     <el-input v-model="ruleForm.phone" class="ipts" type="number" :placeholder="$t('btn.enter')"></el-input>
                     <i class="el-icon-s-order lii" title="编写中"></i>
                 </el-form-item>
+                <el-form-item :label="$t('repo.rereemail')" prop="email">
+                    <el-input v-model="ruleForm.email" class="ipts" :placeholder="$t('btn.enter')"></el-input>
+                    <i class="el-icon-s-order lii" title="编写中"></i>
+                </el-form-item>
                 <el-form-item :label="$t('repo.rerecountry')" prop="state">
                 <el-select v-model="ruleForm.state" :placeholder="$t('btn.selects')" class="ipts">
                     <el-option :label="$t('case.country1')" value="中国"></el-option>
@@ -102,6 +106,7 @@
           province:'',
           postcode:'',
           phone:'',
+          email:'',
           state:'',
           profession:'',
           source:'',
@@ -150,6 +155,7 @@
                     province:this.ruleForm.province,
                     postcode:this.ruleForm.postcode,
                     phone:this.ruleForm.phone,
+                    email:this.ruleForm.email,
                     state:this.ruleForm.state,
                     profession:this.ruleForm.profession,
                     source:this.ruleForm.source,

@@ -39,8 +39,7 @@ const i18n = new VueI18n({
   })
 
 
-
-  Object.keys(moment).forEach(key => {
+ Object.keys(moment).forEach(key => {
     Vue.filter(key, moment[key])
   })
 

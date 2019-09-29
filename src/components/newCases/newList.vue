@@ -57,6 +57,63 @@
                        <i class="el-icon-s-order lii"></i>
                      </el-tooltip>
                 </el-form-item>
+                 <el-form-item :label="$t('newList.nation')" prop="newUnit">
+                    <el-select v-model="ruleForm.nation" filterable :placeholder="$t('btn.selects')" class="ipts">
+                        <el-option
+                          v-for="item in options"
+                          :key="item.value"
+                          :label="item.label"
+                          :value="item.value">
+                        </el-option>
+                     </el-select>
+                    <el-tooltip :content="$t('tishi.B14')" placement="right-start" effect="light">
+                       <i class="el-icon-s-order lii"></i>
+                     </el-tooltip>
+                </el-form-item>
+                <el-form-item :label="$t('newList.race')" prop="race">
+                    <el-select v-model="ruleForm.race" :placeholder="$t('btn.selects')" class="ipts">
+                       <el-option :label="$t('newList.race1')" value="1"></el-option>                
+                       <el-option :label="$t('newList.race2')" value="2"></el-option>                
+                       <el-option :label="$t('newList.race3')" value="3"></el-option>                
+                       <el-option :label="$t('newList.race4')" value="4"></el-option>                
+                    </el-select>
+                    <el-tooltip :content="$t('tishi.B15')" placement="right-start" effect="light">
+                       <i class="el-icon-s-order lii"></i>
+                     </el-tooltip>
+                </el-form-item>
+                <el-form-item :label="$t('newList.medicalName')" prop="medicalName">
+                    <el-input v-model="ruleForm.medicalName"  onkeyup="this.value=this.value.replace(/[^\u4e00-\u9fa5]/g,'')" class="ipts" :placeholder="$t('btn.chinese')"></el-input>
+                    <el-tooltip :content="$t('tishi.B16')" placement="right-start" effect="light">
+                       <i class="el-icon-s-order lii"></i>
+                     </el-tooltip>
+                </el-form-item>
+                 <el-form-item :label="$t('newList.nationality')" prop="nationality">
+                    <el-select v-model="ruleForm.nationality" :placeholder="$t('btn.selects')" class="ipts">
+                       <el-option :label="$t('case.country1')" value="中国"></el-option>                
+                       <el-option :label="$t('case.country2')" value="美国"></el-option>                            
+                    </el-select>
+                    <el-tooltip :content="$t('tishi.B17')" placement="right-start" effect="light">
+                       <i class="el-icon-s-order lii"></i>
+                     </el-tooltip>
+                </el-form-item>
+                <el-form-item :label="$t('newList.iphone')" prop="iphone">
+                    <el-input v-model="ruleForm.iphone"  class="ipts" :placeholder="$t('btn.iphone')"></el-input>
+                    <el-tooltip :content="$t('tishi.B18')" placement="right-start" effect="light">
+                       <i class="el-icon-s-order lii"></i>
+                     </el-tooltip>
+                </el-form-item>
+                <el-form-item :label="$t('newList.pregnancyDescribe')" prop="pregnancyDescribe">
+                    <el-input
+                        :rows="2"
+                        type="textarea"
+                        :placeholder="$t('btn.chinese')"
+                        onkeyup="this.value=this.value.replace(/[^\u4e00-\u9fa5]/g,'')"
+                        v-model="ruleForm.pregnancyDescribe" class="ipts">
+                        </el-input>
+                    <el-tooltip :content="$t('tishi.B19')" placement="right-start" effect="light">
+                       <i class="el-icon-s-order lii"></i>
+                     </el-tooltip>
+                </el-form-item>
                 <el-form-item :label="$t('newList.listagenum')" prop="newTime">
                     <el-input v-model="ruleForm.newTime" class="ipts" type="number" :placeholder="$t('btn.enternum')"></el-input>
                     <el-tooltip :content="$t('tishi.B5')" placement="right-start" effect="light">
@@ -187,9 +244,15 @@ export default {
           ranNum4:'',          
           sex:'',
           birthday: '',
+          nation:'',
+          race:'',
+          medicalName:'',
+          nationality:'',
+          iphone:'',
+          pregnancyDescribe:'',
           weight:'',
           height:'',
-          die:"",
+          die:'',
           instructions:'',
           newUnit:'',
           newTime:'',
@@ -198,6 +261,64 @@ export default {
           type:'',
           dieDate:'',
         },
+        options:[
+          {value:'01',label:'汉族'},
+          {value:'02',label:'蒙古族'},
+          {value:'03',label:'回族'},
+          {value:'04',label:'藏族'},
+          {value:'05',label:'维吾尔族'},
+          {value:'06',label:'苗族'},
+          {value:'07',label:'彝族'},
+          {value:'08',label:'壮族'},
+          {value:'09',label:'布依族'},
+          {value:'10',label:'朝鲜族'},
+          {value:'11',label:'满族'},
+          {value:'12',label:'侗族'},
+          {value:'13',label:'瑶族'},
+          {value:'14',label:'白族'},
+          {value:'15',label:'土家族'},
+          {value:'16',label:'哈尼族'},
+          {value:'17',label:'哈萨克族'},
+          {value:'18',label:'傣族'},
+          {value:'19',label:'黎族'},
+          {value:'20',label:'傈僳族'},
+          {value:'21',label:'佤族'},
+          {value:'22',label:'畲族'},
+          {value:'23',label:'高山族'},
+          {value:'24',label:'拉祜族'},
+          {value:'25',label:'水族'},
+          {value:'26',label:'东乡族'},
+          {value:'27',label:'纳西族'},
+          {value:'28',label:'景颇族'},
+          {value:'29',label:'柯尔克孜族'},
+          {value:'30',label:'土族'},
+          {value:'31',label:'达斡尔族'},
+          {value:'32',label:'仫佬族'},
+          {value:'33',label:'羌族'},
+          {value:'34',label:'布朗族'},
+          {value:'35',label:'撒拉族'},
+          {value:'36',label:'毛难族'},
+          {value:'37',label:'仡佬族'},
+          {value:'38',label:'锡伯族'},
+          {value:'39',label:'阿昌族'},
+          {value:'40',label:'普米族'},
+          {value:'41',label:'塔吉克族'},
+          {value:'42',label:'怒族'},
+          {value:'43',label:'乌孜别克族'},
+          {value:'44',label:'俄罗斯族'},
+          {value:'45',label:'鄂温克族'},
+          {value:'46',label:'德昂族'},
+          {value:'47',label:'保安族'},
+          {value:'48',label:'裕固族'},
+          {value:'49',label:'京族'},
+          {value:'50',label:'塔塔尔族'},
+          {value:'51',label:'独龙族'},
+          {value:'52',label:'鄂伦春族'},
+          {value:'53',label:'赫哲族'},
+          {value:'54',label:'门巴族'},
+          {value:'55',label:'珞巴族'},
+          {value:'56',label:'基诺族'},
+        ],
         rules: {
           name: [{ required: true, message: '请输入姓名', trigger: 'blur' }],
           die: [{ required: true, message: '请选择是否死亡', trigger: 'change' }],
@@ -227,8 +348,9 @@ export default {
                if(this.ruleForm.dieDate==""){
               var time=""
             }else{
-                 var date = new Date(this.ruleForm.dieDate);  
-                  var time=date.getFullYear() + '-' + (date.getMonth() + 1)+ '-' + date.getDate() + ' ' + date.getHours()+ ':' + date.getMinutes() + ':' + date.getSeconds() ; 
+                 var date = new Date(this.ruleForm.dieDate); 
+                   var dateNumFun = (num) => num < 10 ? `0${num}` : num   
+                  var time=date.getFullYear() + '-' + (dateNumFun(date.getMonth() + 1))+ '-' + dateNumFun(date.getDate()) + ' ' + dateNumFun(date.getHours())+ ':' + dateNumFun(date.getMinutes()) + ':' + dateNumFun(date.getSeconds()) ;   
                     if(time=="1970-1-1"){
                           time=""
                     }
@@ -249,6 +371,12 @@ export default {
                           ranNum4:this.ruleForm.ranNum4,          
                           sex:this.ruleForm.sex,
                           birthday: this.ruleForm.birthday,
+                          nation: this.ruleForm.nation,
+                          race: this.ruleForm.race,
+                          medicalName: this.ruleForm.medicalName,
+                          nationality: this.ruleForm.nationality,
+                          iphone: this.ruleForm.iphone,
+                          pregnancyDescribe: this.ruleForm.pregnancyDescribe,
                           weight:this.ruleForm.weight,
                           height:this.ruleForm.height,
                           die:this.ruleForm.die,
@@ -326,7 +454,8 @@ export default {
               var time1=""
             }else{
                  var date = new Date(this.ruleForm.dieDate);  
-                  var time1=date.getFullYear() + '-' + (date.getMonth() + 1)+ '-' + date.getDate() + ' ' + date.getHours()+ ':' + date.getMinutes() + ':' + date.getSeconds() ; 
+                   var dateNumFun = (num) => num < 10 ? `0${num}` : num   
+                  var time=date.getFullYear() + '-' + (dateNumFun(date.getMonth() + 1))+ '-' + dateNumFun(date.getDate()) + ' ' + dateNumFun(date.getHours())+ ':' + dateNumFun(date.getMinutes()) + ':' + dateNumFun(date.getSeconds()) ; 
                     if(time1=="1970-1-1"){
                           time1=""
                     }
@@ -338,6 +467,7 @@ export default {
                     this.$store.state.die="1"
                     }
               var url=this.global.url+"/subject/addSubject?";
+              console.log(this.caseId)
                   var postData=this.qs.stringify({
                           caseId:this.caseId,
                           name:this.ruleForm.name,
@@ -347,6 +477,12 @@ export default {
                           ranNum4:this.ruleForm.ranNum4,          
                           sex:this.ruleForm.sex,
                           birthday: this.ruleForm.birthday,
+                          nation: this.ruleForm.nation,
+                          race: this.ruleForm.race,
+                          medicalName: this.ruleForm.medicalName,
+                          nationality: this.ruleForm.nationality,
+                          iphone: this.ruleForm.iphone,
+                          pregnancyDescribe: this.ruleForm.pregnancyDescribe,
                           weight:this.ruleForm.weight,
                           height:this.ruleForm.height,
                           die:this.ruleForm.die,
@@ -395,6 +531,7 @@ export default {
              this.info=false
              this.mains=true
              this.ruleForm=res.data.data
+             this.ruleForm.race=JSON.stringify(res.data.data.race)
            if(res.data.data.type==null){
              this.ruleForm.type=""
            }else{
@@ -413,6 +550,7 @@ export default {
            if(res.data.data.birthday==""){
              this.ruleForm.birthday=""
            }
+          //  this.ruleForm.nation=res.data.data.nation
             res.data.data.die=="2" ? this.$store.state.die="2" : this.$store.state.die="1"
            sessionStorage.setItem("subjectId",res.data.data.id)
         }else{
@@ -443,7 +581,8 @@ export default {
               var time=""
             }else{
                  var date = new Date(this.ruleForm.dieDate);  
-                  var time=date.getFullYear() + '-' + (date.getMonth() + 1)+ '-' + date.getDate() + ' ' + date.getHours()+ ':' + date.getMinutes() + ':' + date.getSeconds() ; 
+                  var dateNumFun = (num) => num < 10 ? `0${num}` : num   
+                  var time=date.getFullYear() + '-' + (dateNumFun(date.getMonth() + 1))+ '-' + dateNumFun(date.getDate()) + ' ' + dateNumFun(date.getHours())+ ':' + dateNumFun(date.getMinutes()) + ':' + dateNumFun(date.getSeconds()) ; 
                     if(time=="1970-1-1"){
                           time=""
                     }
@@ -455,6 +594,7 @@ export default {
         var url=this.global.url+"/subject/update?";
         var postData=this.qs.stringify({
               id:sessionStorage.getItem("subjectId"),
+              caseId:this.caseId,
               name:this.ruleForm.name,
               ranNum1:this.ruleForm.ranNum1,
               ranNum2:this.ruleForm.ranNum2,
@@ -462,6 +602,12 @@ export default {
               ranNum4:this.ruleForm.ranNum4,          
               sex:this.ruleForm.sex,
               birthday: times,
+              nation:this.ruleForm.nation,
+              race:this.ruleForm.race,
+              medicalName:this.ruleForm.medicalName,
+              nationality: this.ruleForm.nationality,
+              iphone: this.ruleForm.iphone,
+              pregnancyDescribe: this.ruleForm.pregnancyDescribe,
               weight:this.ruleForm.weight,
               height:this.ruleForm.height,
               die:this.ruleForm.die,

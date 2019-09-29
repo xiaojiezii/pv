@@ -16,17 +16,27 @@
                      <el-option
                        v-for="item in options"
                        :key="item.id"
-                       :label="item.source"
+                       :label="item.source | source"
                        :value="item.id">
                      </el-option>
                    </el-select>
              </div>
            </div>
+           <p v-if="clsify==12" class="tips">{{$t('btn.tips')}}</p>
            <el-form v-show="mains" :model="ruleForm" :rules="rules" ref="ruleForm" label-width="450px" style="margin-top:20px;" class="demo-ruleForm">
-              <el-form-item :label="$t('event.evsource')" prop="source">
+              <el-form-item :label="$t('event.evsource')" v-if="clsify==12" prop="source">
                     <el-select v-model="ruleForm.source" :placeholder="$t('btn.selects')" class="ipts">
-                       <el-option :label="$t('event.evsource1')" value="报告者"></el-option>
-                       <el-option :label="$t('event.evsource2')" value="公司"></el-option>                                             
+                       <el-option :label="$t('event.evsource1')" value="1"></el-option>
+                       <el-option :label="$t('event.evsource2')" value="2"></el-option>                                             
+                    </el-select>
+                    <el-tooltip :content="$t('tishi.Q12')" placement="right-start" effect="light">
+                       <i class="el-icon-s-order lii"></i>
+                     </el-tooltip>
+                </el-form-item>
+              <el-form-item v-else :label="$t('event.evsource')">
+                    <el-select v-model="ruleForm.source" :placeholder="$t('btn.selects')" class="ipts">
+                       <el-option :label="$t('event.evsource1')" value="1"></el-option>
+                       <el-option :label="$t('event.evsource2')" value="2"></el-option>                                             
                     </el-select>
                     <el-tooltip :content="$t('tishi.Q12')" placement="right-start" effect="light">
                        <i class="el-icon-s-order lii"></i>
@@ -42,18 +52,25 @@
                        <i class="el-icon-s-order lii"></i>
                      </el-tooltip>
                 </el-form-item>
-                <el-form-item :label="$t('event.evassess')" prop="result">
+                <el-form-item :label="$t('event.evassess')" v-if="ruleForm.source==''">
                     <el-select v-model="ruleForm.result" :placeholder="$t('btn.selects')" class="ipts">
-                       <el-option :label="$t('event.evassess1')" value="肯定有关"></el-option>
-                       <el-option :label="$t('event.evassess2')" value="肯定无关"></el-option>                                             
-                       <el-option :label="$t('event.evassess3')" value="可能有关"></el-option>                                             
-                       <el-option :label="$t('event.evassess4')" value="很可能相关"></el-option>                                             
-                       <el-option :label="$t('event.evassess5')" value="可能无关"></el-option>                                             
-                       <el-option :label="$t('event.evassess6')" value="无评价"></el-option>                                             
-                       <el-option :label="$t('event.evassess7')" value="无法判断"></el-option>                                             
-                       <el-option :label="$t('event.evassess8')" value="未报告"></el-option>                                             
-                       <el-option :label="$t('event.evassess9')" value="不明"></el-option>                                            
-                       <el-option :label="$t('event.evassess10')" value="无"></el-option>                                                                                      
+                       <el-option :label="$t('event.evassess1')" value="1"></el-option>
+                       <el-option :label="$t('event.evassess2')" value="2"></el-option>                                             
+                       <el-option :label="$t('event.evassess3')" value="3"></el-option>                                             
+                       <el-option :label="$t('event.evassess4')" value="4"></el-option>                                             
+                       <el-option :label="$t('event.evassess5')" value="5"></el-option>                                             
+                       <el-option :label="$t('event.evassess6')" value="6"></el-option>                                                                                                                                
+                    </el-select>
+                      <el-button v-show="lock" v-if="slock=='2'" type="primary" class="el-icon-magic-stick" @click="querys" title="提出质疑" round>{{$t('event.evzhiyi')}}</el-button>
+                </el-form-item>
+                <el-form-item v-else :label="$t('event.evassess')" prop="result">
+                    <el-select v-model="ruleForm.result" :placeholder="$t('btn.selects')" class="ipts">
+                       <el-option :label="$t('event.evassess1')" value="1"></el-option>
+                       <el-option :label="$t('event.evassess2')" value="2"></el-option>                                             
+                       <el-option :label="$t('event.evassess3')" value="3"></el-option>                                             
+                       <el-option :label="$t('event.evassess4')" value="4"></el-option>                                             
+                       <el-option :label="$t('event.evassess5')" value="5"></el-option>                                             
+                       <el-option :label="$t('event.evassess6')" value="6"></el-option>                                                                                                                                
                     </el-select>
                       <el-button v-show="lock" v-if="slock=='2'" type="primary" class="el-icon-magic-stick" @click="querys" title="提出质疑" round>{{$t('event.evzhiyi')}}</el-button>
                 </el-form-item>
@@ -88,6 +105,7 @@ import eventDialog from "../newCases/event.dialog.vue"
 export default {
     data() {
       return {
+        clsify:'',
         lock:true,
         ncs:"",
         caseId:'',
@@ -107,7 +125,8 @@ export default {
           source:'',
         },
         rules: {
-          source: [{ required: true, message: '请输入来源或无', trigger: 'blur' }],
+          source: [{ required: true, message: '请选择评估来源', trigger: 'blur' }],
+          result: [{ required: true, message: '请选择评估结果', trigger: 'blur' }],
         },
 				options: [],
 				 medicineIncidentAssessId:""
@@ -115,6 +134,11 @@ export default {
     },
    components:{
         eventDialog
+    },
+    filters:{
+      source(val){
+        return val=="1" ? "初始报告人" : '上市许可持有人'
+      }
     },
     methods: {
       //事件评估提出质疑按钮
@@ -240,7 +264,7 @@ export default {
           },
 
 			    hand(){
-			      console.log(this.medicineDoseId)
+			      console.log(this.medicineIncidentAssessId)
 			      var url=this.global.url+"/medicinesIncidentAssess/selectMedicinesIncidentAssessById?medicineIncidentAssessId="+this.medicineIncidentAssessId;
 			      this.$axios.get(url).then((res)=>{
 			        console.log(res)
@@ -294,7 +318,7 @@ export default {
               this.mains=true
                  this.ruleForm=res.data.data[0]
             this.id=res.data.data[0].id
-            this.medicineIncidentAssessId=res.data.data[0].source
+             res.data.data[0].source=="1" ? this.medicineIncidentAssessId="初始报告人" : this.medicineIncidentAssessId="上市许可持有人"
 						this.options=res.data.data
             }else{
                this.sc=true
@@ -303,7 +327,7 @@ export default {
               this.mains=true
                  this.ruleForm=res.data.data[0]
             this.id=res.data.data[0].id
-            this.medicineIncidentAssessId=res.data.data[0].source
+            res.data.data[0].source=="1" ? this.medicineIncidentAssessId="初始报告人" : this.medicineIncidentAssessId="上市许可持有人"
 						this.options=res.data.data
             }
          
@@ -358,6 +382,7 @@ export default {
       },
     },
     created(){
+      this.clsify=sessionStorage.getItem("classify")
       var nav=sessionStorage.getItem("nav")
       if(nav==1){
         var medinId=sessionStorage.getItem("medicineIncidentId")
@@ -434,6 +459,12 @@ export default {
       line-height: 30px;
       width:30px;border: 1px solid #ececff;
       height:30px;}
+  .tips{
+    width:100%;
+    margin:10px 0 0 80px;
+    font-size: 13px;
+    color: red;
+  }
 </style>
 
 

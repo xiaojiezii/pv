@@ -340,65 +340,41 @@
                 <tr>
                     <td width="21%" align="left">SAE与试验药的关系</td>
                     <td align="left"> 
-                          <span v-if="prt.assesss!=='肯定有关'">
-                           <input type="checkbox">肯定有关 
+                          <span v-if="prt.assesss!=='1'">
+                           <input type="checkbox">肯定
                         </span>
                         <span v-else>
-                           <input type="checkbox" checked=true>肯定有关
+                           <input type="checkbox" checked=true>肯定
                         </span>
-                        <span v-if="prt.assesss!=='肯定无关'">
-                           <input type="checkbox">肯定无关
-                        </span>
-                        <span v-else>
-                           <input type="checkbox" checked=true>肯定无关
-                        </span>
-                        <span v-if="prt.assesss!=='可能有关'">
-                           <input type="checkbox">可能有关
+                        <span v-if="prt.assesss!=='2'">
+                           <input type="checkbox">很可能
                         </span>
                         <span v-else>
-                           <input type="checkbox" checked=true>可能有关
+                           <input type="checkbox" checked=true>很可能
                         </span>
-                        <span v-if="prt.assesss!=='很可能有关'">
-                           <input type="checkbox">很可能有关
+                        <span v-if="prt.assesss!=='3'">
+                           <input type="checkbox">可能
                         </span>
                         <span v-else>
-                           <input type="checkbox" checked=true>很可能有关
+                           <input type="checkbox" checked=true>可能
                         </span>
-                        <span v-if="prt.assesss!=='可能无关'">
+                        <span v-if="prt.assesss!=='4'">
                            <input type="checkbox">可能无关
                         </span>
                         <span v-else>
-                           <input type="checkbox" checked=true>可能无关     
+                           <input type="checkbox" checked=true>可能无关
+                        </span>
+                        <span v-if="prt.assesss!=='5'">
+                           <input type="checkbox">无法评价
+                        </span>
+                        <span v-else>
+                           <input type="checkbox" checked=true>无法评价     
                         </span> <br><br>
-                        <span v-if="prt.assesss!=='无评价'">
-                           <input type="checkbox">无评价
+                        <span v-if="prt.assesss!=='6'">
+                           <input type="checkbox">待评价
                         </span>
                         <span v-else>
-                           <input type="checkbox" checked=true>无评价
-                        </span>
-                        <span v-if="prt.assesss!=='无法判断'">
-                           <input type="checkbox">无法判断
-                        </span>
-                        <span v-else>
-                           <input type="checkbox" checked=true>无法判断
-                        </span>
-                        <span v-if="prt.assesss!=='未报告'">
-                           <input type="checkbox">未报告
-                        </span>
-                        <span v-else>
-                           <input type="checkbox" checked=true>未报告     
-                        </span>
-                        <span v-if="prt.assesss!=='不明'">
-                           <input type="checkbox">不明
-                        </span>
-                        <span v-else>
-                           <input type="checkbox" checked=true>不明
-                        </span>
-                        <span v-if="prt.assesss!=='无'">
-                           <input type="checkbox">无
-                        </span>
-                        <span v-else>
-                           <input type="checkbox" checked=true>无
+                           <input type="checkbox" checked=true>待评价
                         </span>
                     </td>
                 </tr>
@@ -888,6 +864,7 @@ export default {
        sessionStorage.removeItem("parentId")
        sessionStorage.removeItem("medicineId")
        sessionStorage.removeItem("medicineIncidentId")
+       sessionStorage.removeItem("classify")
     }
 }
 </script>

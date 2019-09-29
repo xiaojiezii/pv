@@ -61,7 +61,10 @@
                     <i class="el-icon-s-order lii" title="编写中"></i>
                 </el-form-item>
                 <el-form-item :label="$t('send.sendsendcountry')" prop="countryCode">
-                     <el-input v-model="ruleForm.countryCode" class="ipts" :placeholder="$t('btn.enter')"></el-input>
+                    <el-select v-model="ruleForm.countryCode" :placeholder="$t('btn.selects')" class="ipts">
+                       <el-option :label="$t('case.country1')" value="中国"></el-option>
+                       <el-option :label="$t('case.country2')" value="美国"></el-option>
+                    </el-select>
                     <i class="el-icon-s-order lii" title="编写中"></i>
                 </el-form-item>
                 <el-form-item :label="$t('send.sendsendphone')" prop="phone">

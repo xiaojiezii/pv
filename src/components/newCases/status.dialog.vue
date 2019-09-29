@@ -1,6 +1,6 @@
 <template>
     <div>
-     <el-dialog :title="$t('case.cassta')"  customClass="customWidth" :visible.sync="status" :before-close="closeDialog">
+     <el-dialog :title="$t('case.cassta')" :visible.sync="status" width="60%" :before-close="closeDialog">
         <div>
             <ul class="uls">
                 <li class="lis">
@@ -38,40 +38,44 @@
                     </div>
                     <div >
                         <span class="spans">{{$t("case.ackf")}}</span>
-                        <span class="d1" @click="sxml" :title="$t('case.cli')">
+                        <span class="d1" v-if="option.ackUrl==null" @click="sxml" :title="$t('case.cli')">
                             <i class="el-icon-document"></i>
                             {{option.ackUrl}}
+                        </span>
+                        <span class="d1" v-else @click="sxml" :title="$t('case.cli')">
+                            <i class="el-icon-document"></i>
+                            {{option.ackUrl.substring(42)}}
                         </span>
                     </div>
                 </li>
                 <li class="lis lis1"  v-show="as">
                     <div>
                         <span class="spans">{{$t("case.times")}}</span>
-                        <span>{{list.icsrTime | filterTime}}</span>
+                        <span>{{list.time}}</span>
                     </div>
+                     <div>
+                        <span class="spans">{{$t("case.conten")}}</span>
+                        <span>{{list.ICSRBatch}}</span>
+                    </div>
+                </li>
+                <li class="lis lis1" v-show="as">
                     <div>
+                        <span class="spans">{{$t("case.iscr")}}</span>
+                        <span>{{list.ICSRMessageNumber}}</span>
+                    </div>
+                   <div>
                         <span class="spans">{{$t("case.batch")}}</span>
                         <span>{{list.batch}}</span>
                     </div>
                 </li>
                 <li class="lis lis1" v-show="as">
                     <div>
-                        <span class="spans">{{$t("case.conten")}}</span>
-                        <span>{{list.ICSRBatch}}</span>
+                        <span class="spans">{{$t("case.acksend")}}</span>
+                        <span>{{list.ackReceiver}}</span>
                     </div>
                     <div>
                         <span class="spans">{{$t("case.ackz")}}</span>
-                        <span>{{list.ackReceiver}}</span>
-                    </div>
-                </li>
-                <li class="lis lis1" v-show="as">
-                    <div>
-                        <span class="spans">{{$t("case.acksend")}}</span>
-                        <span>{{list.ackSender | sender}}</span>
-                    </div>
-                    <div>
-                        <span class="spans">{{$t("case.iscr")}}</span>
-                        <span>{{list.ICSRMessageNumber}}</span>
+                        <span>{{list.ackSender}}</span>
                     </div>
                     
                 </li>
@@ -93,7 +97,7 @@
         option:{
             status:1,
             ackTime:'',
-            ackUrl:'',
+            ackUrl:'11',
         },
         list:{
             time:'',
@@ -116,47 +120,56 @@
     watch:{
        caseId(val){
            if(val!==undefined){
-            //    this.get()
+               this.get()
                this.get3()
            }
        },
        option(val){
-           if(val.ackUrl!==undefined){
-            //    this.get21()
+           if(val.status==3){
+               this.get21()
            }
        }
     },
     filters:{
-        sender(val){
-            return val=="CDETEST" ? "测试账号" : "正式账号"
-        }
+        // ackurl(val){
+        //     return val!==undefined ? option.ackUrl.substring(option.ackUrl.lastIndexOf('/')+1,option.ackUrl.length) : val
+        // }
     },
     methods:{     
        closeDialog(){
            this.$parent.closestatusDialog();
+           this.$parent.cId2=""
        },
        get(){
-          var url=this.global.url
-          this.$axios.get(url+"/case/selectCaseStatus?caseId="+this.caseId).then((res)=>{
-              console.log(res)
-              if(res.data.status==200){
-                  this.option=res.data.data
-                  res.data.data.status==3 ? this.as=true : this.as=false
-                  this.option.status=JSON.parse(res.data.data.status)
-              }else{
-                  this.$message.error("查询数据为空！")
-              }
-          })
+           if(this.caseId!==""){
+               var url=this.global.url
+                this.$axios.get(url+"/case/selectCaseStatus?caseId="+this.caseId).then((res)=>{
+                    console.log(res)
+                    if(res.data.status==200){
+                        this.option=res.data.data
+                        res.data.data.status==3 ? this.as=true : this.as=false
+                        this.option.status=JSON.parse(res.data.data.status)
+                    }else{
+                        this.$message.error("查询数据为空！")
+                    }
+                })
+           }
+          
        },
        get21(){
-          var url=this.global.url+"/case/selectCaseAck?ackUrl="+this.option.ackUrl;
-          this.$axios.get(url).then((res)=>{
-              console.log(res)
-              if(res.data.status==200){
-                  this.list=JSON.parse(res.data.data)
-                  console.log(this.list)
-              }
-          })
+           if(this.caseId!==""){
+                var url=this.global.url+"/case/selectCaseAck?ackUrl="+this.option.ackUrl;
+                this.$axios.get(url).then((res)=>{
+                    console.log(res)
+                    if(res.data.status==200){
+                        this.list=JSON.parse(res.data.data)
+                        console.log(this.list)
+                    }else{
+                        this.$message.error("数据传输错误")
+                    }
+                })
+           }
+         
        },
        get3(){
            var url=this.global.url+"/case/selectAck";
@@ -166,16 +179,14 @@
        },
     //    下载xml文件
        sxml(){
-
+    //     var url=this.global.file
+    //     console.log(url+this.option.ackUrl.substr(1))
+    //      window.open(url+this.option.ackUrl)
        }
     }
   };
 </script>
 <style>
- /* *{margin: 0;padding: 0;} */
-.customWidth{
-    width:60%;
-}
 .el-radio{
     margin-bottom: 15px;
 }
@@ -220,9 +231,9 @@
     font-size:20px;
 }
 .el-tooltip__popper {
-    width: 300px;
-    font-size: 12.5px !important;
+    width: 320px;
+    font-size: 12px !important;
     text-indent:25px;
-    line-height: 1.5!important;
+    line-height: 1.2!important;
 }
 </style>

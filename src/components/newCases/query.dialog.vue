@@ -1,6 +1,6 @@
 <template>
     <div>
-     <el-dialog :title="$t('case.que')"  customClass="customWidth" :visible.sync="query" :before-close="closeDialog">
+     <el-dialog :title="$t('case.que')" width="60%" :visible.sync="query" :before-close="closeDialog">
         <div style="text-align:right;margin-right:15px;">
            <el-button type="primary" @click="locks" v-show="lock && suo!==3" :title="$t('case.casesta3')" style="width:100px;" >{{$t('case.casesta3')}}</el-button>
            <el-button type="primary" @click="excel" title="Excel" style="width:100px;" >Excel</el-button>
