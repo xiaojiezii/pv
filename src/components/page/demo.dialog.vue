@@ -1,6 +1,6 @@
 <template>
     <div id="demo">
-     <el-dialog :title="$t('project.njt')" :visible.sync="event" :before-close="closeDialog" style="text-align:center;border-radius:5px;">
+     <el-dialog :title="$t('project.njt')" :visible.sync="event" width="50%" :before-close="closeDialog" style="text-align:center;border-radius:5px;">
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="250px" style="margin-top:20px;" class="demo-ruleForm">
                 <el-form-item :label="$t('project.name')" prop="name">
                     <el-input v-model="ruleForm.name" class="ipts" :placeholder="$t('btn.enter')"></el-input>
@@ -15,6 +15,7 @@
                       <el-radio v-model="ruleForm.stages" label="2">Ⅱ 期</el-radio>
                       <el-radio v-model="ruleForm.stages" label="3">Ⅲ 期</el-radio>
                       <el-radio v-model="ruleForm.stages" label="4">Ⅳ 期</el-radio>
+                      <el-radio v-model="ruleForm.stages" label="5">其它</el-radio>
                 </el-form-item>
                  <el-form-item :label="$t('case.casesta')" prop="status">
                     <el-select v-model="ruleForm.status" :placeholder="$t('btn.selects')" class="ipts">
@@ -38,11 +39,11 @@
                         </el-input>
                     <i class="el-icon-s-order lii" title="编写中"></i>
                 </el-form-item>
-                <el-form-item :label="$t('project.site')" prop="siteId">
-                    <el-select v-model="ruleForm.siteId" class="ipts" :placeholder="$t('btn.selects')" @change="site" >
-                       <el-option
+                <el-form-item :label="$t('project.site')" prop="siteId" >
+                   <el-select class="ipts" v-model="ruleForm.siteId" multiple filterable allow-create default-first-option :placeholder="$t('btn.selects')">
+                      <el-option
                         v-for="(item,i) of option" :key="i"
-                        :label="item.name" :value="item.id"></el-option>                                                                            
+                        :label="item.name" :value="item.id"></el-option>   
                     </el-select>
                     <i class="el-icon-s-order lii" title="编写中"></i>
                 </el-form-item>
@@ -103,7 +104,7 @@
             status:'',
             time:'',
             look:"",
-            siteId:'',
+            siteId:[],
             num:'',
             registerNum:'',
             medicine:'',
@@ -140,7 +141,6 @@
                 cancelButtonText: this.$t('project.prno'),
                 type: 'warning'
             }).then(() => {
-               
         //   点击确认后向服务器传参
            var url=this.global.url+"/project/addProject?";
             url+="name="+this.ruleForm.name;
@@ -173,15 +173,8 @@
                 message: this.$t('project.prdeaft1')
                 }); 
             });  
-          } else {
-            console.log('error submit!!');
-            return false;
           }
         });
-      },
-      site(id){
-         this.ruleForm.siteId=id
-          console.log(this.ruleForm.siteId)
       },
        closeDialog(){
            this.$parent.closeTagDialog();
@@ -196,7 +189,7 @@
          }) 
        },
     reports(id){
-      },
+      }
     }
   };
 </script>
@@ -210,5 +203,11 @@
     line-height: 30px;
     width:30px;border: 1px solid #ececff;
     height:30px;
+  }
+  .el-radio{
+    margin-right: 10px;
+  }
+  .lis:hover{
+    opacity: .5;
   }
 </style>

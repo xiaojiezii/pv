@@ -69,6 +69,16 @@
                     :total="total">
               </el-pagination>
           </div>
+          <el-dialog width="40%" title="选择中心" :visible.sync="institution" append-to-body :before-close="closeDialog">
+                <!-- <div style="width:200px;margin:0 auto;">
+                    <el-radio v-model="radio" v-for="(item,i) of siteId" :key="i" :label="item.id">{{item.name}}</el-radio>
+                </div> -->
+                <div style="margin:0 0 20px 0;">
+                    <el-button class="btn" v-model="radio" v-for="(item,i) of siteId" :key="i"
+                     type="primary" @click="rad(item.id)">{{item.name}}</el-button>
+                </div>
+                
+          </el-dialog>
       </div>
      <demo-dialog :event="newdemos" @closeTagDialog="closeTagDialog">              
     </demo-dialog>
@@ -82,6 +92,9 @@ import markDialog from "./mark.dialog.vue"
 export default {
     data(){
         return{
+          radio:'',
+          siteId:[],
+          institution:false,
           newdemos:false,
           markDialog:false,
            url:this.global.url,
@@ -139,12 +152,32 @@ export default {
          this.pId=row.id
          this.markDialog=true
       },
-    //   编辑按钮
+    //   查看病例
       handlego(row) {
           var siteId=row.id
-          sessionStorage.setItem("siteId",siteId)
-           this.$router.push({path:'/caselist'})
+          sessionStorage.setItem("projectId",siteId)
+          this.institution=true
+          var site=row.siteId.split(',')
+          var url=this.global.url
+          for(var item of site){
+              this.$axios.get(url+'/site/selectSite?siteId='+item).then(res =>{
+                 if(res.data.status==200){
+                    this.siteId.push(res.data.data)
+                 }else{
+                     this.$message.error('数据传输错误！')
+                 }
+              })
+          }  
       },
+      rad(id){
+          sessionStorage.setItem("centerId",id)
+         this.$router.push({path:'/caselist'})
+      },
+    //   关闭弹出框
+    closeDialog(){
+        this.institution=false
+        this.siteId=[]
+    },
     //   删除按钮
       handleDelete(row){
           this.$confirm(this.$t('project.prre'), this.$t('project.prtishi'), {
@@ -186,6 +219,14 @@ export default {
 }
 .el-button+.el-button {
     margin-left: 8px;
+}
+ .el-radio{
+    margin:0 20px 20px 0;
+  }
+.btn{
+    width:auto;text-align:center;
+    display: inline-block;
+    margin: 0 0 10px 9px;
 }
 </style>
 

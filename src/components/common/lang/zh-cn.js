@@ -160,7 +160,7 @@ module.exports = {
         type:'各个类型的病例数量',
         weekly:'一年内每周的病例数量',
         caseinfo:'病例信息',
-        caseMedDRA:'D.9.2.r.1a报告的死因的MedDRA 版本',
+        caseMedDRA:'C.1.1 发送者（病例）安全性报告唯一的标识符',
         casetime:'C.1.2 创建时间',
         casetype:'C.1.3 报告类型',
         casestartdate:'C.1.4 从来源首次收到报告的日期',

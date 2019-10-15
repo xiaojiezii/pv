@@ -1,6 +1,6 @@
 <template>
     <div>
-     <el-dialog :title="$t('project.pjtd')" :visible.sync="mark" :before-close="closeDialog" style="text-align:center;border-radius:5px;">
+     <el-dialog :title="$t('project.pjtd')" :visible.sync="mark" width="50%" :before-close="closeDialog" style="text-align:center;border-radius:5px;">
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="250px" style="margin-top:20px;" class="demo-ruleForm">
                 <el-form-item :label="$t('project.name')" prop="name">
                     <el-input v-model="ruleForm.name" class="ipts" :placeholder="$t('btn.enter')"></el-input>
@@ -12,6 +12,7 @@
                         <el-radio :label="2">Ⅱ 期</el-radio>
                         <el-radio :label="3">Ⅲ 期</el-radio>
                         <el-radio :label="4">Ⅳ 期</el-radio>
+                        <el-radio :label="5">其它</el-radio>
                       </el-radio-group>
                 </el-form-item>
                  <el-form-item :label="$t('case.casesta')" prop="status">
@@ -36,10 +37,15 @@
                     <i class="el-icon-s-order lii" title="编写中"></i>
                 </el-form-item>
                 <el-form-item :label="$t('project.site')" prop="siteId">
-                    <el-select v-model="ruleForm.siteId" class="ipts" :placeholder="$t('btn.selects')" @change="site" >
+                    <!-- <el-select v-model="ruleForm.siteId" class="ipts" :placeholder="$t('btn.selects')" @change="site" >
                        <el-option
                         v-for="(item,i) of option" :key="i"
                         :label="item.name" :value="item.id"></el-option>                                                                            
+                    </el-select> -->
+                    <el-select class="ipts" v-model="ruleForm.siteId"  multiple filterable allow-create default-first-option :placeholder="$t('btn.selects')">
+                      <el-option
+                        v-for="(item,i) of option" :key="i"
+                        :label="item.name" :value="item.id"></el-option>   
                     </el-select>
                     <i class="el-icon-s-order lii" title="编写中"></i>
                 </el-form-item>
@@ -100,7 +106,7 @@
             time:'',
             companyId:'',
             look:"",
-            siteId:'',
+            siteId:[],
             num:'',
             registerNum:'',
             medicine:'',
@@ -220,7 +226,7 @@
                       this.ruleForm.time=''
                     } 
                     this.ruleForm.look=res.data.data.look
-                    this.ruleForm.siteId=res.data.data.siteId
+                    this.ruleForm.siteId=res.data.data.siteId.split(',')
                     this.ruleForm.num=res.data.data.num
                     this.ruleForm.registerNum=res.data.data.registerNum
                     this.ruleForm.medicine=res.data.data.medicine
@@ -245,5 +251,7 @@
       line-height: 30px;
       width:30px;border: 1px solid #ececff;
       height:30px;}
-
+ .el-radio{
+    margin-right: 10px;
+  }
 </style>

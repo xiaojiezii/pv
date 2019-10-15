@@ -25,9 +25,8 @@ Vue.use(element, {
     size: 'small'
 });
 Vue.prototype.$axios = axios;
-axios.defaults.withCredentials=false;
+axios.defaults.withCredentials = false;
 Vue.prototype.global = global;
-
 
 // 引入中英文脚本
 const i18n = new VueI18n({
@@ -90,4 +89,4 @@ new Vue({
     i18n,
     store,
     render: h => h(App)
-}).$mount('#app')
+}).$mount('#app') 

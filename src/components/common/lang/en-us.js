@@ -160,7 +160,7 @@ module.exports = {
         type:'Number of cases by type',
         weekly:'Number of cases per week within one year',
         caseinfo:'Case Information',
-        caseMedDRA:'D.9.2.r.1a MedDRA version of the reported cause of death',
+        caseMedDRA:'C.1.1 unique identifier for sender (case) safety report',
         casetime:'C.1.2 Creation time',
         casetype:'C.1.3 Report type',
         casestartdate:'C.1.4 Date of first receipt of report from source',

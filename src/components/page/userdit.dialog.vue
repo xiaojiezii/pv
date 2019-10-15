@@ -92,7 +92,7 @@
         }
       };
           return {
-            innerVisible:false,
+        innerVisible:false,
         option:[],
         rl:sessionStorage.getItem('role'),
         ruleForm: {

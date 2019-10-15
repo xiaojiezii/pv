@@ -1,32 +1,7 @@
 <template>
 <!-- 下载文件 -->
     <div>
-      <el-dialog title="病例附加文件" :visible.sync="filedia" :before-close="closeDialog" style="text-align:center;">
-        <!-- <el-table
-            :data="gridData"
-            style="width: 100%">
-            <el-table-column
-            label="文件名称"
-            prop="fileName">
-            </el-table-column>
-            <el-table-column
-            label="上传时间">
-                <template slot-scope="scope">
-                     <p>{{scope.row.time | formDate}}</p>
-                </template>
-            </el-table-column>
-        
-            <el-table-column align="right">
-            <template slot-scope="scope">
-                <el-button
-                size="mini"
-                @click="handleEdit(scope.row)">下载</el-button>
-                <el-button
-                size="mini"
-                @click="handle(scope.row)">查看</el-button>
-            </template>
-            </el-table-column>
-        </el-table> -->
+      <el-dialog title="病例附加文件" :visible.sync="filedia" width="40%" :before-close="closeDialog" style="text-align:center;">
         <ul>
             <li v-for="(item,i) of gridData" :key="i" style="height:60px;display:flex;line-height:30px;">
                 <div style="width:45px;height:45px;margin-right:20px;">
@@ -39,7 +14,6 @@
                         <p style="margin-bottom:5px;font-size:15px;" title="查看下载">{{item.fileName}}</p>
                         <p style="color:#999;">时间：{{item.time | filterTime}}</p>
                     </a>
-                    
                 </div>
                  <el-button style="height:30px;margin:15px 10px 0 0;" size="mini" @click="handle(i)">查看</el-button>   
                  <el-button style="height:30px;margin:15px 10px 0 0;" type="danger" v-show="lock"  size="mini" @click="del(item.id)">删除</el-button>   
@@ -69,12 +43,12 @@
           total:0,
           pages:'',
       };
-    },
+    }, 
     props:[
         "filedia",
         "caseId",
         "lock"
-    ],
+    ], 
     watch:{
       filedia:function(val){
           if(val){
@@ -157,9 +131,6 @@
   };
 </script>
 <style scoped>
-.el-dialog{
-    width:40%;
-}
 ul{
     list-style: none;
     color: #909399;

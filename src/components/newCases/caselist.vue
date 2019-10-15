@@ -643,9 +643,12 @@ export default {
         },
         get(){
            var projectId=sessionStorage.getItem("siteId")
+           var centerId=sessionStorage.getItem("centerId")
+           console.log(centerId)
            this.sid=projectId
            var url=this.url+"/case/getCaseList?projectId="+projectId;
-               url+="&page="+this.currentPage
+               url+="&page="+this.currentPage;
+               url+="&siteId="+centerId;
             this.$axios.get(url).then((res)=>{
                 console.log(res)
                 if(res.data.status==200){
