@@ -1,6 +1,6 @@
 module.exports = {
     login:{
-        title:"Pv pharmacovigilance system is a professional information system applicable to the field of pharmacovigilance in China, created by Beijing xingdetong medical science and technology with in-depth insight into the field of pharmacovigilance by senior pharmacovigilance management experts with background in domestic and foreign pharmaceutical enterprises and top computer engineers.",
+        title:"EPV pharmacovigilance system is Yikeen's insight into the field of pharmacovigilance, senior pharmacovigilance management experts with the background of domestic and foreign pharmaceutical enterprises and top computer engineers, dedicated to build a professional information system applicable to the field of domestic pharmacovigilance.",
         btn:'English',
         log:"Register",
         see:'Know more about',
@@ -11,7 +11,7 @@ module.exports = {
         name:'Pharmacovigilance system',
         na_title:' Pharmacovigilance is the scientific research and activities related to the discovery, evaluation, understanding and prevention of adverse reactions or any other possible drug-related problems.Pharmacovigilance is not only relating to the drug adverse reactions, but also involves other problems associated with drugs, such as substandard medicines, medication errors, lack of the effectiveness of the report, for there is no good scientific basis and not approved indications of medicine, acute or chronic poisoning case report, the case fatality rate associated with drug evaluation, drug abuse and wrong use, medicine and chemical medicine, other adverse interaction between drug and food.The objectives of pharmacovigilance include: (I) to assess the benefits, hazards, effectiveness and risks of drugs in order to promote their safe, rational and effective use;(2) prevent drug-related safety problems, improve the safety of patients in drug use, treatment and auxiliary medical treatment;(3) educate and inform patients about drug-related safety issues, and improve public health and safety related to drug use.The ultimate goal of pharmacovigilance is the rational and safe use of drugs.Risk/benefit evaluation and exchange of marketed drugs;Provide training, education and timely feedback to patients.',
         cliF:'Return',
-        copyright:'Copyright @ Beijing xingdetong medical technology co., LTD. All rights reserved',
+        copyright:'Copyright @ Beijing medical network information technology co. LTD All rights reserved',
         loerro1:'The input box cannot be empty',
         loerro2:'Verification code error, please re-enter',
         loerro3:'Incorrect user name or password'
@@ -69,7 +69,7 @@ module.exports = {
          date:'Date',
          drug:'Drug Name',
          num:'Number', 
-         look:'Look Case',
+         look:'Select center',
          stage:'Test stage',
          pdate:'To break the blind date',
          test:'Test description',
@@ -77,6 +77,7 @@ module.exports = {
          sponsor:'Sponsor study number（C.5.3）',
          registerNum:'Investigator registration number',
          drus:'Drug name（G.k.2.2）',
+         sel:'Please enter the generic name of the drug',
          inci:'The type of reaction/event studied（C.5.4）',
          trait:'Drug characteristics',
          type:'Blinded classification',
@@ -346,7 +347,7 @@ module.exports = {
         inname1:'Please enter the name of the charge',
         inphone:'Please enter contact information',
         incenter:'Please enter the center name',
-        innew:'Are you starting a new company?',
+        innew:'Are you starting a new center?',
         intishi:'Hint',
         inyes:'Yes',
         inno:'No',

@@ -4,11 +4,11 @@
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="250px" style="margin-top:20px;" class="demo-ruleForm">
                 <el-form-item :label="$t('project.name')" prop="name">
                     <el-input v-model="ruleForm.name" class="ipts" :placeholder="$t('btn.enter')"></el-input>
-                    <i class="el-icon-s-order lii" title="编写中"></i>
+                    
                 </el-form-item>
                 <!-- <el-form-item :label="$t('project.stage')" prop="stages">
                     <el-input v-model="ruleForm.stages" class="ipts" type="number" placeholder="请输入数字"></el-input>
-                    <i class="el-icon-s-order lii" title="编写中"></i>
+                    
                 </el-form-item> -->
                 <el-form-item :label="$t('project.stage')" prop="stages">
                       <el-radio v-model="ruleForm.stages" label="1">Ⅰ 期</el-radio>
@@ -22,13 +22,13 @@
                        <el-option :label="$t('inst.open')" value="0"></el-option>
                        <el-option :label="$t('btn.los')" value="1"></el-option>                                                                                                                                                                                                                                                                        
                     </el-select>
-                    <i class="el-icon-s-order lii" title="编写中"></i>
+                    
                 </el-form-item>
                 <el-form-item :label="$t('project.pdate')" prop="time">
                     <el-date-picker class="ipts" 
                     value-format=" yyyy-MM-dd" format="yyyy-MM-dd"
                      v-model="ruleForm.time"    :placeholder="$t('btn.entime')"></el-date-picker>
-                    <i class="el-icon-s-order lii" title="编写中"></i>
+                    
                 </el-form-item>  
                <el-form-item :label="$t('project.test')" prop="look">
                      <el-input
@@ -37,7 +37,7 @@
                         :placeholder="$t('btn.enter')"
                         v-model="ruleForm.look" class="ipts">
                         </el-input>
-                    <i class="el-icon-s-order lii" title="编写中"></i>
+                    
                 </el-form-item>
                 <el-form-item :label="$t('project.site')" prop="siteId" >
                    <el-select class="ipts" v-model="ruleForm.siteId" multiple filterable allow-create default-first-option :placeholder="$t('btn.selects')">
@@ -45,19 +45,19 @@
                         v-for="(item,i) of option" :key="i"
                         :label="item.name" :value="item.id"></el-option>   
                     </el-select>
-                    <i class="el-icon-s-order lii" title="编写中"></i>
+                    
                 </el-form-item>
                  <el-form-item :label="$t('project.sponsor')" prop="num">
                     <el-input v-model="ruleForm.num" class="ipts" :placeholder="$t('btn.enter')"></el-input>
-                    <i class="el-icon-s-order lii" title="编写中"></i>
+                    
                 </el-form-item>
                  <el-form-item :label="$t('project.registerNum')" prop="registerNum">
                     <el-input v-model="ruleForm.registerNum" class="ipts" :placeholder="$t('btn.enter')"></el-input>
-                    <i class="el-icon-s-order lii" title="编写中"></i>
+                    
                 </el-form-item>
                  <el-form-item :label="$t('project.drus')" prop="medicine">
-                    <el-input v-model="ruleForm.medicine" class="ipts" :placeholder="$t('btn.enter')"></el-input>
-                    <i class="el-icon-s-order lii" title="编写中"></i>
+                    <el-input v-model="ruleForm.medicine" class="ipts" :placeholder="$t('project.sel')"></el-input>
+                    
                 </el-form-item>
                 <el-form-item :label="$t('project.inci')" prop="type">
                     <el-select v-model="ruleForm.type" :placeholder="$t('btn.enter')" class="ipts">
@@ -65,7 +65,7 @@
                        <el-option :label="$t('project.inci2')" value="2"></el-option>                                                                                          
                        <el-option :label="$t('project.inci3')" value="3"></el-option>                                                                                                                                                                                  
                     </el-select>
-                    <i class="el-icon-s-order lii" title="编写中"></i>
+                    
                 </el-form-item>
                 <el-form-item :label="$t('project.trait')" prop="characteristic">
                     <el-select v-model="ruleForm.characteristic" :placeholder="$t('btn.selects')" class="ipts">
@@ -74,7 +74,7 @@
                        <el-option :label="$t('project.trait3')" value="3"></el-option>                                                                                          
                        <el-option :label="$t('project.trait4')" value="4"></el-option>                                                                                          
                     </el-select>
-                    <i class="el-icon-s-order lii" title="编写中"></i>
+                    
                 </el-form-item>
                 <el-form-item :label="$t('project.type')" prop="classify">
                     <el-select v-model="ruleForm.classify" :placeholder="$t('btn.selects')" class="ipts">
@@ -82,7 +82,7 @@
                        <el-option :label="$t('project.type2')" value="2"></el-option>                                                                                          
                        <el-option :label="$t('project.type3')" value="3"></el-option>                                                                                                                                                                                  
                     </el-select>
-                    <i class="el-icon-s-order lii" title="编写中"></i>
+                    
                 </el-form-item>
                <el-form-item style="margin:30px 0 0 -250px;">
                 <el-button type="primary" @click="submitForm('ruleForm')">{{$t('project.set')}}</el-button>

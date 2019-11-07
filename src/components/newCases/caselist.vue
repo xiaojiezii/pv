@@ -642,7 +642,7 @@ export default {
             }); 
         },
         get(){
-           var projectId=sessionStorage.getItem("siteId")
+           var projectId=sessionStorage.getItem("projectId")
            var centerId=sessionStorage.getItem("centerId")
            console.log(centerId)
            this.sid=projectId

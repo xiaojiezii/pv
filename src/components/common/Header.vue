@@ -5,7 +5,7 @@
             <i class="el-icon-menu"></i>
         </div>
         <div class="logo">
-            <img style="width:200px;height:30px;padding-top:10px;" src="../../assets/img/logo.png" alt="">
+            <img style="width:200px;height:45px;padding-top:2px;" src="../../assets/img/logo.png" alt="">
         </div>
         <div class="nav">
              <el-menu style="margin:0 auto;"
@@ -185,6 +185,7 @@
     .header {
         position: relative;
         display: flex;
+        white-space: nowrap;
         justify-content: space-between;
         box-sizing: border-box;
         width: 100%;
@@ -260,6 +261,7 @@
     .nav{
      width: 55%;
      display: flex;
+     white-space: nowrap;
      justify-content: center;
     }
     .el-icon-rank,.el-icon-menu{

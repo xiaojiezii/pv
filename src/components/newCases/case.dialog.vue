@@ -1,6 +1,5 @@
 <template>
-    <div id="demo">
-     <el-dialog :title="$t('case.reports')" :visible.sync="casedia" :before-close="closeDialog" style="text-align:center;border-radius:5px;">
+     <el-dialog :title="$t('case.reports')" :visible.sync="casedia" width="65%" :before-close="closeDialog" style="text-align:center;border-radius:5px;">
              <div>
                   <div style="text-align:right;height:40px;">
                     <el-button type="success" @click="zhu" round>{{$t('case.bar')}}</el-button>
@@ -8,22 +7,20 @@
                      <el-button type="primary" @click="bing" round>{{$t('case.pie')}}</el-button>
                 </div>
             <div class="echarts" v-show="save">
-                <div id="age" style="width:300px;height:300px;"></div>
-                <div id="ages" style="width:300px;height:300px;"></div>
-                <div id="ages1" style="width:300px;height:300px;"></div>
-                <div id="ages2" style="width:300px;height:300px;"></div>
+                <div id="age" style="width:350px;height:350px;"></div>
+                <div id="ages" style="width:350px;height:350px;"></div>
+                <div id="ages1" style="width:350px;height:350px;"></div>
+                <div id="ages2" style="width:350px;height:350px;"></div>
             </div> 
             <div class="echarts" v-show="saves">
-                <div id="age1" style="width:300px;height:300px;"></div>
-                <div id="case" style="width:300px;height:300px;"></div>
-                <div id="casetype" style="width:300px;height:300px;"></div>
-                <div id="casenum" style="width:300px;height:300px;"></div>
+                <div id="age1" style="width:350px;height:350px;"></div>
+                <div id="case" style="width:350px;height:350px;"></div>
+                <div id="casetype" style="width:350px;height:350px;"></div>
+                <div id="casenum" style="width:350px;height:350px;"></div>
             </div> 
              </div>
       </el-dialog>
-    </div>
 </template>
-
 
 <script>
        // 引入 ECharts 主模块
@@ -84,7 +81,12 @@ require('echarts/lib/component/title');
             series: [{
                 name: this.$t('case.sources'),
                 type: this.type,
-                data: this.value1
+                data: this.value1,
+                itemStyle:{
+                    normal:{
+                        color:'rgb(119,109,100)'
+                    }
+                },
             }]
             })
         },
@@ -112,8 +114,13 @@ require('echarts/lib/component/title');
                                 shadowBlur: 10,
                                 shadowOffsetX: 0,
                                 shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            },
+                            normal: {
+                                color: 'rgb(119,109,100)',
+                                shadowBlur: 200,
+                                shadowColor: 'rgba(255,255,255)'
                             }
-                        }
+                        },
                     }
                 ]
             })
@@ -141,6 +148,11 @@ require('echarts/lib/component/title');
                                 shadowBlur: 10,
                                 shadowOffsetX: 0,
                                 shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            },
+                            normal: {
+                                color: 'rgb(119,109,100)',
+                                shadowBlur: 200,
+                                shadowColor: 'rgba(255,255,255)'
                             }
                         }
                     }
@@ -170,6 +182,9 @@ require('echarts/lib/component/title');
                                 shadowBlur: 10,
                                 shadowOffsetX: 0,
                                 shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            },
+                            normal: {
+                                color: 'rgb(119,109,100)',
                             }
                         }
                     }
@@ -199,6 +214,11 @@ require('echarts/lib/component/title');
                                 shadowBlur: 10,
                                 shadowOffsetX: 0,
                                 shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            },
+                            normal: {
+                                color: 'rgb(119,109,100)',
+                                shadowBlur: 200,
+                                shadowColor: 'rgba(255,255,255)'
                             }
                         }
                     }
@@ -217,7 +237,12 @@ require('echarts/lib/component/title');
             series: [{
                 name: this.$t('case.sources'),
                 type: this.type,
-                data: this.value2
+                data: this.value2,
+                itemStyle:{
+                    normal:{
+                        color:'rgb(119,109,100)'
+                    }
+                },
             }]
             })
         },
@@ -233,7 +258,12 @@ require('echarts/lib/component/title');
             series: [{
                 name: this.$t('case.sources'),
                 type: this.type,
-                data: this.value3
+                data: this.value3,
+                itemStyle:{
+                    normal:{
+                        color:'rgb(119,109,100)'
+                    }
+                },
             }]
             })
         },
@@ -249,7 +279,12 @@ require('echarts/lib/component/title');
             series: [{
                 name: this.$t('case.sources'),
                 type: this.type,
-                data: this.value4
+                data: this.value4,
+                itemStyle:{
+                    normal:{
+                        color:'rgb(119,109,100)'
+                    }
+                },
             }]
             })
         },
@@ -365,7 +400,7 @@ require('echarts/lib/component/title');
 <style scoped>
   .echarts{
      display: flex;
-     width:700px;
+     width:800px;
      margin: 0 auto;
      flex-wrap: wrap;
      justify-content: space-between;

@@ -237,7 +237,7 @@ img{
     background-image: url('../../assets/img/4.jpg');
 }
 .wing{
-    margin-top: 200px;
+    margin-top: 170px;
     font-size: 1.75rem;
     margin-bottom: .5rem;
     font-family: inherit;
@@ -248,6 +248,7 @@ img{
 .wing_txt{
     margin: 0 auto;
     width:70%;
+    height:auto;
     font-size: 1.1rem;
     line-height: 25px;
 }

@@ -121,7 +121,6 @@
        caseId(val){
            if(val!==undefined){
                this.get()
-               this.get3()
            }
        },
        option(val){
@@ -170,12 +169,6 @@
                 })
            }
          
-       },
-       get3(){
-           var url=this.global.url+"/case/selectAck";
-           this.$axios.get(url).then(res=>{
-               console.log(res)
-           })
        },
     //    下载xml文件
        sxml(){
