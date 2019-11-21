@@ -19,13 +19,9 @@
                 <el-input v-model="ruleForm.nameTow" class="ipts" :placeholder="$t('btn.enter')"></el-input>
                 <i class="el-icon-s-order lii" title="编写中"></i>
             </el-form-item>
-            <el-form-item :label="$t('repo.rereorg')" prop="siteId">
-            <el-select v-model="ruleForm.siteId"  @change="site" :placeholder="$t('btn.selects')" class="ipts">
-                <el-option
-                v-for="(item,i) of option" :key="i"
-                :label="item.name" :value="item.id"></el-option>                                         
-            </el-select>
-            <i class="el-icon-s-order lii" title="编写中"></i>
+            <el-form-item :label="$t('repo.rereorg')">
+                <el-input v-model="siName" class="ipts" :disabled="true" :placeholder="$t('btn.selects')"></el-input>
+                <i class="el-icon-s-order lii" title="编写中"></i>
             </el-form-item>
                 <el-form-item :label="$t('repo.rerebranch')" prop="branch">
                     <el-input v-model="ruleForm.branch" class="ipts" :placeholder="$t('btn.enter')"></el-input>
@@ -124,7 +120,9 @@
     },
     props:[
        "editrepor",
-        "rowId"
+        "rowId",
+        "siName",
+        "siteId"
     ],
     watch:{
        editrepor(val){
@@ -151,7 +149,7 @@
                 name:this.ruleForm.name,
                 nameOne:this.ruleForm.nameOne,
                 nameTow:this.ruleForm.nameTow,
-                siteId:this.ruleForm.siteId,
+                siteId:this.siteId,
                 branch:this.ruleForm.branch,
                 street:this.ruleForm.street,
                 city:this.ruleForm.city,

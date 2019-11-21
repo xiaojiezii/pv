@@ -131,7 +131,7 @@
                
                <!-- 新建 -->
                <el-form-item :label="$t('case.caseorg')" prop="reporterSite" v-if="save">
-                    <el-select v-model="ruleForm.reporterSite" @change="reports" :placeholder="$t('btn.selects')" style="margin:0 30px 0 100px;width:250px; ">
+                    <el-select v-model="ruleForm.reporterSite" @change="reports" :disabled="true" :placeholder="$t('btn.selects')" style="margin:0 30px 0 100px;width:250px; ">
                        <el-option
                         v-for="(item,i) of option" :key="i"
                         :label="item.name" :value="item.id"></el-option>                                         
@@ -140,7 +140,7 @@
                 </el-form-item>
                <!-- 修改 -->
                 <el-form-item :label="$t('case.caseorg')" prop="reporterSite" v-else>
-                    <el-select v-model="ruleForm.reporterSite" @change="reports"  :placeholder="$t('btn.selects')" style="margin:0 30px 0 100px;width:250px; ">
+                    <el-select v-model="ruleForm.reporterSite" @change="reports" :disabled="true" :placeholder="$t('btn.selects')" style="margin:0 30px 0 100px;width:250px; ">
                        <el-option
                         v-for="(item,i) of option" :key="i"
                         :label="item.name" :value="item.id"></el-option>                                                                            
@@ -413,18 +413,6 @@ export default {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 // -------------------------------------修改页面---------------------------------
 // 详情页面获取信息
         closefileDialog(){
@@ -568,6 +556,8 @@ export default {
         if(nav==1){
             this.save=false
             this.upload=true
+               this.ruleForm.reporterSite = sessionStorage.getItem("centerId")
+         this.ruleForm.id=projectId
         var url=this.global.url+"/site/selectSiteList"
          this.$axios.get(url).then((res)=>{
            if(res.data.status==200){
@@ -580,9 +570,10 @@ export default {
         // 获取报告者所属机构
        
        }else{
-           var siteId=sessionStorage.getItem("siteId")
-           console.log(siteId)
-         this.ruleForm.id=siteId
+           var projectId=sessionStorage.getItem("projectId")
+           this.ruleForm.reporterSite = sessionStorage.getItem("centerId")
+           console.log(projectId)
+         this.ruleForm.id=projectId
           //    获取报告机构
        var url=this.global.url+"/site/selectSiteList"
          this.$axios.get(url).then((res)=>{

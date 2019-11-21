@@ -138,8 +138,9 @@ export default {
       //   报告者信息按钮
           handleEdit(row) {
             var siteId=row.id
+           var siteName = row.name
 			console.log(siteId)
-            this.$router.push({path:'/reporter', query:{sid:siteId}})
+            this.$router.push({path:'/reporter', query:{sid:siteId,siName:siteName}})
         },
     //   删除按钮
           handleDelete(row) {

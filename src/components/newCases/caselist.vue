@@ -820,7 +820,8 @@ export default {
         },
 //   搜索按钮
         seach(){
-            var projectId=sessionStorage.getItem("siteId")
+            var projectId=sessionStorage.getItem("projectId")
+            var centerId=sessionStorage.getItem("centerId")
             var list=[]
             for(var item of this.value1){
                 //  var date1 =Date.parse(new Date(item));  
@@ -833,6 +834,7 @@ export default {
             var postData=this.qs.stringify({
                 projectId:projectId,
                 create:this.creatro,
+                siteId: centerId,
                 name:this.patient,
                 staTime:list[0],
                 endTime:list[1]

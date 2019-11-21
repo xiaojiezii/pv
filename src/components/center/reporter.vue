@@ -59,9 +59,9 @@
               </el-pagination>
           </div> -->
       </div>
-      <newrepor-dialog :newrepor="newrepor" @closeTagDialog="closereporDialog" :siteId="siteId">              
+      <newrepor-dialog :newrepor="newrepor" @closeTagDialog="closereporDialog" :siteId="siteId" :siName='siName'>              
     </newrepor-dialog>
-      <editrepor-dialog :editrepor="editrepor" @closeTagDialog="closeeditDialog" :rowId="rowId">              
+      <editrepor-dialog :editrepor="editrepor" @closeTagDialog="closeeditDialog" :rowId="rowId" :siName='siName' :siteId="siteId">              
     </editrepor-dialog>
  </div>
 </template>
@@ -77,7 +77,8 @@ export default {
            url:this.global.url,
 		   siteId:"",
            tableData: [],
-           search: ''
+           search: '',
+           siName:'',
         }
     },
    components:{
@@ -93,8 +94,8 @@ export default {
         },
         get(){
            var siteId=this.$route.query.sid
+           this.siName = this.$route.query.siName
 		   this.siteId=siteId
-		   console.log(siteId)
            var url=this.url
             this.$axios.get(url+"/siteReporter/selectSiteReporter?siteId="+siteId).then((res)=>{
                 console.log(res)

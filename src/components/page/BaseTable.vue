@@ -69,7 +69,7 @@
                     :total="total">
               </el-pagination>
           </div>
-          <el-dialog width="40%" title="选择中心" :visible.sync="institution" append-to-body :before-close="closeDialog">
+          <el-dialog width="40%" :title="$t('project.look')" :visible.sync="institution" append-to-body :before-close="closeDialog">
                 <!-- <div style="width:200px;margin:0 auto;">
                     <el-radio v-model="radio" v-for="(item,i) of siteId" :key="i" :label="item.id">{{item.name}}</el-radio>
                 </div> -->
@@ -215,10 +215,10 @@ export default {
 </script>
 <style scoped>
 .el-button--mini{
-    padding:7px 10px;
+    padding:7px 3px;
 }
 .el-button+.el-button {
-    margin-left: 8px;
+    margin-left: 5px;
 }
  .el-radio{
     margin:0 20px 20px 0;

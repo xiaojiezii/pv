@@ -91,6 +91,11 @@ export default {
               }
             },
         login(){
+            var url =" http://192.168.1.175:9001/user/login?username="+'admin';
+            url+="&password="+'admin';
+            this.$axios.post(url).then((res) => {
+              console.log(res)
+            })
             this.icon="el-icon-loading"
             var postData=this.qs.stringify({
                 username:this.user,
